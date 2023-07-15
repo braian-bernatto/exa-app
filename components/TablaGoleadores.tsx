@@ -25,7 +25,7 @@ const TablaGoleadores = ({ players }: Props) => {
   return (
     <div className='flex flex-col'>
       {playersOrderByGoals.map((jugador, idx) => (
-        <div className='h-[180px] flex items-center justify-center'>
+        <div key={idx} className='h-[180px] flex items-center justify-center'>
           <div className='scale-[40%] relative'>
             <div className='rounded-full h-[100px] w-[100px] text-5xl font-semibold bg-white flex items-center justify-center shadow absolute right-0 z-10 border'>
               {jugador.statistics.goals}
