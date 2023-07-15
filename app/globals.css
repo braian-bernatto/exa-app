@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --drop-shadow: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +25,146 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+/* Positions */
+.pulse {
+  position: absolute;
+}
+
+.pulse::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background: #d86a05;
+  animation: pulse 1500ms infinite;
+  filter: var(--drop-shadow);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 #d86a05;
+  }
+  100% {
+    box-shadow: 0 0 0 30px #fbb32f01;
+  }
+}
+
+.pulse.arquero::after {
+  top: 310px;
+  left: 102px;
+}
+
+.pulse.central::after {
+  top: 250px;
+  left: 102px;
+}
+
+.pulse.defensa-central::after {
+  top: 250px;
+  left: 102px;
+}
+
+.pulse.defensa::after {
+  top: 250px;
+  left: 102px;
+}
+
+.pulse.delantero::after {
+  top: 45px;
+  left: 102px;
+}
+
+.pulse.centro-delantero::after {
+  top: 45px;
+  left: 102px;
+}
+
+.pulse.delantero-izquierdo::after {
+  top: 90px;
+  left: 32px;
+}
+
+.pulse.delantero-derecho::after {
+  top: 90px;
+  left: 170px;
+}
+
+.pulse.enganche::after {
+  top: 95px;
+  left: 102px;
+}
+
+.pulse.extremo-derecho::after {
+  top: 97px;
+  left: 180px;
+}
+
+.pulse.extremo-izquierdo::after {
+  top: 97px;
+  left: 24px;
+}
+
+.pulse.interior-derecho::after {
+  top: 140px;
+  left: 150px;
+}
+
+.pulse.interior-izquierdo::after {
+  top: 140px;
+  left: 54px;
+}
+
+.pulse.lateral-derecho::after {
+  top: 250px;
+  left: 180px;
+}
+
+.pulse.lateral-izquierdo::after {
+  top: 250px;
+  left: 24px;
+}
+
+.pulse.media-punta::after {
+  top: 110px;
+  left: 102px;
+}
+
+.pulse.mediocampista::after {
+  top: 159px;
+  left: 102px;
+}
+
+.pulse.mediocentro-ofensivo::after {
+  top: 159px;
+  left: 102px;
+}
+
+.pulse.volante::after {
+  top: 159px;
+  left: 102px;
+}
+
+.pulse.volante-central::after {
+  top: 159px;
+  left: 102px;
+}
+
+.pulse.volante-derecho::after {
+  top: 160px;
+  left: 184px;
+}
+
+.pulse.volante-izquierdo::after {
+  top: 160px;
+  left: 20px;
+}
+
+.pulse.zaguero::after {
+  top: 250px;
+  left: 102px;
 }

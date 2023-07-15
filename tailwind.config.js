@@ -15,5 +15,5 @@ module.exports = {
       textColor: { gold: '#e7cd80', darkgold: '#4c3d19' }
     }
   },
-  plugins: []
+  plugins: [require('daisyui')]
 }

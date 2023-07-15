@@ -6,10 +6,11 @@ import Foot from './Foot'
 interface CardProps {
   player: Player
   card: Card
+  small?: boolean
 }
 
-const PlayerCard = ({ player, card }: CardProps) => {
-  return (
+const PlayerCard = ({ player, card, small = false }: CardProps) => {
+  return !small ? (
     <div className={`relative sm:scale-100 w-[350px] ${card.textColor}`}>
       <Image
         src={`/img/${card.url}`}
@@ -17,6 +18,7 @@ const PlayerCard = ({ player, card }: CardProps) => {
         height={350}
         alt='player card'
         className='drop-shadow-lg'
+        priority
       />
       <Image
         src={`/img/${player.image}`}
@@ -109,6 +111,46 @@ const PlayerCard = ({ player, card }: CardProps) => {
               <Foot styles='-scale-x-100' width={28} height={28} />
             </div>
           )}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className={`relative sm:scale-100 w-[350px] ${card.textColor}`}>
+      <Image
+        src={`/img/${card.url}`}
+        width={350}
+        height={350}
+        alt='player card'
+        className='drop-shadow-lg'
+        priority
+      />
+      <Image
+        src={`/img/${player.image}`}
+        width={200}
+        height={200}
+        className='absolute top-[54px] left-[50%] translate-x-[-50%] drop-shadow'
+        alt='player photo'
+      />
+
+      <div className='absolute top-[75px] left-[60px] flex flex-col items-center text-2xl h-[180px]'>
+        <span className='flex flex-col items-center gap-1'></span>
+      </div>
+
+      <div className='absolute top-[255px] flex flex-col items-center w-full px-[44px]'>
+        <h1 className='w-full text-center text-[26px] font-semibold overflow-y-auto h-[44px] leading-[44px] uppercase'>
+          {player.name}
+        </h1>
+        <span className='absolute top-[43px] w-[210px] border-t border-yellow-900'></span>
+
+        <div className='flex items-center justify-center h-[135px] w-full text-2xl relative py-[5px]'>
+          <div className='h-full w-full relative'>
+            <Image
+              src={`/img/${player.club}`}
+              fill
+              className='object-contain drop-shadow'
+              alt='team logo'
+            />
+          </div>
         </div>
       </div>
     </div>
