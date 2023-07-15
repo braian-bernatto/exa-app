@@ -16,6 +16,7 @@ const PlayerCard = ({ player, card }: CardProps) => {
         width={350}
         height={350}
         alt='player card'
+        className='drop-shadow-lg'
       />
       <Image
         src={`/img/${player.image}`}
@@ -27,7 +28,7 @@ const PlayerCard = ({ player, card }: CardProps) => {
 
       <div className='absolute top-[75px] left-[60px] flex flex-col items-center text-2xl h-[180px]'>
         <strong className='text-5xl'>{player.rating}</strong>
-        <span>{player.position.corto}</span>
+        <span>{player.position}</span>
         <span className='flex flex-col items-center gap-1'>
           <div className='h-[65px] w-[65px] relative'>
             <Image

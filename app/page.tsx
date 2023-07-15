@@ -8,10 +8,7 @@ export default function Home() {
     club: 'timao.png',
     image: 'player-gray.png',
     country: 'py',
-    position: {
-      corto: 'ST',
-      largo: 'Delantero'
-    },
+    position: 'DC',
     rating: 99,
     foot: 'ambidiestro',
     attributes: {
@@ -21,6 +18,11 @@ export default function Home() {
       reg: 91,
       def: 77,
       fís: 99
+    },
+    statistics: {
+      yellowCards: 4,
+      redCards: 2,
+      goals: 15
     }
   }
 

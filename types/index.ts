@@ -3,10 +3,7 @@ export interface Player {
   club: string
   image: string
   country: string
-  position: {
-    corto: string
-    largo: string
-  }
+  position: string
   rating: number
   foot: 'izquierdo' | 'derecho' | 'ambidiestro'
   attributes: {
@@ -16,6 +13,11 @@ export interface Player {
     reg: number
     def: number
     fís: number
+  }
+  statistics: {
+    yellowCards: number
+    redCards: number
+    goals: number
   }
 }
 
