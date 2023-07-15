@@ -1,3 +1,4 @@
+import PlayerDetails from '@/components/PlayerDetails'
 import PlayerCard from '@/components/PlayerCard'
 import { Card, Player } from '@/types'
 
@@ -12,7 +13,7 @@ export default function Home() {
       largo: 'Delantero'
     },
     rating: 99,
-    foot: 'derecho',
+    foot: 'ambidiestro',
     attributes: {
       rit: 85,
       tir: 75,
@@ -33,6 +34,7 @@ export default function Home() {
     <main className='min-h-screen text-gray-700 w-full flex flex-col items-center'>
       <h1>Exa App</h1>
       <PlayerCard player={player} card={card} />
+      <PlayerDetails player={player} card={card} />
     </main>
   )
 }
