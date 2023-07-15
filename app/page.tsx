@@ -15,7 +15,7 @@ export default function Home() {
     <main className='min-h-screen text-gray-700 w-full flex flex-col items-center'>
       <h1>Exa App</h1>
       <TablaGoleadores players={Goleadores} />
-      {/* <PlayerDetails player={player} card={card} /> */}
+      <PlayerDetails player={player} card={card} />
     </main>
   )
 }
