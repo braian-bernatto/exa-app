@@ -124,7 +124,7 @@ const Fixture = ({ datos }: Props) => {
                         alt={`image`}
                         className='object-contain drop-shadow'
                       />
-                      <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                      <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                         <strong>2</strong>
                       </div>
                     </div>
@@ -135,7 +135,7 @@ const Fixture = ({ datos }: Props) => {
                         alt={`image`}
                         className='object-contain drop-shadow'
                       />
-                      <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                      <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                         <strong>2</strong>
                       </div>
                     </div>
@@ -146,7 +146,7 @@ const Fixture = ({ datos }: Props) => {
                         alt={`image`}
                         className='object-contain drop-shadow'
                       />
-                      <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                      <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                         <strong>1</strong>
                       </div>
                     </div>
