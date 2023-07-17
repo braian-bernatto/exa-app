@@ -1,19 +1,24 @@
-import { fixtures } from "@/constants";
-import { Fixture } from "@/types";
-import dayjs from "dayjs";
-import Image from "next/image";
+'use client'
+
+import { Fixture } from '@/types'
+import dayjs from 'dayjs'
+import Image from 'next/image'
+import Modal from './Modal'
 
 interface Props {
-  datos: Fixture;
+  datos: Fixture
 }
 
 const Fixture = ({ datos }: Props) => {
   return (
-    <div className="flex flex-col items-center">
-      {/* select */}
-      <div className="grid grid-cols-3 place-items-center w-full">
-        <select className="select select-bordered select-sm max-w-xs">
-          <option disabled selected>
+    <div className='flex flex-col items-center'>
+      <Modal />
+      <div className='grid grid-cols-3 place-items-center w-full'>
+        <select
+          defaultValue='title'
+          className='select select-bordered select-sm max-w-xs'
+        >
+          <option value='title' disabled>
             Fecha
           </option>
           <option>Fecha 6</option>
@@ -24,52 +29,108 @@ const Fixture = ({ datos }: Props) => {
           <option>Fecha 1</option>
         </select>
 
-        <div className="w-[90px] h-[90px] relative flex-none">
+        <div className='w-[90px] h-[90px] relative flex-none'>
           <Image
-            src="/img/aso-dmd.png"
+            src='/img/aso-dmd.png'
             fill
-            alt="aso logo"
-            className="object-contain"
+            alt='aso logo'
+            className='object-contain'
           />
         </div>
 
-        <h2 className="rounded-md bg-white p-1 px-3 text-sm font-semibold">
+        <h2 className='rounded-md bg-white p-1 px-3 text-sm font-semibold'>
           22/07/2023
         </h2>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className='flex flex-col gap-2'>
         {datos.equipos.map((equipo, idx) => (
-          <div key={idx} className="flex items-center w-[350px] sm:w-[500px] relative">
-            <span className="absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white z-0 shadow rounded-full"></span>
-            <div className="z-10 flex justify-between items-center w-full">
+          <div
+            key={idx}
+            className='flex items-center w-[350px] sm:w-[500px] relative flex-wrap'
+          >
+            <div className='z-10 flex justify-between items-center w-full relative'>
+              <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full'></span>
               <Image
                 src={`/img/${equipo.team1.data.logo}`}
                 width={70}
                 height={70}
-                alt="Equipo Logo"
+                alt='Equipo Logo'
               />
-              <h3 className="text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none">
+              <h3 className='text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
                 {equipo.team1.data.name}
               </h3>
-              <span className="font-bold rounded-full border shadow-md h-[55px] w-[55px] p-2 flex items-center justify-center bg-white">
-                {equipo.team1.goals?`${equipo.team1.goals}-${equipo.team2.goals}`: equipo.horaInicio? dayjs(equipo.horaInicio).format('HH:mm'): 
-                <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center"><div className="bg-red-500 w-2 h-2 rounded-full animate-pulse"></div></div>}
+              <span className='font-bold rounded-full border shadow-md h-[55px] w-[55px] p-2 flex items-center justify-center bg-white'>
+                {equipo.team1.goals ? (
+                  `${equipo.team1.goals}-${equipo.team2.goals}`
+                ) : equipo.horaInicio ? (
+                  dayjs(equipo.horaInicio).format('HH:mm')
+                ) : (
+                  <div className='w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center'>
+                    <div className='bg-red-500 w-2 h-2 rounded-full animate-pulse'></div>
+                  </div>
+                )}
               </span>
-              <h3 className="text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none">
+              <h3 className='text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
                 {equipo.team2.data.name}
               </h3>
               <Image
                 src={`/img/${equipo.team2.data.logo}`}
                 width={70}
                 height={70}
-                alt="Equipo Logo"
+                alt='Equipo Logo'
               />
+            </div>
+            {/* DATOS DEL PARTIDO */}
+            <div className='w-full h-[200px] relative -top-10 flex justify-center gap-2'>
+              {/* box 1 */}
+              <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'>
+                <div className='flex gap-2 items-center'>
+                  <h2 className='text-[9px] sm:text-[12px] rounded-full px-1 flex-none shadow'>
+                    Braian Bernatto
+                  </h2>
+                  <div className='w-[20px] h-[20px] relative'>
+                    <Image
+                      src={`/img/goals.png`}
+                      fill
+                      alt={`image`}
+                      className='object-contain drop-shadow'
+                    />
+                    <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                      <strong>2</strong>
+                    </div>
+                  </div>
+                  <div className='w-[20px] h-[20px] relative'>
+                    <Image
+                      src={`/img/yellowCards.png`}
+                      fill
+                      alt={`image`}
+                      className='object-contain drop-shadow'
+                    />
+                    <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                      <strong>2</strong>
+                    </div>
+                  </div>
+                  <div className='w-[20px] h-[20px] relative'>
+                    <Image
+                      src={`/img/redCards.png`}
+                      fill
+                      alt={`image`}
+                      className='object-contain drop-shadow'
+                    />
+                    <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                      <strong>1</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* box 2 */}
+              <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'></div>
             </div>
           </div>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Fixture;
+export default Fixture

@@ -1,5 +1,4 @@
 import PlayerDetails from '@/components/PlayerDetails'
-import PlayerCard from '@/components/PlayerCard'
 import { Card } from '@/types'
 import { Goleadores, fixtures, player } from '@/constants'
 import TablaGoleadores from '@/components/TablaGoleadores'
