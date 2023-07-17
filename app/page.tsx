@@ -1,8 +1,10 @@
 import PlayerDetails from '@/components/PlayerDetails'
 import PlayerCard from '@/components/PlayerCard'
 import { Card } from '@/types'
-import { Goleadores, player } from '@/constants'
+import { Goleadores, fixtures, player } from '@/constants'
 import TablaGoleadores from '@/components/TablaGoleadores'
+import TablaPosiciones from '@/components/TablaPosiciones'
+import Fixture from '@/components/Fixture'
 
 export default function Home() {
   const card: Card = {
@@ -14,6 +16,8 @@ export default function Home() {
   return (
     <main className='min-h-screen text-gray-700 w-full flex flex-col items-center'>
       <h1>Exa App</h1>
+      <Fixture datos={fixtures[0]} />
+      <TablaPosiciones />
       <TablaGoleadores players={Goleadores} />
       <PlayerDetails player={player} card={card} />
     </main>

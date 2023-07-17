@@ -34,7 +34,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         <span className='flex flex-col items-center gap-1'>
           <div className='h-[65px] w-[65px] relative'>
             <Image
-              src={`/img/${player.club}`}
+              src={`/img/${player.team}`}
               fill
               className='object-contain drop-shadow'
               alt='team logo'
@@ -145,7 +145,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         <div className='flex items-center justify-center h-[135px] w-full text-2xl relative py-[5px]'>
           <div className='h-full w-full relative'>
             <Image
-              src={`/img/${player.club}`}
+              src={`/img/${player.team}`}
               fill
               className='object-contain drop-shadow'
               alt='team logo'

@@ -15,5 +15,5 @@ module.exports = {
       textColor: { gold: '#e7cd80', darkgold: '#4c3d19' }
     }
   },
-  plugins: [require('daisyui')]
+  plugins: [require('daisyui'), require('prettier-plugin-tailwindcss')]
 }
