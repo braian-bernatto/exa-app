@@ -48,14 +48,14 @@ const Fixture = ({ datos }: Props) => {
                 height={70}
                 alt="Equipo Logo"
               />
-              <h3 className="text-[10px] text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none">
+              <h3 className="text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none">
                 {equipo.team1.data.name}
               </h3>
               <span className="font-bold rounded-full border shadow-md h-[55px] w-[55px] p-2 flex items-center justify-center bg-white">
                 {equipo.team1.goals?`${equipo.team1.goals}-${equipo.team2.goals}`: equipo.horaInicio? dayjs(equipo.horaInicio).format('HH:mm'): 
                 <div className="w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center"><div className="bg-red-500 w-2 h-2 rounded-full animate-pulse"></div></div>}
               </span>
-              <h3 className="text-[10px] text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none">
+              <h3 className="text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none">
                 {equipo.team2.data.name}
               </h3>
               <Image

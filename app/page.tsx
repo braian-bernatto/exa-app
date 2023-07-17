@@ -14,7 +14,7 @@ export default function Home() {
   }
 
   return (
-    <main className='min-h-screen text-gray-700 w-full flex flex-col items-center gap-10'>
+    <main className='min-h-screen text-gray-700 w-full flex flex-col items-center gap-10 py-5'>
       <h1>Exa App</h1>
       <Fixture datos={fixtures[0]} />
       <TablaPosiciones />
