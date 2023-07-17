@@ -49,9 +49,9 @@ export interface Player {
     fís: number
   }
   statistics: {
+    goals: number
     yellowCards: number
     redCards: number
-    goals: number
   }
 }
 

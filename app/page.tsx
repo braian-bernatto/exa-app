@@ -4,6 +4,7 @@ import { Goleadores, fixtures, player } from '@/constants'
 import TablaGoleadores from '@/components/TablaGoleadores'
 import TablaPosiciones from '@/components/TablaPosiciones'
 import Fixture from '@/components/Fixture'
+import PolarChart from '@/components/RadarChart'
 
 export default function Home() {
   const card: Card = {

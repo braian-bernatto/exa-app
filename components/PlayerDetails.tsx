@@ -4,6 +4,7 @@ import PlayerCard from './PlayerCard'
 import { Card, Player } from '@/types'
 import { attributes, positions } from '@/constants'
 import Image from 'next/image'
+import RadarChart from './RadarChart'
 
 interface PlayerProps {
   player: Player
@@ -12,8 +13,13 @@ interface PlayerProps {
 
 const PlayerDetails = ({ player, card }: PlayerProps) => {
   return (
-    <div className='flex flex-wrap items-center justify-center'>
-      <PlayerCard player={player} card={card} />
+    <div className='flex flex-wrap items-center justify-center gap-5'>
+      <div className='w-[280px] h-[392px] flex items-center justify-center'>
+        <div className='scale-[80%] relative'>
+          <PlayerCard player={player} card={card} />
+        </div>
+      </div>
+      <RadarChart attributes={player.attributes} />
       <div className='flex flex-col gap-2'>
         {/* player statistics */}
         <div className='flex flex-wrap gap-3 border rounded shadow px-5 py-3 bg-white justify-center items-center relative'>
