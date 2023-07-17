@@ -3,16 +3,34 @@
 import { Fixture } from '@/types'
 import dayjs from 'dayjs'
 import Image from 'next/image'
-import Modal from './Modal'
+import { useState, Fragment } from 'react'
+import { Transition } from '@headlessui/react'
 
 interface Props {
   datos: Fixture
 }
 
 const Fixture = ({ datos }: Props) => {
+  const [isOpen, setIsOpen] = useState<number[]>([])
+
+  const checkOpen = (id: number) => {
+    if (isOpen.indexOf(id) !== -1) return true
+
+    return false
+  }
+
+  const handleOpen = (id: number) => {
+    let open = checkOpen(id)
+    if (open) {
+      let nuevoArray = isOpen.filter(item => item !== id)
+      setIsOpen(nuevoArray)
+    } else {
+      setIsOpen([...isOpen, id])
+    }
+  }
+
   return (
     <div className='flex flex-col items-center'>
-      <Modal />
       <div className='grid grid-cols-3 place-items-center w-full'>
         <select
           defaultValue='title'
@@ -46,7 +64,8 @@ const Fixture = ({ datos }: Props) => {
         {datos.equipos.map((equipo, idx) => (
           <div
             key={idx}
-            className='flex items-center w-[350px] sm:w-[500px] relative flex-wrap'
+            className='flex items-center w-[350px] sm:w-[500px] relative flex-wrap cursor-pointer'
+            onClick={() => handleOpen(idx)}
           >
             <div className='z-10 flex justify-between items-center w-full relative'>
               <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full'></span>
@@ -81,51 +100,62 @@ const Fixture = ({ datos }: Props) => {
               />
             </div>
             {/* DATOS DEL PARTIDO */}
-            <div className='w-full h-[200px] relative -top-10 flex justify-center gap-2'>
-              {/* box 1 */}
-              <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'>
-                <div className='flex gap-2 items-center'>
-                  <h2 className='text-[9px] sm:text-[12px] rounded-full px-1 flex-none shadow'>
-                    Braian Bernatto
-                  </h2>
-                  <div className='w-[20px] h-[20px] relative'>
-                    <Image
-                      src={`/img/goals.png`}
-                      fill
-                      alt={`image`}
-                      className='object-contain drop-shadow'
-                    />
-                    <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
-                      <strong>2</strong>
+            <Transition
+              show={checkOpen(idx)}
+              as={Fragment}
+              enter='ease-out duration-300'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+              leave='ease-in duration-200'
+              leaveFrom='opacity-100'
+              leaveTo='opacity-0'
+            >
+              <div className='w-full h-[200px] relative -top-10 flex justify-center gap-2'>
+                {/* box 1 */}
+                <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'>
+                  <div className='flex gap-2 items-center'>
+                    <h2 className='text-[9px] sm:text-[12px] rounded-full px-1 flex-none shadow'>
+                      Braian Bernatto
+                    </h2>
+                    <div className='w-[20px] h-[20px] relative'>
+                      <Image
+                        src={`/img/goals.png`}
+                        fill
+                        alt={`image`}
+                        className='object-contain drop-shadow'
+                      />
+                      <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                        <strong>2</strong>
+                      </div>
                     </div>
-                  </div>
-                  <div className='w-[20px] h-[20px] relative'>
-                    <Image
-                      src={`/img/yellowCards.png`}
-                      fill
-                      alt={`image`}
-                      className='object-contain drop-shadow'
-                    />
-                    <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
-                      <strong>2</strong>
+                    <div className='w-[20px] h-[20px] relative'>
+                      <Image
+                        src={`/img/yellowCards.png`}
+                        fill
+                        alt={`image`}
+                        className='object-contain drop-shadow'
+                      />
+                      <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                        <strong>2</strong>
+                      </div>
                     </div>
-                  </div>
-                  <div className='w-[20px] h-[20px] relative'>
-                    <Image
-                      src={`/img/redCards.png`}
-                      fill
-                      alt={`image`}
-                      className='object-contain drop-shadow'
-                    />
-                    <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
-                      <strong>1</strong>
+                    <div className='w-[20px] h-[20px] relative'>
+                      <Image
+                        src={`/img/redCards.png`}
+                        fill
+                        alt={`image`}
+                        className='object-contain drop-shadow'
+                      />
+                      <div className='rounded-full bg-white shadow w-[15px] h-[15px] flex justify-center items-center text-[10px] absolute -top-2 -right-1'>
+                        <strong>1</strong>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* box 2 */}
+                <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'></div>
               </div>
-              {/* box 2 */}
-              <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'></div>
-            </div>
+            </Transition>
           </div>
         ))}
       </div>
