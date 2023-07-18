@@ -69,12 +69,19 @@ const Fixture = ({ datos }: Props) => {
           >
             <div className='z-10 flex justify-between items-center w-full relative'>
               <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full'></span>
-              <Image
-                src={`/img/${equipo.team1.data.logo}`}
-                width={70}
-                height={70}
-                alt='Equipo Logo'
-              />
+              <div className='relative flex items-center justify-center'>
+                <Image
+                  src={`/img/${equipo.team1.data.logo}`}
+                  width={70}
+                  height={70}
+                  alt='Equipo Logo'
+                />
+                {equipo.team1.walkover && (
+                  <p className='absolute rounded bg-white shadow-md px-1 text-pink-800 text-[10px] opacity-90 -rotate-12 border border-pink-800'>
+                    Walkover
+                  </p>
+                )}
+              </div>
               <h3 className='text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
                 {equipo.team1.data.name}
               </h3>
@@ -82,7 +89,23 @@ const Fixture = ({ datos }: Props) => {
                 {equipo.team1.goals ? (
                   `${equipo.team1.goals}-${equipo.team2.goals}`
                 ) : equipo.horaInicio ? (
-                  dayjs(equipo.horaInicio).format('HH:mm')
+                  <div className='flex relative'>
+                    {dayjs(equipo.horaInicio).format('HH:mm')}
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={1.5}
+                      stroke='currentColor'
+                      className='w-3 h-3 opacity-70 absolute bottom-[-10px] left-[50%] translate-x-[-50%]'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z'
+                      />
+                    </svg>
+                  </div>
                 ) : (
                   <div className='w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center'>
                     <div className='bg-red-500 w-2 h-2 rounded-full animate-pulse'></div>
@@ -92,12 +115,19 @@ const Fixture = ({ datos }: Props) => {
               <h3 className='text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
                 {equipo.team2.data.name}
               </h3>
-              <Image
-                src={`/img/${equipo.team2.data.logo}`}
-                width={70}
-                height={70}
-                alt='Equipo Logo'
-              />
+              <div className='relative flex items-center justify-center'>
+                <Image
+                  src={`/img/${equipo.team2.data.logo}`}
+                  width={70}
+                  height={70}
+                  alt='Equipo Logo'
+                />
+                {equipo.team2.walkover && (
+                  <p className='absolute rounded bg-white shadow-md px-1 text-pink-800 text-[10px] opacity-90 rotate-12 border border-pink-800'>
+                    Walkover
+                  </p>
+                )}
+              </div>
             </div>
             {/* DATOS DEL PARTIDO */}
             <Transition

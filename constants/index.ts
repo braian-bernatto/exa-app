@@ -50,7 +50,7 @@ export const fixtures: Fixture[] = [
             logo: 'canallas-15.png'
           },
           goals: undefined,
-          walkover: undefined
+          walkover: true
         },
         team2: {
           data: {
@@ -77,7 +77,7 @@ export const fixtures: Fixture[] = [
             logo: 'usa.png'
           },
           goals: undefined,
-          walkover: undefined
+          walkover: true
         }
       }
     ]
