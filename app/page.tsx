@@ -1,10 +1,9 @@
 import PlayerDetails from '@/components/PlayerDetails'
 import { Card } from '@/types'
-import { Goleadores, fixtures, player } from '@/constants'
+import { Goleadores, fixtures } from '@/constants'
 import TablaGoleadores from '@/components/TablaGoleadores'
 import TablaPosiciones from '@/components/TablaPosiciones'
 import Fixture from '@/components/Fixture'
-import PolarChart from '@/components/RadarChart'
 
 export default function Home() {
   const card: Card = {
@@ -19,7 +18,7 @@ export default function Home() {
       <Fixture datos={fixtures[0]} />
       <TablaPosiciones />
       <TablaGoleadores players={Goleadores} />
-      <PlayerDetails player={player} card={card} />
+      <PlayerDetails player={Goleadores[0]} card={card} />
     </main>
   )
 }

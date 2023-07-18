@@ -224,7 +224,7 @@ export const Goleadores: Player[] = [
       tir: 75,
       pas: 88,
       reg: 91,
-      def: 77,
+      def: 85,
       fís: 99
     },
     statistics: {
@@ -300,29 +300,6 @@ export const Goleadores: Player[] = [
     }
   }
 ]
-
-export const player: Player = {
-  name: 'Braian Bernatto',
-  team: 'timao.png',
-  image: 'player-gray.png',
-  country: 'py',
-  position: 'DC',
-  rating: 99,
-  foot: 'ambidiestro',
-  attributes: {
-    rit: 85,
-    tir: 75,
-    pas: 88,
-    reg: 91,
-    def: 77,
-    fís: 99
-  },
-  statistics: {
-    goals: 20,
-    yellowCards: 4,
-    redCards: 2
-  }
-}
 
 export const attributes: { [key: string]: string } = {
   rit: 'ritmo',

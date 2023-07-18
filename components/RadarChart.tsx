@@ -34,11 +34,14 @@ export const options = {
       },
       ticks: {
         display: true,
-        backdropColor: 'transparent'
+        backdropColor: 'transparent',
+        stepSize: 20
       },
       legend: {
         display: false
-      }
+      },
+      min: 0,
+      max: 100
     }
   },
   plugins: {
