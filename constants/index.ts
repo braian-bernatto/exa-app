@@ -11,6 +11,10 @@ export const fixtures: Fixture[] = [
             name: 'timao',
             logo: 'timao.png'
           },
+          players: [
+            { name: 'braian bernatto', goals: 4, yellowCards: 1, redCards: 1 },
+            { name: 'fernando locura', goals: 2, yellowCards: 2, redCards: 1 }
+          ],
           goals: 5,
           walkover: undefined
         },
@@ -19,6 +23,11 @@ export const fixtures: Fixture[] = [
             name: 'verdao',
             logo: 'verdao.png'
           },
+          players: [
+            { name: 'hugo chavez', goals: 2, yellowCards: 1 },
+            { name: 'chaco vividor', goals: 4, yellowCards: 2, redCards: 1 },
+            { name: 'fulano mengano', goals: 1, yellowCards: 1, redCards: 1 }
+          ],
           goals: 2,
           walkover: undefined
         }
@@ -30,6 +39,20 @@ export const fixtures: Fixture[] = [
             name: 'gorilas',
             logo: 'gorilas.png'
           },
+          players: [
+            { name: 'braian bernatto', goals: 1 },
+            { name: 'fernando locura', redCards: 1 },
+            { name: 'fulano mengano', yellowCards: 2 },
+            { name: 'braian bernatto', goals: 1 },
+            { name: 'fernando locura', redCards: 1 },
+            { name: 'fulano mengano', yellowCards: 2 },
+            { name: 'braian bernatto', goals: 1 },
+            { name: 'fernando locura', redCards: 1 },
+            { name: 'fulano mengano', yellowCards: 2 },
+            { name: 'braian bernatto', goals: 1 },
+            { name: 'fernando locura', redCards: 1 },
+            { name: 'fulano mengano', yellowCards: 2 }
+          ],
           goals: 7,
           walkover: undefined
         },
@@ -38,6 +61,10 @@ export const fixtures: Fixture[] = [
             name: 'boca',
             logo: 'boca.png'
           },
+          players: [
+            { name: 'hugo chavez', goals: 2, yellowCards: 1 },
+            { name: 'fernando chaco', yellowCards: 2, redCards: 1 }
+          ],
           goals: 3,
           walkover: undefined
         }

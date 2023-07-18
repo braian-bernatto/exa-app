@@ -107,7 +107,7 @@ const Fixture = ({ datos }: Props) => {
                     </svg>
                   </div>
                 ) : (
-                  <div className='w-[20px] h-[20px] rounded-full overflow-hidden flex items-center justify-center'>
+                  <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] rounded-full overflow-hidden flex items-center justify-center'>
                     <div className='bg-red-500 w-2 h-2 rounded-full animate-pulse'></div>
                   </div>
                 )}
@@ -142,48 +142,117 @@ const Fixture = ({ datos }: Props) => {
             >
               <div className='w-full h-[200px] relative -top-10 flex justify-center gap-2'>
                 {/* box 1 */}
-                <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'>
-                  <div className='flex gap-2 items-center'>
-                    <h2 className='text-[9px] sm:text-[12px] rounded-full px-1 flex-none shadow'>
-                      Braian Bernatto
-                    </h2>
-                    <div className='w-[20px] h-[20px] relative'>
-                      <Image
-                        src={`/img/goals.png`}
-                        fill
-                        alt={`image`}
-                        className='object-contain drop-shadow'
-                      />
-                      <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
-                        <strong>2</strong>
+                <div className='bg-white w-[45%] h-full rounded-md pt-12 pb-5 gap-3 px-3 overflow-y-auto items-start flex flex-col'>
+                  {equipo.team1.players &&
+                    equipo.team1.players.map((team, idx) => (
+                      <div
+                        key={idx}
+                        className='flex gap-1 sm:gap-2 items-center'
+                      >
+                        <h2 className='text-[9px] sm:text-[12px] rounded-full px-1 flex-none shadow capitalize'>
+                          {team.name}
+                        </h2>
+                        {/* goals */}
+                        {team.goals && (
+                          <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
+                            <Image
+                              src={`/img/goals.png`}
+                              fill
+                              alt={`image`}
+                              className='object-contain drop-shadow'
+                            />
+                            <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
+                              <strong> {team.goals}</strong>
+                            </div>
+                          </div>
+                        )}
+                        {/* yellow cards */}
+                        {team.yellowCards && (
+                          <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
+                            <Image
+                              src={`/img/yellowCards.png`}
+                              fill
+                              alt={`image`}
+                              className='object-contain drop-shadow'
+                            />
+                            <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
+                              <strong> {team.yellowCards}</strong>
+                            </div>
+                          </div>
+                        )}
+                        {/* red cards */}
+                        {team.redCards && (
+                          <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
+                            <Image
+                              src={`/img/redCards.png`}
+                              fill
+                              alt={`image`}
+                              className='object-contain drop-shadow'
+                            />
+                            <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
+                              <strong> {team.redCards}</strong>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                    <div className='w-[20px] h-[20px] relative'>
-                      <Image
-                        src={`/img/yellowCards.png`}
-                        fill
-                        alt={`image`}
-                        className='object-contain drop-shadow'
-                      />
-                      <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
-                        <strong>2</strong>
-                      </div>
-                    </div>
-                    <div className='w-[20px] h-[20px] relative'>
-                      <Image
-                        src={`/img/redCards.png`}
-                        fill
-                        alt={`image`}
-                        className='object-contain drop-shadow'
-                      />
-                      <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
-                        <strong>1</strong>
-                      </div>
-                    </div>
-                  </div>
+                    ))}
                 </div>
                 {/* box 2 */}
-                <div className='bg-white w-[45%] h-full rounded-md pt-12 flex gap-2 px-3 overflow-y-auto items-start'></div>
+                <div className='bg-white w-[45%] h-full rounded-md pt-12 pb-5 gap-3 px-3 overflow-y-auto items-start flex flex-col'>
+                  {equipo.team2.players &&
+                    equipo.team2.players.map((team, idx) => (
+                      <div
+                        key={idx}
+                        className='flex gap-1 sm:gap-2 items-center'
+                      >
+                        <h2 className='text-[9px] sm:text-[12px] rounded-full px-1 flex-none shadow capitalize'>
+                          {team.name}
+                        </h2>
+                        {/* goals */}
+                        {team.goals && (
+                          <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
+                            <Image
+                              src={`/img/goals.png`}
+                              fill
+                              alt={`image`}
+                              className='object-contain drop-shadow'
+                            />
+                            <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
+                              <strong> {team.goals}</strong>
+                            </div>
+                          </div>
+                        )}
+                        {/* yellow cards */}
+                        {team.yellowCards && (
+                          <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
+                            <Image
+                              src={`/img/yellowCards.png`}
+                              fill
+                              alt={`image`}
+                              className='object-contain drop-shadow'
+                            />
+                            <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
+                              <strong> {team.yellowCards}</strong>
+                            </div>
+                          </div>
+                        )}
+                        {/* red cards */}
+                        {team.redCards && (
+                          <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
+                            <Image
+                              src={`/img/redCards.png`}
+                              fill
+                              alt={`image`}
+                              className='object-contain drop-shadow'
+                            />
+                            <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
+                              <strong> {team.redCards}</strong>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
               </div>
             </Transition>
           </div>

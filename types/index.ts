@@ -1,3 +1,9 @@
+interface FixturePlayers {
+  name: string
+  goals?: number
+  yellowCards?: number
+  redCards?: number
+}
 export interface Fixture {
   fecha?: Date
   equipos: {
@@ -7,6 +13,7 @@ export interface Fixture {
         name: string
         logo: string
       }
+      players?: FixturePlayers[]
       goals?: number
       walkover?: boolean
     }
@@ -15,6 +22,7 @@ export interface Fixture {
         name: string
         logo: string
       }
+      players?: FixturePlayers[]
       goals?: number
       walkover?: boolean
     }
@@ -32,7 +40,7 @@ export interface Team {
   diferencia: number
   puntos: number
 }
-export interface Player {
+export type Player = {
   name: string
   team: string
   image: string
@@ -49,9 +57,9 @@ export interface Player {
     fís: number
   }
   statistics: {
-    goals: number
-    yellowCards: number
-    redCards: number
+    goals?: number
+    yellowCards?: number
+    redCards?: number
   }
 }
 
