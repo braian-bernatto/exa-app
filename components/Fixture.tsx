@@ -31,7 +31,7 @@ const Fixture = ({ datos }: Props) => {
 
   return (
     <div className='flex flex-col items-center'>
-      <div className='grid grid-cols-3 place-items-center w-full'>
+      <div className='grid grid-cols-2 place-items-center w-full'>
         <select
           defaultValue='title'
           className='select select-bordered select-sm max-w-xs'
@@ -46,15 +46,6 @@ const Fixture = ({ datos }: Props) => {
           <option>Fecha 2</option>
           <option>Fecha 1</option>
         </select>
-
-        <div className='w-[90px] h-[90px] relative flex-none'>
-          <Image
-            src='/img/aso-dmd.png'
-            fill
-            alt='aso logo'
-            className='object-contain'
-          />
-        </div>
 
         <h2 className='rounded-md bg-white p-1 px-3 text-sm font-semibold'>
           22/07/2023

@@ -42,7 +42,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
           <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
             {positions[player.position]}
           </h2>
-          {Object.entries(player.attributes).map(([nombre, valor]) => (
+          {/* {Object.entries(player.attributes).map(([nombre, valor]) => (
             <div
               key={nombre}
               className='p-2 border-l-4 border-slate-400 shadow flex items-center gap-2'
@@ -50,7 +50,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
               <sup className='capitalize'>{attributes[nombre]}</sup>{' '}
               <strong>{valor}</strong>
             </div>
-          ))}
+          ))} */}
           <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
             {player.foot}
           </h2>

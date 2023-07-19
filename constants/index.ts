@@ -228,9 +228,9 @@ export const Goleadores: Player[] = [
       fís: 99
     },
     statistics: {
+      goals: 20,
       yellowCards: 4,
-      redCards: 2,
-      goals: 20
+      redCards: 2
     }
   },
   {
@@ -238,7 +238,7 @@ export const Goleadores: Player[] = [
     team: 'verdao.png',
     image: 'player-gray.png',
     country: 'ar',
-    position: 'LI',
+    position: 'MCD',
     rating: 79,
     foot: 'derecho',
     attributes: {
@@ -250,9 +250,9 @@ export const Goleadores: Player[] = [
       fís: 99
     },
     statistics: {
+      goals: 10,
       yellowCards: 4,
-      redCards: 2,
-      goals: 10
+      redCards: 2
     }
   },
   {
@@ -272,9 +272,9 @@ export const Goleadores: Player[] = [
       fís: 99
     },
     statistics: {
+      goals: 8,
       yellowCards: 4,
-      redCards: 2,
-      goals: 8
+      redCards: 2
     }
   },
   {
@@ -294,9 +294,9 @@ export const Goleadores: Player[] = [
       fís: 99
     },
     statistics: {
+      goals: 15,
       yellowCards: 4,
-      redCards: 2,
-      goals: 15
+      redCards: 2
     }
   }
 ]

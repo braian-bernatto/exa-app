@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 const TablaPosiciones = () => {
   return (
-    <div className='w-[350px] sm:w-auto'>
-      <div className='overflow-x-auto rounded bg-white'>
+    <div className='flex w-full justify-center'>
+      <div className='overflow-x-auto rounded bg-white sm:w-auto w-[350px]'>
         <table className='table table-xs table-pin-rows table-pin-cols table-zebra'>
           {/* head */}
           <thead>
