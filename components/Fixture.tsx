@@ -51,7 +51,7 @@ const Fixture = ({ datos }: Props) => {
           22/07/2023
         </h2>
       </div>
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-2 z-10'>
         {datos.equipos.map((equipo, idx) => (
           <div
             key={idx}
