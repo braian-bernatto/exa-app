@@ -48,42 +48,58 @@ const TablaPosiciones = () => {
                   </div>
                 </th>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}
+                  >
                     {team.partidosJugados}
                   </span>
                 </td>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}
+                  >
                     {team.ganados}
                   </span>
                 </td>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}
+                  >
                     {team.empatados}
                   </span>
                 </td>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}
+                  >
                     {team.perdidos}
                   </span>
                 </td>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}
+                  >
                     {team.golesFavor}
                   </span>
                 </td>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}
+                  >
                     {team.golesContra}
                   </span>
                 </td>
                 <td>
-                  <span className='rounded-full border w-6 h-6 flex items-center justify-center p-3'>
+                  <span
+                    className={`rounded-full border w-6 h-6 flex items-center justify-center p-3 font-semibold shadow ${
+                      team.diferencia < 0 ? 'text-pink-800' : 'text-teal-800'
+                    }`}
+                  >
                     {team.diferencia}
                   </span>
                 </td>
                 <th>
-                  <span className='rounded-full bg-white border w-6 h-6 flex items-center justify-center shadow p-4 font-semibold'>
+                  <span className='rounded-full bg-white border w-6 h-6 flex items-center justify-center shadow p-4 font-bold'>
                     {team.puntos}
                   </span>
                 </th>

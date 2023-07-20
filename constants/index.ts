@@ -122,7 +122,7 @@ export const teams: Team[] = [
     golesFavor: 20,
     golesContra: 12,
     diferencia: 15,
-    puntos: 120
+    puntos: -120
   },
   {
     name: 'verdao',
@@ -133,7 +133,7 @@ export const teams: Team[] = [
     perdidos: 1,
     golesFavor: 20,
     golesContra: 12,
-    diferencia: 15,
+    diferencia: -15,
     puntos: 120
   },
   {
@@ -169,7 +169,7 @@ export const teams: Team[] = [
     perdidos: 1,
     golesFavor: 20,
     golesContra: 12,
-    diferencia: 15,
+    diferencia: -15,
     puntos: 120
   },
   {
@@ -194,7 +194,7 @@ export const teams: Team[] = [
     golesFavor: 20,
     golesContra: 12,
     diferencia: 15,
-    puntos: 120
+    puntos: -120
   },
   {
     name: 'usa',
