@@ -20,13 +20,14 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         className='drop-shadow-lg'
         priority
       />
-      <Image
-        src={`/img/${player.image}`}
-        width={200}
-        height={200}
-        className='absolute top-[54px] right-[50px] drop-shadow'
-        alt='player photo'
-      />
+      <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px]'>
+        <Image
+          src={`/img/${player.image}`}
+          fill
+          className='drop-shadow object-contain'
+          alt='player photo'
+        />
+      </div>
 
       <div className='absolute top-[75px] left-[60px] flex flex-col items-center text-2xl h-[180px]'>
         <strong className='text-5xl'>{player.rating}</strong>
