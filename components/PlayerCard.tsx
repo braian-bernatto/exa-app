@@ -3,7 +3,6 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Foot from './Foot'
 import { Card, PlayerExa } from '@/types'
-import { attributes } from '@/constants'
 
 interface CardProps {
   player: PlayerExa
@@ -29,10 +28,11 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
       />
       <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px] rounded-t-full overflow-hidden'>
         <Image
-          src={player.public_image_url}
           fill
+          src={imageError ? fallbackImage : player.public_image_url}
+          onError={() => setImageError(true)}
           className='drop-shadow object-contain'
-          alt='player photo'
+          alt={player.name}
         />
       </div>
 
