@@ -40,7 +40,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         <strong className='text-5xl'>{player.rating}</strong>
         <span>{player.position_id}</span>
         <span className='flex flex-col items-center gap-1'>
-          <div className='h-[65px] w-[65px] relative'>
+          <div className='h-[70px] w-[70px] relative'>
             <Image
               src={player.team_public_image_url}
               fill
@@ -50,9 +50,9 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
           </div>
           {player.country_iso2 && (
             <Image
-              src={`/img/paises/${player.country_iso2}.svg`}
-              width={50}
-              height={50}
+              src={`https://flagcdn.com/${player.country_iso2.toLowerCase()}.svg`}
+              width={40}
+              height={40}
               className='object-contain drop-shadow'
               alt='country flag'
             />
