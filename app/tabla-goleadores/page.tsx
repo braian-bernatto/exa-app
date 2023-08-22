@@ -1,6 +1,8 @@
 import TablaGoleadores from '@/components/TablaGoleadores'
 import { createClient } from '@/utils/supabaseServer'
 
+export const revalidate = 0
+
 const page = async () => {
   const supabase = createClient()
   const { data, error } = await supabase

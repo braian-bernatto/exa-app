@@ -102,30 +102,32 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
           </div>
         </div>
 
-        <div className={`flex`}>
-          {(player.foot.name === 'izquierdo' ||
-            player.foot.name === 'ambidiestro') && (
-            <div className='relative flex items-center justify-center'>
-              <span
-                className={`text-[6px] absolute z-10 ${card.footTextColor}`}
-              >
-                L
-              </span>
-              <Foot width={28} height={28} />
-            </div>
-          )}
-          {(player.foot.name === 'derecho' ||
-            player.foot.name === 'ambidiestro') && (
-            <div className='relative flex items-center justify-center'>
-              <span
-                className={`text-[6px] absolute z-10 ${card.footTextColor}`}
-              >
-                R
-              </span>
-              <Foot styles='-scale-x-100' width={28} height={28} />
-            </div>
-          )}
-        </div>
+        {player.foot && (
+          <div className={`flex`}>
+            {(player.foot.name === 'izquierdo' ||
+              player.foot.name === 'ambidiestro') && (
+              <div className='relative flex items-center justify-center'>
+                <span
+                  className={`text-[6px] absolute z-10 ${card.footTextColor}`}
+                >
+                  L
+                </span>
+                <Foot width={28} height={28} />
+              </div>
+            )}
+            {(player.foot.name === 'derecho' ||
+              player.foot.name === 'ambidiestro') && (
+              <div className='relative flex items-center justify-center'>
+                <span
+                  className={`text-[6px] absolute z-10 ${card.footTextColor}`}
+                >
+                  R
+                </span>
+                <Foot styles='-scale-x-100' width={28} height={28} />
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   ) : (
@@ -170,7 +172,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
               />
             ) : (
               <h2 className='w-full text-center text-3xl font-semibold'>
-                {player.teams.name}
+                {player.teams!.name}
               </h2>
             )}
           </div>

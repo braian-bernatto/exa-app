@@ -1,6 +1,6 @@
-import { Fixture, Player, Team } from '@/types'
+import { FixtureExa, TeamExa } from '@/types'
 
-export const fixtures: Fixture[] = [
+export const fixtures: FixtureExa[] = [
   {
     fecha: new Date(),
     equipos: [
@@ -111,7 +111,7 @@ export const fixtures: Fixture[] = [
   }
 ]
 
-export const teams: Team[] = [
+export const teams: TeamExa[] = [
   {
     name: 'timao',
     logo: 'timao.png',
@@ -207,97 +207,6 @@ export const teams: Team[] = [
     golesContra: 12,
     diferencia: 15,
     puntos: 120
-  }
-]
-
-export const Goleadores: Player[] = [
-  {
-    name: 'Braian Bernatto',
-    team: 'timao.png',
-    image: 'player-gray.png',
-    country: 'py',
-    position: 'DC',
-    rating: 99,
-    foot: 'ambidiestro',
-    attributes: {
-      rit: 85,
-      tir: 75,
-      pas: 88,
-      reg: 91,
-      def: 85,
-      fís: 99
-    },
-    statistics: {
-      goals: 20,
-      yellowCards: 4,
-      redCards: 2
-    }
-  },
-  {
-    name: 'Hugo Chavez',
-    team: 'verdao.png',
-    image: 'player-gray.png',
-    country: 'ar',
-    position: 'MCD',
-    rating: 79,
-    foot: 'derecho',
-    attributes: {
-      rit: 85,
-      tir: 75,
-      pas: 88,
-      reg: 91,
-      def: 77,
-      fís: 99
-    },
-    statistics: {
-      goals: 10,
-      yellowCards: 4,
-      redCards: 2
-    }
-  },
-  {
-    name: 'Chaco Vividor',
-    team: 'boca.png',
-    image: 'player-gray.png',
-    country: 'us',
-    position: 'LD',
-    rating: 67,
-    foot: 'derecho',
-    attributes: {
-      rit: 85,
-      tir: 75,
-      pas: 88,
-      reg: 91,
-      def: 77,
-      fís: 99
-    },
-    statistics: {
-      goals: 8,
-      yellowCards: 4,
-      redCards: 2
-    }
-  },
-  {
-    name: 'Locura Caceres',
-    team: 'gorilas.png',
-    image: 'player-gray.png',
-    country: 'br',
-    position: 'DFC',
-    rating: 84,
-    foot: 'izquierdo',
-    attributes: {
-      rit: 85,
-      tir: 75,
-      pas: 88,
-      reg: 91,
-      def: 77,
-      fís: 99
-    },
-    statistics: {
-      goals: 15,
-      yellowCards: 4,
-      redCards: 2
-    }
   }
 ]
 

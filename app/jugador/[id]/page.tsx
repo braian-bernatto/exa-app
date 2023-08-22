@@ -3,6 +3,8 @@ import { Card } from '@/types'
 import { createClient } from '@/utils/supabaseServer'
 import React from 'react'
 
+export const revalidate = 0
+
 const card: Card = {
   url: 'card-1.png',
   textColor: 'text-darkgold',
