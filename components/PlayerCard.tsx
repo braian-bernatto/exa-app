@@ -27,7 +27,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         className='drop-shadow-lg'
         priority
       />
-      <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px]'>
+      <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px] rounded-t-full overflow-hidden'>
         <Image
           src={player.public_image_url}
           fill
@@ -140,7 +140,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         className='drop-shadow-lg'
         priority
       />
-      <div className='absolute top-[54px] left-[50%] translate-x-[-50%] drop-shadow w-[200px] h-[200px]'>
+      <div className='absolute top-[54px] left-[50%] translate-x-[-50%] drop-shadow w-[200px] h-[200px] rounded-t-full overflow-hidden'>
         <Image
           src={imageError ? fallbackImage : player.public_image_url}
           fill
