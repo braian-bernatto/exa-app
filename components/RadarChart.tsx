@@ -1,5 +1,5 @@
 'use client'
-import { Player } from '@/types'
+import { PlayerExa } from '@/types'
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -52,7 +52,7 @@ export const options = {
 }
 
 interface Props {
-  attributes: Player['attributes']
+  attributes: PlayerExa['attributes']
 }
 
 const RadarChart = ({ attributes }: Props) => {
@@ -67,7 +67,7 @@ const RadarChart = ({ attributes }: Props) => {
           attributes.pas,
           attributes.reg,
           attributes.def,
-          attributes.fís
+          attributes.fis
         ],
         backgroundColor: ['rgba(255, 99, 132, 0.2)'],
         borderColor: ['rgba(255, 99, 132, 1)'],

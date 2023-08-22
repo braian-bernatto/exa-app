@@ -1,9 +1,9 @@
-import { Card, Player } from '@/types'
+import { Card, PlayerExa, Players } from '@/types'
 import PlayerCard from './PlayerCard'
 import Link from 'next/link'
 
 interface Props {
-  players: Player[]
+  players: PlayerExa[] | undefined
 }
 
 const TablaGoleadores = ({ players }: Props) => {
@@ -19,21 +19,23 @@ const TablaGoleadores = ({ players }: Props) => {
     footTextColor: 'text-gold'
   }
 
-  const playersOrderByGoals = players!.sort(
-    (a, b) => b.statistics.goals - a.statistics.goals
-  )
+  // const playersOrderByGoals = players!.sort(
+  //   (a, b) => b.statistics.goals - a.statistics.goals
+  // )
+
+  if (!players) return <div>No hay jugadores cargados...</div>
 
   return (
     <div className='flex flex-col'>
-      {playersOrderByGoals.map((jugador, idx) => (
+      {players.map((jugador, idx) => (
         <div key={idx} className='h-[180px] flex items-center justify-center'>
-          <Link href={`/jugador/${idx}`}>
+          <Link href={`/jugador/${jugador.id}`}>
             <div className='scale-[40%] relative'>
               <div
                 className={`rounded-full h-[100px] w-[100px] text-5xl font-semibold bg-white flex items-center justify-center shadow absolute right-0 z-10 border-2 
               ${idx === 0 ? 'border-yellow-500' : 'border-gray-500'}`}
               >
-                {jugador.statistics.goals}
+                {jugador.id}
               </div>
               <PlayerCard
                 player={jugador}

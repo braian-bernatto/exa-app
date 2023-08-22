@@ -1,17 +1,18 @@
 'use client'
 
 import PlayerCard from './PlayerCard'
-import { Card, Player } from '@/types'
-import { attributes, positions } from '@/constants'
+import { Card, PlayerExa } from '@/types'
 import Image from 'next/image'
 import RadarChart from './RadarChart'
 
 interface PlayerProps {
-  player: Player
+  player: PlayerExa | undefined
   card: Card
 }
 
 const PlayerDetails = ({ player, card }: PlayerProps) => {
+  if (!player) return <p>No existe jugador</p>
+
   return (
     <div className='flex flex-wrap items-center justify-center gap-5'>
       <div className='w-[280px] h-[392px] flex items-center justify-center'>
@@ -40,7 +41,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
         {/* player attributes */}
         <div className='grid grid-cols-2 gap-3 border rounded shadow px-5 py-3 bg-white'>
           <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
-            {positions[player.position]}
+            {player.positions.name}
           </h2>
           {/* {Object.entries(player.attributes).map(([nombre, valor]) => (
             <div
@@ -52,7 +53,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
             </div>
           ))} */}
           <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
-            {player.foot}
+            {player.foot.name}
           </h2>
         </div>
       </div>

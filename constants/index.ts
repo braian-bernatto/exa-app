@@ -307,7 +307,7 @@ export const attributes: { [key: string]: string } = {
   pas: 'pase',
   reg: 'regate',
   def: 'defensa',
-  fís: 'físico'
+  fis: 'físico'
 }
 
 export const positions: { [key: string]: string } = {

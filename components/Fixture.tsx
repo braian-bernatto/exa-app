@@ -1,13 +1,13 @@
 'use client'
 
-import { Fixture } from '@/types'
+import { FixtureExa } from '@/types'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import { useState, Fragment } from 'react'
 import { Transition } from '@headlessui/react'
 
 interface Props {
-  datos: Fixture
+  datos: FixtureExa
 }
 
 const Fixture = ({ datos }: Props) => {
