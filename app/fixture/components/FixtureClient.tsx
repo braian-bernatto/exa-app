@@ -26,38 +26,39 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
 
     console.log({ data })
 
-    if (data && Array.isArray(data)) {
-      dataWithPublicUrl = data.map(item => {
-        let team = item
-        if (item.team_1.image_url && item.team_1.image_url.length) {
-          const { data: url } = supabase.storage
-            .from('teams')
-            .getPublicUrl(item.team_1.image_url)
-          team = {
-            ...team,
-            team_1: {
-              ...team.team_1,
-              image_url: url.publicUrl
+    if (data) {
+      if (Array.isArray(data)) {
+        dataWithPublicUrl = data.map((item: any) => {
+          let team = item
+          if (item.team_1.image_url && item.team_1.image_url.length) {
+            const { data: url } = supabase.storage
+              .from('teams')
+              .getPublicUrl(item.team_1.image_url)
+            team = {
+              ...team,
+              team_1: {
+                ...team.team_1,
+                image_url: url.publicUrl
+              }
             }
           }
-        }
-        if (item.team_2.image_url && item.team_2.image_url.length) {
-          const { data: url } = supabase.storage
-            .from('teams')
-            .getPublicUrl(item.team_2.image_url)
-          team = {
-            ...team,
-            team_2: {
-              ...team.team_2,
-              image_url: url.publicUrl
+          if (item.team_2.image_url && item.team_2.image_url.length) {
+            const { data: url } = supabase.storage
+              .from('teams')
+              .getPublicUrl(item.team_2.image_url)
+            team = {
+              ...team,
+              team_2: {
+                ...team.team_2,
+                image_url: url.publicUrl
+              }
             }
           }
-        }
-        return team
-      })
+          return team
+        })
+        setData(dataWithPublicUrl)
+      }
     }
-
-    setData(dataWithPublicUrl)
 
     if (error) {
       console.log(error)
