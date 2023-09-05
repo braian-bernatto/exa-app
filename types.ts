@@ -85,3 +85,30 @@ export interface Card {
   textColor: string
   footTextColor: string
 }
+
+
+
+export interface Versus {
+  fixture_id: number
+  date: string
+  cancha_nro: number
+  team_1: TeamVersus
+  team_2: TeamVersus
+}
+
+export interface TeamVersus {
+  id: number
+  name: string
+  image_url: string
+  goals?: number
+  walkover: boolean
+  players?: PlayerVersus[]
+}
+
+export interface PlayerVersus {
+  id: number
+  name: string
+  goals?: number
+  yellow_cards?: number
+  red_card?: string
+}
