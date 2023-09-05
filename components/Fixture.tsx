@@ -132,7 +132,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                   {/* red card */}
                   {player.red_card !== null && (
                     <div
-                      className='tooltip'
+                      className='tooltip before:max-w-[150px] sm:before:max-w-[200px] before:flex before:flex-wrap before:items-center before:justify-center'
                       data-tip={player.red_card || 'sin observaciones'}>
                       <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
                         <Image
@@ -186,7 +186,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                   {/* red card */}
                   {player.red_card !== null && (
                     <div
-                      className='tooltip'
+                      className='tooltip before:max-w-[150px] sm:before:max-w-[200px] before:flex before:flex-wrap before:items-center before:justify-center'
                       data-tip={player.red_card || 'sin observaciones'}>
                       <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] relative flex-none'>
                         <Image
