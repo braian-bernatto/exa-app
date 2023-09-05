@@ -24,7 +24,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
 
     let dataWithPublicUrl
 
-    if (data) {
+    console.log({ data })
+
+    if (data && Array.isArray(data)) {
       dataWithPublicUrl = data.map(item => {
         let team = item
         if (item.team_1.image_url && item.team_1.image_url.length) {
@@ -55,7 +57,6 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
       })
     }
 
-    console.log({ dataWithPublicUrl })
     setData(dataWithPublicUrl)
 
     if (error) {
