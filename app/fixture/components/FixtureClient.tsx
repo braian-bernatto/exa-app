@@ -24,8 +24,6 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
 
     let dataWithPublicUrl
 
-    console.log({ data })
-
     if (data) {
       if (Array.isArray(data)) {
         dataWithPublicUrl = data.map((item: any) => {
@@ -58,6 +56,8 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         })
         setData(dataWithPublicUrl)
       }
+    } else {
+      setData([])
     }
 
     if (error) {
@@ -114,7 +114,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
       </div>
 
       <div className='flex flex-col gap-5 z-10 mt-10'>
-        {data ? (
+        {data.length ? (
           data.map((data, idx) => <Fixture key={idx} versus={data} />)
         ) : (
           <p className='animate animate-bounce'>No hay datos cargados...</p>
