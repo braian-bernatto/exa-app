@@ -4,7 +4,14 @@ import Image from 'next/image'
 import { useState, Fragment } from 'react'
 import { Transition } from '@headlessui/react'
 import { Versus } from '@/types'
-import { format, parseISO } from 'date-fns'
+import {
+  compareAsc,
+  format,
+  formatDistanceToNow,
+  isPast,
+  parseISO
+} from 'date-fns'
+import es from 'date-fns/locale/es'
 
 interface FixtureProps {
   versus: Versus
@@ -38,11 +45,11 @@ const Fixture = ({ versus }: FixtureProps) => {
           {versus.team_1.name}
         </h3>
         <span className='font-bold rounded-full border shadow-md h-[55px] w-[55px] p-2 flex items-center justify-center bg-white'>
-          {versus.team_1.goals || versus.team_2.goals ? (
+          {isPast(new Date(versus.date)) ? (
             `${versus.team_1.goals ? versus.team_1.goals : 0}-${
               versus.team_2.goals ? versus.team_2.goals : 0
             }`
-          ) : versus.date ? (
+          ) : (
             <div className='flex relative'>
               {format(parseISO(versus.date), 'HH:mm')}
               <svg
@@ -58,10 +65,6 @@ const Fixture = ({ versus }: FixtureProps) => {
                   d='M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z'
                 />
               </svg>
-            </div>
-          ) : (
-            <div className='w-[15px] h-[15px] sm:w-[20px] sm:h-[20px] rounded-full overflow-hidden flex items-center justify-center'>
-              <div className='bg-red-500 w-2 h-2 rounded-full animate-pulse'></div>
             </div>
           )}
         </span>
