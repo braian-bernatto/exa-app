@@ -1,17 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import { Versus } from '@/types'
-import {
-  compareAsc,
-  format,
-  formatDistanceToNow,
-  isPast,
-  parseISO
-} from 'date-fns'
-import es from 'date-fns/locale/es'
+import { format, isPast, parseISO } from 'date-fns'
 
 interface FixtureProps {
   versus: Versus
@@ -21,9 +14,7 @@ const Fixture = ({ versus }: FixtureProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div
-      key={versus.fixture_id}
-      className='flex items-center w-[350px] sm:w-[500px] relative flex-wrap cursor-pointer'>
+    <div className='flex items-center w-[350px] sm:w-[500px] relative flex-wrap cursor-pointer'>
       <div
         className='z-10 flex justify-between items-center w-full relative'
         onClick={() => setIsOpen(!isOpen)}>

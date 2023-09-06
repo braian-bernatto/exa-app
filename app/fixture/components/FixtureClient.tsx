@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 import { Fixtures, Versus } from '@/types'
 import { format, parseISO } from 'date-fns'
 import { CalendarX2 } from 'lucide-react'
-import Fixture from '@/components/Fixture'
+import Fixture from '@/app/fixture/components/Fixture'
 import { createClient } from '@/utils/supabaseBrowser'
+import { randomUUID } from 'crypto'
 
 interface FixtureProps {
   fixtures: (Fixtures & { fixture_details: { date?: string }[] })[] | undefined
@@ -115,7 +116,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
 
       <div className='flex flex-col gap-5 z-10 mt-10'>
         {data.length ? (
-          data.map((data, idx) => <Fixture key={idx} versus={data} />)
+          data.map(data => <Fixture key={crypto.randomUUID()} versus={data} />)
         ) : (
           <p className='animate animate-bounce'>No hay datos cargados...</p>
         )}
