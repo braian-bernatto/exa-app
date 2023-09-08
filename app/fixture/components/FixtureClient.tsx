@@ -94,6 +94,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               ? fixtures[0].fixture_details[0].date
               : undefined
             setFecha(date)
+            setLocation(fixtures[0].locations?.name)
             setSelectValue(fixtures[0].id)
           }
         }
@@ -115,6 +116,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               ? fixtures[0].fixture_details[0].date
               : undefined
             setFecha(date)
+            setLocation(fixtures[0].locations?.name)
             setSelectValue(fixtures[0].id)
           }
         }
@@ -136,6 +138,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               ? fixtures[0].fixture_details[0].date
               : undefined
             setFecha(date)
+            setLocation(fixtures[0].locations?.name)
             setSelectValue(fixtures[0].id)
           }
         }
