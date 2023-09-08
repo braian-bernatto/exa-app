@@ -3,21 +3,29 @@
 import { useEffect, useState } from 'react'
 import { Fixtures, Versus } from '@/types'
 import { format, parseISO } from 'date-fns'
-import { CalendarX2 } from 'lucide-react'
+import { CalendarX2, MapPin, MapPinOff, Pin } from 'lucide-react'
 import Fixture from '@/app/fixture/components/Fixture'
 import { createClient } from '@/utils/supabaseBrowser'
-import { randomUUID } from 'crypto'
+import { useRouter } from 'next/navigation'
 
 interface FixtureProps {
-  fixtures: (Fixtures & { fixture_details: { date?: string }[] })[] | undefined
+  fixtures:
+    | (Fixtures & {
+        locations: { name?: string } | null
+        fixture_details: { date?: string }[]
+      })[]
+    | undefined
 }
 
 const FixtureClient = ({ fixtures }: FixtureProps) => {
   const [fecha, setFecha] = useState<string | undefined>(undefined)
   const [data, setData] = useState<Versus[] | []>([])
+  const [location, setLocation] = useState<string | undefined>()
+  const [selectValue, setSelectValue] = useState<number | undefined>()
+  const supabase = createClient()
+  const router = useRouter()
 
   const getVersus = async (fixture_id: number) => {
-    const supabase = createClient()
     // get all versus
     const { data, error } = await supabase.rpc('get_fixture_details', {
       fixture: fixture_id
@@ -67,22 +75,102 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   }
 
   useEffect(() => {
+    const channel = supabase
+      .channel('realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'goals'
+        },
+        payload => {
+          if (fixtures) {
+            setSelectValue(
+              fixtures[0].location_id ? fixtures[0].location_id : undefined
+            )
+            getVersus(fixtures[0].id)
+            const date = fixtures[0].fixture_details.length
+              ? fixtures[0].fixture_details[0].date
+              : undefined
+            setFecha(date)
+            setSelectValue(fixtures[0].id)
+          }
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'yellow_cards'
+        },
+        payload => {
+          if (fixtures) {
+            setSelectValue(
+              fixtures[0].location_id ? fixtures[0].location_id : undefined
+            )
+            getVersus(fixtures[0].id)
+            const date = fixtures[0].fixture_details.length
+              ? fixtures[0].fixture_details[0].date
+              : undefined
+            setFecha(date)
+            setSelectValue(fixtures[0].id)
+          }
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'red_cards'
+        },
+        payload => {
+          if (fixtures) {
+            setSelectValue(
+              fixtures[0].location_id ? fixtures[0].location_id : undefined
+            )
+            getVersus(fixtures[0].id)
+            const date = fixtures[0].fixture_details.length
+              ? fixtures[0].fixture_details[0].date
+              : undefined
+            setFecha(date)
+            setSelectValue(fixtures[0].id)
+          }
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [supabase, router])
+
+  useEffect(() => {
     if (fixtures) {
       getVersus(fixtures[0].id)
       const date = fixtures[0].fixture_details.length
         ? fixtures[0].fixture_details[0].date
         : undefined
       setFecha(date)
+      setLocation(fixtures[0].locations?.name)
+      setSelectValue(fixtures[0].id)
     }
   }, [])
 
   return (
     <div className='flex flex-col items-center'>
-      <div className='grid grid-cols-2 place-items-center w-full'>
+      <div className={`grid sm:grid-cols-3 gap-2 place-items-center w-full`}>
         <select
-          defaultValue={fixtures ? fixtures[0].id : 'title'}
+          defaultValue={selectValue ? selectValue : 'title'}
           className='select select-bordered select-sm max-w-xs capitalize text-gray-700'
+          value={selectValue}
           onChange={e => {
+            setSelectValue(+e.target.value)
+            setLocation(
+              e.target.options[e.target.selectedIndex].dataset.location
+            )
             setFecha(e.target.options[e.target.selectedIndex].dataset.date)
             e.target.value.length ? getVersus(+e.target.value) : setData([])
           }}>
@@ -95,6 +183,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
                 key={fixture.id}
                 className='capitalize'
                 value={fixture.id}
+                data-location={
+                  fixture.locations ? fixture.locations.name : undefined
+                }
                 data-date={
                   fixture.fixture_details.length
                     ? fixture.fixture_details[0].date
@@ -105,6 +196,11 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
             ))}
         </select>
 
+        <span className='flex items-center justify-center gap-2 bg-white rounded p-1 px-3 shadow'>
+          {location ? <MapPin /> : <MapPinOff />}
+          {location}
+        </span>
+
         <h2 className='rounded-md bg-white p-1 px-3 text-sm font-semibold text-gray-700'>
           {fecha ? (
             format(parseISO(fecha), 'dd/MM/yyyy')
@@ -114,9 +210,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         </h2>
       </div>
 
-      <div className='flex flex-col gap-5 z-10 mt-10'>
+      <div className='flex flex-col gap-5 z-10 mt-6'>
         {data.length ? (
-          data.map(data => <Fixture key={crypto.randomUUID()} versus={data} />)
+          data.map((data, idx) => <Fixture key={idx} versus={data} />)
         ) : (
           <p className='animate animate-bounce'>No hay datos cargados...</p>
         )}

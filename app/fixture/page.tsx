@@ -8,7 +8,7 @@ const page = async () => {
   // get all fixtures
   const { data: fixtures, error: fixtureError } = await supabase
     .from('fixtures')
-    .select('*, fixture_details(date)')
+    .select('*, fixture_details(date), locations(name)')
     .order('date', { foreignTable: 'fixture_details', ascending: true })
 
   if (fixtureError) {
