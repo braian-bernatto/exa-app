@@ -10,7 +10,7 @@ const page = async () => {
     .select(
       '*, teams(id, name, image_url), positions(id, name), foot(id, name)'
     )
-    .order('created_at', { ascending: true })
+    .order('created_at', { ascending: false })
 
   if (error) {
     console.log(error)
