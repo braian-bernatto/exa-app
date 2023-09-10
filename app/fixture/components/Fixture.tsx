@@ -27,7 +27,7 @@ const Fixture = ({ versus }: FixtureProps) => {
             alt={`Logo de ${versus.team_1.name}`}
           />
           {versus.team_1.walkover && (
-            <p className='absolute rounded bg-white shadow-md px-1 text-pink-800 text-[10px] opacity-90 -rotate-12 border border-pink-800'>
+            <p className='absolute rounded bg-white shadow-md px-1 text-pink-800 text-[15px] opacity-90 -rotate-12 border border-pink-800'>
               Walkover
             </p>
           )}
@@ -70,7 +70,7 @@ const Fixture = ({ versus }: FixtureProps) => {
             alt={`Logo de ${versus.team_2.name}`}
           />
           {versus.team_2.walkover && (
-            <p className='absolute rounded bg-white shadow-md px-1 text-pink-800 text-[10px] opacity-90 rotate-12 border border-pink-800'>
+            <p className='absolute rounded bg-white shadow-md px-1 text-pink-800 text-[15px] opacity-90 rotate-12 border border-pink-800'>
               Walkover
             </p>
           )}
