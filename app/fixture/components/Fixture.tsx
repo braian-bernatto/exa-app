@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, Fragment, useEffect } from 'react'
+import { useState, Fragment } from 'react'
 import { Transition } from '@headlessui/react'
 import { Versus } from '@/types'
 import { format, isPast, parseISO } from 'date-fns'

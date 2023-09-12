@@ -16,6 +16,7 @@ export type Goals = Database['public']['Tables']['goals']['Row']
 export type YellowCards = Database['public']['Tables']['yellow_cards']['Row']
 export type RedCards = Database['public']['Tables']['red_cards']['Row']
 export type Walkover = Database['public']['Tables']['walkover']['Row']
+export type TablaPosiciones = Database['public']['Functions']['get_tabla_posiciones']['Returns'][0]
 
 interface FixturePlayersExa {
   name: string
