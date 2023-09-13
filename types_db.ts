@@ -157,19 +157,19 @@ export interface Database {
           fixture_id: number
           player_id: number
           quantity: number
-          team_id: number | null
+          team_id: number
         }
         Insert: {
           fixture_id: number
           player_id: number
           quantity: number
-          team_id?: number | null
+          team_id: number
         }
         Update: {
           fixture_id?: number
           player_id?: number
           quantity?: number
-          team_id?: number | null
+          team_id?: number
         }
         Relationships: [
           {
@@ -340,19 +340,19 @@ export interface Database {
           fixture_id: number
           motivo: string | null
           player_id: number
-          team_id: number | null
+          team_id: number
         }
         Insert: {
           fixture_id: number
           motivo?: string | null
           player_id: number
-          team_id?: number | null
+          team_id: number
         }
         Update: {
           fixture_id?: number
           motivo?: string | null
           player_id?: number
-          team_id?: number | null
+          team_id?: number
         }
         Relationships: [
           {
@@ -409,23 +409,33 @@ export interface Database {
       torneos: {
         Row: {
           created_at: string | null
+          exa_id: number
           id: number
           image_url: string | null
           name: string
         }
         Insert: {
           created_at?: string | null
+          exa_id: number
           id?: number
           image_url?: string | null
           name: string
         }
         Update: {
           created_at?: string | null
+          exa_id?: number
           id?: number
           image_url?: string | null
           name?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "torneos_exa_id_fkey"
+            columns: ["exa_id"]
+            referencedRelation: "exas"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       walkover: {
         Row: {
@@ -460,19 +470,19 @@ export interface Database {
           fixture_id: number
           player_id: number
           quantity: number
-          team_id: number | null
+          team_id: number
         }
         Insert: {
           fixture_id: number
           player_id: number
           quantity: number
-          team_id?: number | null
+          team_id: number
         }
         Update: {
           fixture_id?: number
           player_id?: number
           quantity?: number
-          team_id?: number | null
+          team_id?: number
         }
         Relationships: [
           {
@@ -598,12 +608,48 @@ export interface Database {
         }
         Returns: Json
       }
+      get_fixtures_by_torneo: {
+        Args: {
+          torneo_id: number
+        }
+        Returns: {
+          id: number
+          created_at: string
+          name: string
+          location_id: number
+          torneo_id: number
+          date: string
+          location: string
+        }[]
+      }
       get_goals: {
         Args: {
           fixture: number
           team: number
         }
         Returns: number
+      }
+      get_players_by_exa_id: {
+        Args: {
+          exa_id: number
+        }
+        Returns: {
+          country_iso2: string | null
+          created_at: string | null
+          def: number | null
+          fis: number | null
+          foot_id: number | null
+          id: number
+          image_url: string | null
+          name: string
+          pas: number | null
+          position_id: string
+          rating: number | null
+          reg: number | null
+          rit: number | null
+          team_id: number
+          tir: number | null
+        }[]
       }
       get_tabla_posiciones: {
         Args: {
@@ -628,6 +674,18 @@ export interface Database {
           fixture: number
         }
         Returns: number[]
+      }
+      get_teams_by_exa_id: {
+        Args: {
+          exa_id: number
+        }
+        Returns: {
+          created_at: string | null
+          exa_id: number
+          id: number
+          image_url: string | null
+          name: string
+        }[]
       }
     }
     Enums: {

@@ -11,8 +11,8 @@ import { useRouter } from 'next/navigation'
 interface FixtureProps {
   fixtures:
     | (Fixtures & {
-        locations: { name?: string } | null
-        fixture_details: { date?: string }[]
+        location: string
+        date: string
       })[]
     | undefined
 }
@@ -90,11 +90,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               fixtures[0].location_id ? fixtures[0].location_id : undefined
             )
             getVersus(fixtures[0].id)
-            const date = fixtures[0].fixture_details.length
-              ? fixtures[0].fixture_details[0].date
-              : undefined
+            const date = fixtures[0].date ? fixtures[0].date : undefined
             setFecha(date)
-            setLocation(fixtures[0].locations?.name)
+            setLocation(fixtures[0].location)
             setSelectValue(fixtures[0].id)
           }
         }
@@ -112,11 +110,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               fixtures[0].location_id ? fixtures[0].location_id : undefined
             )
             getVersus(fixtures[0].id)
-            const date = fixtures[0].fixture_details.length
-              ? fixtures[0].fixture_details[0].date
-              : undefined
+            const date = fixtures[0].date ? fixtures[0].date : undefined
             setFecha(date)
-            setLocation(fixtures[0].locations?.name)
+            setLocation(fixtures[0].location)
             setSelectValue(fixtures[0].id)
           }
         }
@@ -134,11 +130,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               fixtures[0].location_id ? fixtures[0].location_id : undefined
             )
             getVersus(fixtures[0].id)
-            const date = fixtures[0].fixture_details.length
-              ? fixtures[0].fixture_details[0].date
-              : undefined
+            const date = fixtures[0].date ? fixtures[0].date : undefined
             setFecha(date)
-            setLocation(fixtures[0].locations?.name)
+            setLocation(fixtures[0].location)
             setSelectValue(fixtures[0].id)
           }
         }
@@ -153,11 +147,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   useEffect(() => {
     if (fixtures) {
       getVersus(fixtures[0].id)
-      const date = fixtures[0].fixture_details.length
-        ? fixtures[0].fixture_details[0].date
-        : undefined
+      const date = fixtures[0].date ? fixtures[0].date : undefined
       setFecha(date)
-      setLocation(fixtures[0].locations?.name)
+      setLocation(fixtures[0].location)
       setSelectValue(fixtures[0].id)
     }
   }, [])
@@ -186,14 +178,8 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
                 key={fixture.id}
                 className='capitalize'
                 value={fixture.id}
-                data-location={
-                  fixture.locations ? fixture.locations.name : undefined
-                }
-                data-date={
-                  fixture.fixture_details.length
-                    ? fixture.fixture_details[0].date
-                    : undefined
-                }>
+                data-location={fixture.location ? fixture.location : undefined}
+                data-date={fixture.date ? fixture.date : undefined}>
                 {fixture.name}
               </option>
             ))}
