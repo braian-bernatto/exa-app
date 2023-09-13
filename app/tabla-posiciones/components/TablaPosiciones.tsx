@@ -15,6 +15,7 @@ const TablaPosiciones = ({ data }: TablaPosicionesProps) => {
             <tr>
               <th></th>
               <th>EQUIPO</th>
+              <td>PTS</td>
               <td>PJ</td>
               <td>G</td>
               <td>E</td>
@@ -22,7 +23,6 @@ const TablaPosiciones = ({ data }: TablaPosicionesProps) => {
               <td>GF</td>
               <td>GC</td>
               <td>DIF</td>
-              <th>PTS</th>
             </tr>
           </thead>
           <tbody>
@@ -46,12 +46,17 @@ const TablaPosiciones = ({ data }: TablaPosicionesProps) => {
                         />
                       </div>
                       <div>
-                        <div className='font-semibold uppercase ml-2'>
+                        <div className='font-semibold uppercase ml-2 text-[10px]'>
                           {team.team_name}
                         </div>
                       </div>
                     </div>
                   </th>
+                  <td>
+                    <span className='rounded-full bg-white border w-6 h-6 flex items-center justify-center shadow p-4 font-bold'>
+                      {team.puntos}
+                    </span>
+                  </td>
                   <td>
                     <span
                       className={`rounded-full border w-6 h-6 flex items-center justify-center p-3`}>
@@ -96,11 +101,6 @@ const TablaPosiciones = ({ data }: TablaPosicionesProps) => {
                       {team.diferencia}
                     </span>
                   </td>
-                  <th>
-                    <span className='rounded-full bg-white border w-6 h-6 flex items-center justify-center shadow p-4 font-bold'>
-                      {team.puntos}
-                    </span>
-                  </th>
                 </tr>
               ))}
           </tbody>
