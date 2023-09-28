@@ -10,13 +10,8 @@ export type Foot = Database['public']['Tables']['foot']['Row']
 export type Players = Database['public']['Tables']['players']['Row']
 export type Locations = Database['public']['Tables']['locations']['Row']
 export type Fixtures = Database['public']['Tables']['fixtures']['Row']
-export type FixtureDetails =
-  Database['public']['Tables']['fixture_details']['Row']
-export type Goals = Database['public']['Tables']['goals']['Row']
-export type YellowCards = Database['public']['Tables']['yellow_cards']['Row']
-export type RedCards = Database['public']['Tables']['red_cards']['Row']
-export type Walkover = Database['public']['Tables']['walkover']['Row']
 export type TablaPosiciones = Database['public']['Functions']['get_tabla_posiciones']['Returns'][0]
+export type GetFixturesByTorneo = Database['public']['Functions']['get_fixtures_by_torneo']['Returns']
 
 interface FixturePlayersExa {
   name: string

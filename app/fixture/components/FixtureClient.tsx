@@ -1,20 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Fixtures, Versus } from '@/types'
+import { GetFixturesByTorneo, Versus } from '@/types'
 import { format, parseISO } from 'date-fns'
-import { CalendarX2, MapPin, MapPinOff, Pin } from 'lucide-react'
+import { CalendarX2, MapPin, MapPinOff } from 'lucide-react'
 import Fixture from '@/app/fixture/components/Fixture'
 import { createClient } from '@/utils/supabaseBrowser'
 import { useRouter } from 'next/navigation'
 
 interface FixtureProps {
-  fixtures:
-    | (Fixtures & {
-        location: string
-        date: string
-      })[]
-    | undefined
+  fixtures: GetFixturesByTorneo | undefined
 }
 
 const FixtureClient = ({ fixtures }: FixtureProps) => {
@@ -175,9 +170,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
           {fixtures &&
             fixtures.map(fixture => (
               <option
-                key={fixture.id}
+                key={fixture.fixture_id}
                 className='capitalize'
-                value={fixture.id}
+                value={fixture.fixture_id}
                 data-location={fixture.location ? fixture.location : undefined}
                 data-date={fixture.date ? fixture.date : undefined}>
                 {fixture.name}

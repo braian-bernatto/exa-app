@@ -648,7 +648,7 @@ export interface Database {
       }
       get_fixture_teams_by_fixture_id: {
         Args: {
-          fixture_id: string
+          fixture: string
         }
         Returns: {
           fixture_id: string
@@ -670,6 +670,26 @@ export interface Database {
       }
       get_fixtures: {
         Args: Record<PropertyKey, never>
+        Returns: {
+          fixture_id: string
+          torneo_id: string
+          fase_id: number
+          name: string
+          location_id: number
+          exa_id: number
+          exa_name: string
+          torneo: string
+          torneo_image_url: string
+          fase: string
+          tipo_partido_id: number
+          tipo_partido_name: string
+          location_name: string
+        }[]
+      }
+      get_fixtures_by_torneo: {
+        Args: {
+          torneo: string
+        }
         Returns: {
           fixture_id: string
           torneo_id: string
