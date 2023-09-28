@@ -8,7 +8,7 @@ const page = async () => {
   // get all fixtures
   const { data: fixtures, error: fixtureError } = await supabase.rpc(
     'get_fixtures_by_torneo',
-    { torneo_id: 2 }
+    { torneo_id: 'bfb7c2f6-57f7-4b54-b412-26777fc9a090' }
   )
 
   if (fixtureError) {

@@ -7,7 +7,7 @@ const page = async () => {
 
   const { data, error } = await supabase
     .rpc('get_tabla_posiciones', {
-      p_torneo_id: 2
+      p_torneo_id: 'bfb7c2f6-57f7-4b54-b412-26777fc9a090'
     })
     .order('puntos', {
       ascending: false

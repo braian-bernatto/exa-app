@@ -57,44 +57,132 @@ export interface Database {
         }
         Relationships: []
       }
-      fixture_details: {
+      fases: {
         Row: {
-          cancha_nro: number | null
-          date: string
-          fixture_id: number
-          team_1: number
-          team_2: number
+          id: number
+          name: string
         }
         Insert: {
-          cancha_nro?: number | null
-          date: string
-          fixture_id: number
-          team_1: number
-          team_2: number
+          id?: number
+          name: string
         }
         Update: {
-          cancha_nro?: number | null
-          date?: string
-          fixture_id?: number
-          team_1?: number
-          team_2?: number
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      fixture_players: {
+        Row: {
+          fixture_id: string
+          goals: number
+          is_local: boolean
+          is_present: boolean
+          player_id: number
+          red_card: boolean
+          red_card_motive: string | null
+          team_id: number
+          team_local: number
+          team_visit: number
+          yellow_cards: number
+        }
+        Insert: {
+          fixture_id: string
+          goals: number
+          is_local: boolean
+          is_present?: boolean
+          player_id: number
+          red_card?: boolean
+          red_card_motive?: string | null
+          team_id: number
+          team_local: number
+          team_visit: number
+          yellow_cards?: number
+        }
+        Update: {
+          fixture_id?: string
+          goals?: number
+          is_local?: boolean
+          is_present?: boolean
+          player_id?: number
+          red_card?: boolean
+          red_card_motive?: string | null
+          team_id?: number
+          team_local?: number
+          team_visit?: number
+          yellow_cards?: number
         }
         Relationships: [
           {
-            foreignKeyName: "fixture_details_fixture_id_fkey"
+            foreignKeyName: "fixture_teams_fixture_players_fk"
+            columns: ["fixture_id", "team_local", "team_visit"]
+            referencedRelation: "fixture_teams"
+            referencedColumns: ["fixture_id", "team_local", "team_visit"]
+          },
+          {
+            foreignKeyName: "players_fixture_players_fk"
+            columns: ["player_id"]
+            referencedRelation: "players"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "teams_fixture_players_fk"
+            columns: ["team_id"]
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      fixture_teams: {
+        Row: {
+          cancha_nro: number | null
+          date: string | null
+          fixture_id: string
+          team_local: number
+          team_visit: number
+          walkover_local: boolean
+          walkover_local_goals: number | null
+          walkover_visit: boolean
+          walkover_visit_goals: number | null
+        }
+        Insert: {
+          cancha_nro?: number | null
+          date?: string | null
+          fixture_id: string
+          team_local: number
+          team_visit: number
+          walkover_local?: boolean
+          walkover_local_goals?: number | null
+          walkover_visit?: boolean
+          walkover_visit_goals?: number | null
+        }
+        Update: {
+          cancha_nro?: number | null
+          date?: string | null
+          fixture_id?: string
+          team_local?: number
+          team_visit?: number
+          walkover_local?: boolean
+          walkover_local_goals?: number | null
+          walkover_visit?: boolean
+          walkover_visit_goals?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fixtures_fixture_teams_fk"
             columns: ["fixture_id"]
             referencedRelation: "fixtures"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "fixture_details_team_1_fkey"
-            columns: ["team_1"]
+            foreignKeyName: "teams_fixture_teams_fk"
+            columns: ["team_local"]
             referencedRelation: "teams"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "fixture_details_team_2_fkey"
-            columns: ["team_2"]
+            foreignKeyName: "teams_fixture_teams_fk1"
+            columns: ["team_visit"]
             referencedRelation: "teams"
             referencedColumns: ["id"]
           }
@@ -102,25 +190,25 @@ export interface Database {
       }
       fixtures: {
         Row: {
-          created_at: string
-          id: number
+          fase_id: number
+          id: string
           location_id: number | null
           name: string
-          torneo_id: number
+          torneo_id: string
         }
         Insert: {
-          created_at?: string
-          id?: number
+          fase_id: number
+          id?: string
           location_id?: number | null
           name: string
-          torneo_id: number
+          torneo_id: string
         }
         Update: {
-          created_at?: string
-          id?: number
+          fase_id?: number
+          id?: string
           location_id?: number | null
           name?: string
-          torneo_id?: number
+          torneo_id?: string
         }
         Relationships: [
           {
@@ -130,10 +218,16 @@ export interface Database {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "fixtures_torneo_id_fkey"
-            columns: ["torneo_id"]
-            referencedRelation: "torneos"
+            foreignKeyName: "locations_fixtures_fk"
+            columns: ["location_id"]
+            referencedRelation: "locations"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "torneo_fase_fixtures_fk"
+            columns: ["torneo_id", "fase_id"]
+            referencedRelation: "torneo_fase"
+            referencedColumns: ["torneo_id", "fase_id"]
           }
         ]
       }
@@ -151,46 +245,6 @@ export interface Database {
           name?: string
         }
         Relationships: []
-      }
-      goals: {
-        Row: {
-          fixture_id: number
-          player_id: number
-          quantity: number
-          team_id: number
-        }
-        Insert: {
-          fixture_id: number
-          player_id: number
-          quantity: number
-          team_id: number
-        }
-        Update: {
-          fixture_id?: number
-          player_id?: number
-          quantity?: number
-          team_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "goals_fixture_id_fkey"
-            columns: ["fixture_id"]
-            referencedRelation: "fixtures"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "goals_player_id_fkey"
-            columns: ["player_id"]
-            referencedRelation: "players"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "goals_team_id_fkey"
-            columns: ["team_id"]
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
-          }
-        ]
       }
       locations: {
         Row: {
@@ -212,6 +266,7 @@ export interface Database {
       }
       players: {
         Row: {
+          active: boolean
           country_iso2: string | null
           created_at: string | null
           def: number | null
@@ -229,6 +284,7 @@ export interface Database {
           tir: number | null
         }
         Insert: {
+          active?: boolean
           country_iso2?: string | null
           created_at?: string | null
           def?: number | null
@@ -246,6 +302,7 @@ export interface Database {
           tir?: number | null
         }
         Update: {
+          active?: boolean
           country_iso2?: string | null
           created_at?: string | null
           def?: number | null
@@ -335,64 +392,24 @@ export interface Database {
           }
         ]
       }
-      red_cards: {
-        Row: {
-          fixture_id: number
-          motivo: string | null
-          player_id: number
-          team_id: number
-        }
-        Insert: {
-          fixture_id: number
-          motivo?: string | null
-          player_id: number
-          team_id: number
-        }
-        Update: {
-          fixture_id?: number
-          motivo?: string | null
-          player_id?: number
-          team_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "red_cards_fixture_id_fkey"
-            columns: ["fixture_id"]
-            referencedRelation: "fixtures"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "red_cards_player_id_fkey"
-            columns: ["player_id"]
-            referencedRelation: "players"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "red_cards_team_id_fkey"
-            columns: ["team_id"]
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       teams: {
         Row: {
           created_at: string | null
-          exa_id: number
+          exa_id: number | null
           id: number
           image_url: string | null
           name: string
         }
         Insert: {
           created_at?: string | null
-          exa_id: number
+          exa_id?: number | null
           id?: number
           image_url?: string | null
           name: string
         }
         Update: {
           created_at?: string | null
-          exa_id?: number
+          exa_id?: number | null
           id?: number
           image_url?: string | null
           name?: string
@@ -406,101 +423,103 @@ export interface Database {
           }
         ]
       }
-      torneos: {
+      tipo_partido: {
         Row: {
-          created_at: string | null
-          exa_id: number
           id: number
-          image_url: string | null
           name: string
         }
         Insert: {
-          created_at?: string | null
-          exa_id: number
           id?: number
-          image_url?: string | null
           name: string
         }
         Update: {
-          created_at?: string | null
-          exa_id?: number
           id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      torneo_fase: {
+        Row: {
+          fase_id: number
+          tipo_partido_id: number | null
+          torneo_id: string
+        }
+        Insert: {
+          fase_id: number
+          tipo_partido_id?: number | null
+          torneo_id: string
+        }
+        Update: {
+          fase_id?: number
+          tipo_partido_id?: number | null
+          torneo_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fases_torneo_fase_fk"
+            columns: ["fase_id"]
+            referencedRelation: "fases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "torneo_fase_fase_id_fkey"
+            columns: ["fase_id"]
+            referencedRelation: "fases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "torneo_fase_tipo_partido_id_fkey"
+            columns: ["tipo_partido_id"]
+            referencedRelation: "tipo_partido"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "torneo_fase_torneo_id_fkey"
+            columns: ["torneo_id"]
+            referencedRelation: "torneos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "torneos_torneo_fase_fk"
+            columns: ["torneo_id"]
+            referencedRelation: "torneos"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      torneos: {
+        Row: {
+          exa_id: number
+          id: string
+          image_url: string | null
+          name: string
+          points_defeat: number
+          points_tie: number
+          points_victory: number
+        }
+        Insert: {
+          exa_id: number
+          id?: string
+          image_url?: string | null
+          name: string
+          points_defeat?: number
+          points_tie?: number
+          points_victory?: number
+        }
+        Update: {
+          exa_id?: number
+          id?: string
           image_url?: string | null
           name?: string
+          points_defeat?: number
+          points_tie?: number
+          points_victory?: number
         }
         Relationships: [
           {
             foreignKeyName: "torneos_exa_id_fkey"
             columns: ["exa_id"]
             referencedRelation: "exas"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      walkover: {
-        Row: {
-          fixture_id: number
-          team_id: number
-        }
-        Insert: {
-          fixture_id: number
-          team_id: number
-        }
-        Update: {
-          fixture_id?: number
-          team_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "walkover_fixture_id_fkey"
-            columns: ["fixture_id"]
-            referencedRelation: "fixtures"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "walkover_team_id_fkey"
-            columns: ["team_id"]
-            referencedRelation: "teams"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      yellow_cards: {
-        Row: {
-          fixture_id: number
-          player_id: number
-          quantity: number
-          team_id: number
-        }
-        Insert: {
-          fixture_id: number
-          player_id: number
-          quantity: number
-          team_id: number
-        }
-        Update: {
-          fixture_id?: number
-          player_id?: number
-          quantity?: number
-          team_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "yellow_cards_fixture_id_fkey"
-            columns: ["fixture_id"]
-            referencedRelation: "fixtures"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "yellow_cards_player_id_fkey"
-            columns: ["player_id"]
-            referencedRelation: "players"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "yellow_cards_team_id_fkey"
-            columns: ["team_id"]
-            referencedRelation: "teams"
             referencedColumns: ["id"]
           }
         ]
@@ -516,32 +535,11 @@ export interface Database {
         }
         Returns: Record<string, unknown>
       }
-      delete_goals: {
+      delete_fixture_players: {
         Args: {
-          fixture: number
-          team_1: number
-          team_2: number
-        }
-        Returns: boolean
-      }
-      delete_not_goals: {
-        Args: {
-          fixture: number
-          player_ids: number[]
-        }
-        Returns: boolean
-      }
-      delete_not_red_cards: {
-        Args: {
-          fixture: number
-          player_ids: number[]
-        }
-        Returns: boolean
-      }
-      delete_not_yellow_cards_array: {
-        Args: {
-          fixture: number
-          player_ids: number[]
+          fixture: string
+          local: number
+          visit: number
         }
         Returns: boolean
       }
@@ -550,14 +548,6 @@ export interface Database {
           image_url: string
         }
         Returns: Record<string, unknown>
-      }
-      delete_red_cards: {
-        Args: {
-          fixture: number
-          team_1: number
-          team_2: number
-        }
-        Returns: boolean
       }
       delete_storage_object: {
         Args: {
@@ -580,9 +570,9 @@ export interface Database {
       }
       delete_versus: {
         Args: {
-          fixture: number
-          team_one: number
-          team_two: number
+          fixture: string
+          local: number
+          visit: number
         }
         Returns: boolean
       }
@@ -594,13 +584,39 @@ export interface Database {
         }
         Returns: boolean
       }
-      delete_yellow_cards: {
+      get_fases_torneo: {
         Args: {
-          fixture: number
-          team_1: number
-          team_2: number
+          torneo: string
         }
-        Returns: boolean
+        Returns: {
+          torneo_id: string
+          fase_id: number
+          tipo_partido_id: number
+          torneo: string
+          torneo_image_url: string
+          fase: string
+          tipo_partido_name: string
+        }[]
+      }
+      get_fixture_by_id: {
+        Args: {
+          fixture_id: string
+        }
+        Returns: {
+          fixture_id: string
+          torneo_id: string
+          fase_id: number
+          name: string
+          location_id: number
+          exa_id: number
+          exa_name: string
+          torneo: string
+          torneo_image_url: string
+          fase: string
+          tipo_partido_id: number
+          tipo_partido_name: string
+          location_name: string
+        }[]
       }
       get_fixture_details: {
         Args: {
@@ -608,18 +624,66 @@ export interface Database {
         }
         Returns: Json
       }
-      get_fixtures_by_torneo: {
+      get_fixture_players_by_fixture_id: {
         Args: {
-          torneo_id: number
+          fixture: string
+          local: number
+          visit: number
         }
         Returns: {
+          fixture_id: string
+          team_local: number
+          team_visit: number
+          team_id: number
           id: number
-          created_at: string
+          is_local: boolean
+          goals: number
+          yellow_cards: number
+          red_card: boolean
+          red_card_motive: string
+          is_present: boolean
+          name: string
+          position_id: string
+        }[]
+      }
+      get_fixture_teams_by_fixture_id: {
+        Args: {
+          fixture_id: string
+        }
+        Returns: {
+          fixture_id: string
+          team_local: number
+          team_visit: number
+          walkover_local: boolean
+          walkover_visit: boolean
+          date: string
+          cancha_nro: number
+          walkover_local_goals: number
+          walkover_visit_goals: number
+          team_local_name: string
+          team_local_image_url: string
+          team_visit_name: string
+          team_visit_image_url: string
+          team_local_goals: number
+          team_visit_goals: number
+        }[]
+      }
+      get_fixtures: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          fixture_id: string
+          torneo_id: string
+          fase_id: number
           name: string
           location_id: number
-          torneo_id: number
-          date: string
-          location: string
+          exa_id: number
+          exa_name: string
+          torneo: string
+          torneo_image_url: string
+          fase: string
+          tipo_partido_id: number
+          tipo_partido_name: string
+          location_name: string
         }[]
       }
       get_goals: {
@@ -634,6 +698,7 @@ export interface Database {
           exa_id: number
         }
         Returns: {
+          active: boolean
           country_iso2: string | null
           created_at: string | null
           def: number | null
@@ -653,7 +718,7 @@ export interface Database {
       }
       get_tabla_posiciones: {
         Args: {
-          p_torneo_id: number
+          p_torneo_id: string
         }
         Returns: {
           team_id: number
@@ -671,7 +736,7 @@ export interface Database {
       }
       get_team_ids_fixture: {
         Args: {
-          fixture: number
+          fixture: string
         }
         Returns: number[]
       }
@@ -681,7 +746,7 @@ export interface Database {
         }
         Returns: {
           created_at: string | null
-          exa_id: number
+          exa_id: number | null
           id: number
           image_url: string | null
           name: string
