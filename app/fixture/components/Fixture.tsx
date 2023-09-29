@@ -21,11 +21,11 @@ const Fixture = ({ versus }: FixtureProps) => {
         className='z-10 flex justify-between items-center w-full relative'
         onClick={() => setIsOpen(!isOpen)}>
         <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full'></span>
-        <div className='relative flex items-center justify-center w-[70px] h-[70px]'>
+        <div className='relative flex items-center justify-center'>
           <Image
             src={versus.team_local.image_url}
-            fill
-            className='object-contain'
+            width={70}
+            height={70}
             alt={`Logo de ${versus.team_local.name}`}
           />
           {versus.team_local.walkover && (
@@ -64,11 +64,11 @@ const Fixture = ({ versus }: FixtureProps) => {
         <h3 className='text-[8px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
           {versus.team_visit.name}
         </h3>
-        <div className='relative flex items-center justify-center w-[70px] h-[70px]'>
+        <div className='relative flex items-center justify-center'>
           <Image
             src={versus.team_visit.image_url}
-            fill
-            className='object-contain'
+            width={70}
+            height={70}
             alt={`Logo de ${versus.team_visit.name}`}
           />
           {versus.team_visit.walkover && (
