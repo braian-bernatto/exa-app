@@ -21,11 +21,11 @@ const Fixture = ({ versus }: FixtureProps) => {
         className='z-10 flex justify-between items-center w-full relative'
         onClick={() => setIsOpen(!isOpen)}>
         <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full'></span>
-        <div className='relative flex items-center justify-center'>
+        <div className='relative flex items-center justify-center w-[70px] h-[70px]'>
           <Image
             src={versus.team_local.image_url}
-            width={70}
-            height={70}
+            fill
+            className='object-contain'
             alt={`Logo de ${versus.team_local.name}`}
           />
           {versus.team_local.walkover && (
@@ -34,7 +34,7 @@ const Fixture = ({ versus }: FixtureProps) => {
             </p>
           )}
         </div>
-        <h3 className='text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
+        <h3 className='text-[8px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
           {versus.team_local.name}
         </h3>
         <span className='font-bold rounded-full border shadow-md h-[55px] w-[55px] p-2 flex items-center justify-center bg-white'>
@@ -61,14 +61,14 @@ const Fixture = ({ versus }: FixtureProps) => {
             </div>
           )}
         </span>
-        <h3 className='text-[10px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
+        <h3 className='text-[8px] sm:text-sm text-center font-semibold px-1 uppercase w-[70px] sm:w-[150px] leading-none'>
           {versus.team_visit.name}
         </h3>
-        <div className='relative flex items-center justify-center'>
+        <div className='relative flex items-center justify-center w-[70px] h-[70px]'>
           <Image
             src={versus.team_visit.image_url}
-            width={70}
-            height={70}
+            fill
+            className='object-contain'
             alt={`Logo de ${versus.team_visit.name}`}
           />
           {versus.team_visit.walkover && (
