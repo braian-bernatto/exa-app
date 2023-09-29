@@ -169,19 +169,19 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "fixtures_fixture_teams_fk"
+            foreignKeyName: "fixture_teams_fixture_id_fkey"
             columns: ["fixture_id"]
             referencedRelation: "fixtures"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "teams_fixture_teams_fk"
+            foreignKeyName: "fixture_teams_team_local_fkey"
             columns: ["team_local"]
             referencedRelation: "teams"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "teams_fixture_teams_fk1"
+            foreignKeyName: "fixture_teams_team_visit_fkey"
             columns: ["team_visit"]
             referencedRelation: "teams"
             referencedColumns: ["id"]
@@ -621,6 +621,12 @@ export interface Database {
       get_fixture_details: {
         Args: {
           fixture: number
+        }
+        Returns: Json
+      }
+      get_fixture_front: {
+        Args: {
+          fixture: string
         }
         Returns: Json
       }

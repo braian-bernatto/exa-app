@@ -16,13 +16,13 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   const [fecha, setFecha] = useState<string | undefined>(undefined)
   const [data, setData] = useState<Versus[] | []>([])
   const [location, setLocation] = useState<string | undefined>()
-  const [selectValue, setSelectValue] = useState<number | undefined>()
+  const [selectValue, setSelectValue] = useState<string | undefined>()
   const supabase = createClient()
   const router = useRouter()
 
-  const getVersus = async (fixture_id: number) => {
+  const getVersus = async (fixture_id: string) => {
     // get all versus
-    const { data, error } = await supabase.rpc('get_fixture_details', {
+    const { data, error } = await supabase.rpc('get_fixture_front', {
       fixture: fixture_id
     })
 
@@ -32,32 +32,60 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
       if (Array.isArray(data)) {
         dataWithPublicUrl = data.map((item: any) => {
           let team = item
-          if (item.team_1.image_url && item.team_1.image_url.length) {
+
+          team = {
+            ...team,
+            team_local: {
+              ...team.team_local,
+              players: team.team_local.players?.filter((player: any) => {
+                if (
+                  player.goals > 0 ||
+                  player.yellow_cards > 0 ||
+                  player.red_card
+                )
+                  return player
+              })
+            },
+            team_visit: {
+              ...team.team_visit,
+              players: team.team_visit.players?.filter((player: any) => {
+                if (
+                  player.goals > 0 ||
+                  player.yellow_cards > 0 ||
+                  player.red_card
+                )
+                  return player
+              })
+            }
+          }
+
+          if (item.team_local.image_url && item.team_local.image_url.length) {
             const { data: url } = supabase.storage
               .from('teams')
-              .getPublicUrl(item.team_1.image_url)
+              .getPublicUrl(item.team_local.image_url)
             team = {
               ...team,
-              team_1: {
-                ...team.team_1,
+              team_local: {
+                ...team.team_local,
                 image_url: url.publicUrl
               }
             }
           }
-          if (item.team_2.image_url && item.team_2.image_url.length) {
+          if (item.team_visit.image_url && item.team_visit.image_url.length) {
             const { data: url } = supabase.storage
               .from('teams')
-              .getPublicUrl(item.team_2.image_url)
+              .getPublicUrl(item.team_visit.image_url)
             team = {
               ...team,
-              team_2: {
-                ...team.team_2,
+              team_visit: {
+                ...team.team_visit,
                 image_url: url.publicUrl
               }
             }
           }
           return team
         })
+
         setData(dataWithPublicUrl)
       }
     } else {
@@ -77,18 +105,18 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         {
           event: '*',
           schema: 'public',
-          table: 'goals'
+          table: 'fixture_teams'
         },
         payload => {
           if (fixtures) {
-            setSelectValue(
-              fixtures[0].location_id ? fixtures[0].location_id : undefined
-            )
-            getVersus(fixtures[0].id)
-            const date = fixtures[0].date ? fixtures[0].date : undefined
-            setFecha(date)
-            setLocation(fixtures[0].location)
-            setSelectValue(fixtures[0].id)
+            // setSelectValue(
+            //   fixtures[0].location_id ? fixtures[0].location_id : undefined
+            // )
+            getVersus(fixtures[0].fixture_id)
+            // const date = fixtures[0].date ? fixtures[0].date : undefined
+            // setFecha(date)
+            // setLocation(fixtures[0].location)
+            setSelectValue(fixtures[0].fixture_id)
           }
         }
       )
@@ -97,38 +125,18 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         {
           event: '*',
           schema: 'public',
-          table: 'yellow_cards'
+          table: 'fixture_players'
         },
         payload => {
           if (fixtures) {
-            setSelectValue(
-              fixtures[0].location_id ? fixtures[0].location_id : undefined
-            )
-            getVersus(fixtures[0].id)
-            const date = fixtures[0].date ? fixtures[0].date : undefined
-            setFecha(date)
-            setLocation(fixtures[0].location)
-            setSelectValue(fixtures[0].id)
-          }
-        }
-      )
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'red_cards'
-        },
-        payload => {
-          if (fixtures) {
-            setSelectValue(
-              fixtures[0].location_id ? fixtures[0].location_id : undefined
-            )
-            getVersus(fixtures[0].id)
-            const date = fixtures[0].date ? fixtures[0].date : undefined
-            setFecha(date)
-            setLocation(fixtures[0].location)
-            setSelectValue(fixtures[0].id)
+            // setSelectValue(
+            //   fixtures[0].location_id ? fixtures[0].location_id : undefined
+            // )
+            getVersus(fixtures[0].fixture_id)
+            // const date = fixtures[0].date ? fixtures[0].date : undefined
+            // setFecha(date)
+            // setLocation(fixtures[0].location)
+            setSelectValue(fixtures[0].fixture_id)
           }
         }
       )
@@ -141,11 +149,11 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
 
   useEffect(() => {
     if (fixtures) {
-      getVersus(fixtures[0].id)
-      const date = fixtures[0].date ? fixtures[0].date : undefined
-      setFecha(date)
-      setLocation(fixtures[0].location)
-      setSelectValue(fixtures[0].id)
+      getVersus(fixtures[0].fixture_id)
+      // const date = fixtures[0].date ? fixtures[0].date : undefined
+      // setFecha(date)
+      // setLocation(fixtures[0].location)
+      setSelectValue(fixtures[0].fixture_id)
     }
   }, [])
 
@@ -157,12 +165,12 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
           className='select select-bordered select-sm max-w-xs capitalize text-gray-700'
           value={selectValue}
           onChange={e => {
-            setSelectValue(+e.target.value)
+            setSelectValue(e.target.value)
             setLocation(
               e.target.options[e.target.selectedIndex].dataset.location
             )
             setFecha(e.target.options[e.target.selectedIndex].dataset.date)
-            e.target.value.length ? getVersus(+e.target.value) : setData([])
+            e.target.value.length ? getVersus(e.target.value) : setData([])
           }}>
           <option value='title' disabled>
             Fixtures
@@ -173,8 +181,9 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
                 key={fixture.fixture_id}
                 className='capitalize'
                 value={fixture.fixture_id}
-                data-location={fixture.location ? fixture.location : undefined}
-                data-date={fixture.date ? fixture.date : undefined}>
+                // data-location={fixture.location ? fixture.location : undefined}
+                // data-date={fixture.date ? fixture.date : undefined}
+              >
                 {fixture.name}
               </option>
             ))}

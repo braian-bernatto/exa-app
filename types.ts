@@ -12,6 +12,7 @@ export type Locations = Database['public']['Tables']['locations']['Row']
 export type Fixtures = Database['public']['Tables']['fixtures']['Row']
 export type TablaPosiciones = Database['public']['Functions']['get_tabla_posiciones']['Returns'][0]
 export type GetFixturesByTorneo = Database['public']['Functions']['get_fixtures_by_torneo']['Returns']
+export type GetFixtureFront = Database['public']['Functions']['get_fixture_front']['Returns']
 
 interface FixturePlayersExa {
   name: string
@@ -88,14 +89,15 @@ export interface Versus {
   fixture_id: number
   date: string
   cancha_nro: number
-  team_1: TeamVersus
-  team_2: TeamVersus
+  team_local: TeamVersus
+  team_visit: TeamVersus
 }
 
 export interface TeamVersus {
   id: number
   name: string
   image_url: string
+  walkover_goals?: number
   goals?: number
   walkover: boolean
   players?: PlayerVersus[]
@@ -104,7 +106,8 @@ export interface TeamVersus {
 export interface PlayerVersus {
   id: number
   name: string
-  goals?: number
-  yellow_cards?: number
-  red_card?: string
+  goals: number
+  yellow_cards: number
+  red_card: boolean
+  red_card_motive: string
 }
