@@ -14,7 +14,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
   if (!player) return <p>No existe jugador</p>
 
   return (
-    <div className='flex flex-wrap items-center justify-center gap-5'>
+    <div className='flex flex-wrap items-center justify-center gap-5 pt-20'>
       <div className='w-[280px] h-[392px] flex items-center justify-center'>
         <div className='scale-[80%] relative'>
           <PlayerCard player={player} card={card} />
