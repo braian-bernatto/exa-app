@@ -26,15 +26,14 @@ const TablaGoleadores = ({ players }: Props) => {
   if (!players) return <div>No hay jugadores cargados...</div>
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col pt-24'>
       {players.map((jugador, idx) => (
         <div key={idx} className='h-[180px] flex items-center justify-center'>
           <Link className='scale-[40%]' href={`/jugador/${jugador.id}`}>
             <div className='relative'>
               <div
                 className={`rounded-full h-[100px] w-[100px] text-5xl font-semibold bg-white flex items-center justify-center shadow absolute right-0 z-10 border-2 
-              ${idx === 0 ? 'border-yellow-500' : 'border-gray-500'}`}
-              >
+              ${idx === 0 ? 'border-yellow-500' : 'border-gray-500'}`}>
                 {jugador.id}
               </div>
               <PlayerCard

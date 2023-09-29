@@ -158,7 +158,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   }, [])
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center pt-20'>
       <div className={`grid sm:grid-cols-3 gap-2 place-items-center w-full`}>
         <select
           defaultValue={selectValue ? selectValue : 'title'}

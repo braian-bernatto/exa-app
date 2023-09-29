@@ -4,7 +4,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div className='navbar bg-base-100 z-50 mb-10'>
+    <div className='fixed top-0 navbar bg-base-100 z-50'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn btn-ghost btn-circle'>
@@ -13,8 +13,7 @@ const Navbar = () => {
               className='h-5 w-5'
               fill='none'
               viewBox='0 0 24 24'
-              stroke='currentColor'
-            >
+              stroke='currentColor'>
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -25,8 +24,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50'
-          >
+            className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50'>
             <li>
               <Link href={'/fixture'}>Fixture</Link>
             </li>
@@ -42,8 +40,7 @@ const Navbar = () => {
       <div className='navbar-center'>
         <Link
           href={'/'}
-          className='btn w-[50px] h-[50px] btn-ghost normal-case text-xl relative'
-        >
+          className='btn w-[50px] h-[50px] btn-ghost normal-case text-xl relative'>
           <Image
             src='/img/aso-dmd.png'
             fill

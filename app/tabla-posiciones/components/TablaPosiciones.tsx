@@ -7,7 +7,7 @@ interface TablaPosicionesProps {
 
 const TablaPosiciones = ({ data }: TablaPosicionesProps) => {
   return (
-    <div className='flex w-full justify-center'>
+    <div className='flex w-full justify-center pt-20'>
       <div className='overflow-x-auto rounded bg-white sm:w-auto w-[350px]'>
         <table className='table table-xs table-pin-rows table-pin-cols table-zebra'>
           {/* head */}
