@@ -1,8 +1,28 @@
+'use client'
+import { createClient } from '@/utils/supabaseBrowser'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
-const Navbar = () => {
+const Navbar = async () => {
+  const supabase = createClient()
+  const pathname = usePathname()
+  const exaId = +pathname.split('/')[1]
+  const { data, error } = await supabase.from('exas').select().eq('id', exaId)
+
+  if (error) {
+    console.log(error)
+    return 'No existe Exa'
+  }
+
+  const dataWithImage = data?.map(data => {
+    const { data: imageData } = supabase.storage
+      .from('exas')
+      .getPublicUrl(data.image_url!)
+    return { ...data, image_url: imageData.publicUrl }
+  })
+
   return (
     <div className='fixed top-0 navbar bg-base-100 z-50'>
       <div className='navbar-start'>
@@ -26,13 +46,17 @@ const Navbar = () => {
             tabIndex={0}
             className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50'>
             <li>
-              <Link href={'/fixture'}>Fixture</Link>
+              <Link href={`/${exaId}/fixture`}>Fixture</Link>
             </li>
             <li>
-              <Link href={'/tabla-posiciones'}>Tabla de Posiciones</Link>
+              <Link href={`/${exaId}/tabla-posiciones`}>
+                Tabla de Posiciones
+              </Link>
             </li>
             <li>
-              <Link href={'/tabla-goleadores'}>Tabla de Goleadores</Link>
+              <Link href={`/${exaId}/tabla-goleadores`}>
+                Tabla de Goleadores
+              </Link>
             </li>
           </ul>
         </div>
@@ -41,12 +65,16 @@ const Navbar = () => {
         <Link
           href={'/'}
           className='btn w-[50px] h-[50px] btn-ghost normal-case text-xl relative'>
-          <Image
-            src='/img/aso-dmd.png'
-            fill
-            alt='aso logo'
-            className='object-contain'
-          />
+          {dataWithImage ? (
+            <Image
+              src={dataWithImage[0].image_url}
+              fill
+              alt='aso logo'
+              className='object-contain'
+            />
+          ) : (
+            data[0].name
+          )}
         </Link>
       </div>
       <div className='navbar-end'>
