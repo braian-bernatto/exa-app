@@ -1,6 +1,6 @@
-import TablaPosiciones from '@/app/tabla-posiciones/components/TablaPosiciones'
 import { createClient } from '@/utils/supabaseServer'
 import React from 'react'
+import TablaPosiciones from './components/TablaPosiciones'
 
 const page = async () => {
   const supabase = createClient()

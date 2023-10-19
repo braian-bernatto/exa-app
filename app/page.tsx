@@ -3,6 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 export const revalidate = 0
 
+export const metadata = {
+  title: 'Exa Team | Exas'
+}
+
 export default async function Home() {
   const supabase = createClient()
   const { data, error } = await supabase.from('exas').select()
@@ -24,14 +28,14 @@ export default async function Home() {
         <Link href={`${exa.id}`}>
           <div
             key={exa.id}
-            className='relative flex flex-col items-center hover:scale-110 transition'>
+            className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
             <Image
               src={exa.image_url}
-              alt='exa logo'
+              alt='Exa logo'
               height={100}
               width={100}
             />
-            <h2 className='rounded bg-white shadow text-sm px-2'>{exa.name}</h2>
+            <h2 className='shadow text-sm px-2 text-center'>{exa.name}</h2>
           </div>
         </Link>
       ))}

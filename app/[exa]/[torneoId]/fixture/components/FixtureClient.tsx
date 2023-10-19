@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import { GetFixturesByTorneo, Versus } from '@/types'
 import { format, parseISO } from 'date-fns'
 import { CalendarX2, MapPin, MapPinOff } from 'lucide-react'
-import Fixture from '@/app/fixture/components/Fixture'
 import { createClient } from '@/utils/supabaseBrowser'
 import { useRouter } from 'next/navigation'
+import Fixture from './Fixture'
 
 interface FixtureProps {
   fixtures: GetFixturesByTorneo | undefined
