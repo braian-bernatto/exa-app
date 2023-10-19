@@ -29,12 +29,14 @@ export default async function Home() {
           <div
             key={exa.id}
             className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
-            <Image
-              src={exa.image_url}
-              alt='Exa logo'
-              height={100}
-              width={100}
-            />
+            <span className='w-[150px] h-[150px] relative'>
+              <Image
+                src={exa.image_url}
+                alt='Exa logo'
+                fill
+                className='object-contain'
+              />
+            </span>
             <h2 className='shadow text-sm px-2 text-center'>{exa.name}</h2>
           </div>
         </Link>

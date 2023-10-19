@@ -39,14 +39,16 @@ export default async function Home({
               key={torneo.id}
               className='relative flex flex-col items-center justify-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
               {data && data[0].image_url ? (
-                <Image
-                  src={torneo.image_url}
-                  width={100}
-                  height={100}
-                  alt='torneo logo'
-                />
+                <span className='w-[150px] h-[150px] relative'>
+                  <Image
+                    src={torneo.image_url}
+                    alt='Torneo logo'
+                    fill
+                    className='object-contain'
+                  />
+                </span>
               ) : (
-                <Trophy size={80} />
+                <Trophy size={150} strokeWidth='1' stroke='#1e9a6f' />
               )}
               <h2 className='rounded bg-white shadow px-2 text-center'>
                 {torneo.name}

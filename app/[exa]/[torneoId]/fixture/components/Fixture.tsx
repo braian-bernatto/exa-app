@@ -20,7 +20,7 @@ const Fixture = ({ versus }: FixtureProps) => {
       <div
         className='z-10 flex justify-between items-center w-full relative'
         onClick={() => setIsOpen(!isOpen)}>
-        <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full'></span>
+        <span className='absolute w-[90%] left-[50%] translate-x-[-50%] h-7 bg-white -z-10 shadow-lg rounded-full border'></span>
         <div className='relative flex items-center justify-center'>
           <Image
             src={versus.team_local.image_url}
@@ -90,7 +90,7 @@ const Fixture = ({ versus }: FixtureProps) => {
         leaveTo='opacity-0'>
         <div className='w-full h-[200px] relative -top-10 flex justify-center gap-2'>
           {/* box 1 */}
-          <div className='bg-white w-[45%] h-full rounded-md pt-12 pb-5 gap-3 px-3 overflow-y-auto items-start flex flex-col'>
+          <div className='bg-white w-[45%] h-full rounded-md pt-12 pb-5 gap-3 px-3 overflow-y-auto items-start flex flex-col shadow'>
             {versus.team_local.players &&
               versus.team_local.players.map((player, idx) => (
                 <div key={idx} className='flex gap-1 sm:gap-2 items-center'>
@@ -144,7 +144,7 @@ const Fixture = ({ versus }: FixtureProps) => {
               ))}
           </div>
           {/* box 2 */}
-          <div className='bg-white w-[45%] h-full rounded-md pt-12 pb-5 gap-3 px-3 overflow-y-auto items-start flex flex-col'>
+          <div className='bg-white w-[45%] h-full rounded-md pt-12 pb-5 gap-3 px-3 overflow-y-auto items-start flex flex-col shadow'>
             {versus.team_visit.players &&
               versus.team_visit.players.map((player, idx) => (
                 <div key={idx} className='flex gap-1 sm:gap-2 items-center'>

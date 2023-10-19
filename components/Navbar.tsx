@@ -24,7 +24,7 @@ const Navbar = async () => {
   })
 
   return (
-    <div className='fixed top-0 navbar bg-base-100 z-50'>
+    <div className='fixed top-0 navbar bg-gradient-to-l from-emerald-500 via-emerald-200 to-emerald-500 z-50'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn btn-ghost btn-circle'>
@@ -46,7 +46,7 @@ const Navbar = async () => {
             tabIndex={0}
             className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50'>
             <li>
-              <Link href={`/${exaId}/fixture`}>Fixture</Link>
+              <Link href={`/${exaId}/equipos`}>Equipos</Link>
             </li>
             <li>
               <Link href={`/${exaId}/tabla-posiciones`}>

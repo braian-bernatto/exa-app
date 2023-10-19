@@ -29,7 +29,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
       <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px] rounded-t-full overflow-hidden'>
         <Image
           fill
-          src={imageError ? fallbackImage : player.public_image_url}
+          src={imageError ? fallbackImage : player.image_url}
           onError={() => setImageError(true)}
           className='drop-shadow object-contain'
           alt={player.name}
@@ -75,8 +75,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
                 return (
                   <div
                     key={nombre}
-                    className='grid grid-cols-2 w-full place-items-start'
-                  >
+                    className='grid grid-cols-2 w-full place-items-start'>
                     <strong className='place-self-end mr-2'>{valor}</strong>{' '}
                     <span className=''>{nombre.toUpperCase()}</span>
                   </div>
@@ -90,8 +89,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
                 return (
                   <div
                     key={nombre}
-                    className='grid grid-cols-2 w-full place-items-end'
-                  >
+                    className='grid grid-cols-2 w-full place-items-end'>
                     <strong className='mr-2'>{valor}</strong>
                     <span className='place-self-start'>
                       {nombre.toUpperCase()}
@@ -108,8 +106,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
               player.foot.name === 'ambidiestro') && (
               <div className='relative flex items-center justify-center'>
                 <span
-                  className={`text-[6px] absolute z-10 ${card.footTextColor}`}
-                >
+                  className={`text-[6px] absolute z-10 ${card.footTextColor}`}>
                   L
                 </span>
                 <Foot width={28} height={28} />
@@ -119,8 +116,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
               player.foot.name === 'ambidiestro') && (
               <div className='relative flex items-center justify-center'>
                 <span
-                  className={`text-[6px] absolute z-10 ${card.footTextColor}`}
-                >
+                  className={`text-[6px] absolute z-10 ${card.footTextColor}`}>
                   R
                 </span>
                 <Foot styles='-scale-x-100' width={28} height={28} />
@@ -131,18 +127,18 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
       </div>
     </div>
   ) : (
-    <div className={`relative sm:scale-100 w-[350px] ${card.textColor}`}>
+    <div
+      className={`relative flex items-center justify-center w-[150px] h-[200px] ${card.textColor}`}>
       <Image
         src={`/img/${card.url}`}
-        width={350}
-        height={350}
+        fill
         alt='player card'
-        className='drop-shadow-lg'
+        className='drop-shadow-lg object-contain'
         priority
       />
-      <div className='absolute top-[54px] left-[50%] translate-x-[-50%] drop-shadow w-[200px] h-[200px] rounded-t-full overflow-hidden'>
+      <div className='absolute top-[24px] left-[50%] translate-x-[-50%] drop-shadow w-[100px] h-[100px] rounded-t-full overflow-hidden'>
         <Image
-          src={imageError ? fallbackImage : player.public_image_url}
+          src={imageError ? fallbackImage : player.image_url}
           fill
           className='object-contain'
           alt={player.name}
@@ -150,33 +146,10 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         />
       </div>
 
-      <div className='absolute top-[75px] left-[60px] flex flex-col items-center text-2xl h-[180px]'>
-        <span className='flex flex-col items-center gap-1'></span>
-      </div>
-
-      <div className='absolute top-[255px] flex flex-col items-center w-full px-[44px]'>
-        <h1 className='w-full text-center text-[26px] font-semibold overflow-y-auto h-[44px] leading-[44px] uppercase'>
+      <div className='absolute bottom-[30px] flex flex-col items-center justify-center w-full px-[44px]'>
+        <h1 className='w-full text-center text-xs font-semibold overflow-y-auto h-[44px] uppercase flex items-center justify-center'>
           {player.name}
         </h1>
-        <span className='absolute top-[43px] w-[210px] border-t border-yellow-900'></span>
-
-        <div className='flex items-center justify-center h-[135px] w-full text-2xl relative py-[5px]'>
-          <div className='h-full w-full relative flex items-center justify-center'>
-            {!logoError ? (
-              <Image
-                src={player.team_public_image_url}
-                fill
-                className='object-contain drop-shadow'
-                alt='team logo'
-                onError={() => setLogoError(true)}
-              />
-            ) : (
-              <h2 className='w-full text-center text-3xl font-semibold'>
-                {player.teams!.name}
-              </h2>
-            )}
-          </div>
-        </div>
       </div>
     </div>
   )
