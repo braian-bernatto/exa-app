@@ -816,10 +816,21 @@ export interface Database {
           team_image_url: string
           goals: number
           yellow_cards: number
+          red_cards: number
           date: string
           name: string
           image_url: string
           position_id: string
+          position_name: string
+          foot: string
+          rit: number
+          tir: number
+          pas: number
+          reg: number
+          def: number
+          fis: number
+          rating: number
+          country_iso2: string
         }[]
       }
     }

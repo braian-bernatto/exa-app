@@ -56,6 +56,7 @@ interface Props {
 }
 
 const RadarChart = ({ attributes }: Props) => {
+  if (!attributes) return 'No se encontraron atributos'
   const data = {
     labels: ['Ritmo', 'Tiro', 'Pase', 'Regate', 'Defensa', 'Físico'],
     datasets: [

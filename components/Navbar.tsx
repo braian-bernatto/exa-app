@@ -24,7 +24,7 @@ const Navbar = async () => {
   })
 
   return (
-    <div className='fixed top-0 navbar bg-gradient-to-l from-slate-500 via-slate-200 to-slate-500 z-50'>
+    <div className='fixed top-0 navbar bg-gradient-to-l from-slate-500 via-slate-300 to-slate-500 z-50'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn btn-ghost btn-circle'>

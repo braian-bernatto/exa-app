@@ -25,17 +25,15 @@ export default async function equiposPage({
   const dataWithImage = data?.map(data => {
     const { data: imageData } = supabase.storage
       .from('teams')
-      .getPublicUrl(data.teams.image_url)
+      .getPublicUrl(data.teams?.image_url!)
     return { ...data, teams: { ...data.teams, image_url: imageData.publicUrl } }
   })
 
   return (
     <main className='flex flex-wrap justify-center items-center py-5 gap-5 max-w-4xl'>
       {dataWithImage?.map(team => (
-        <Link href={`equipos/${team.team_id}`}>
-          <div
-            key={team.team_id}
-            className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[100px] h-[100px] gap-2 overflow-hidden'>
+        <Link key={team.team_id} href={`equipos/${team.team_id}`}>
+          <div className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[100px] h-[100px] gap-2 overflow-hidden'>
             <span className='w-[50px] h-[50px] relative'>
               <Image
                 src={team.teams.image_url}

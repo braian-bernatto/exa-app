@@ -11,14 +11,17 @@ const card: Card = {
   footTextColor: 'text-gold'
 }
 
-const page = async ({ params }: { params: { id: number } }) => {
+const page = async ({
+  params
+}: {
+  params: { exa: number; torneoId: string; equipoId: number; jugadorId: number }
+}) => {
   const supabase = createClient()
   const { data, error } = await supabase
-    .from('players')
-    .select(
-      '*, teams(id, name, image_url), positions(id, name), foot(id, name)'
-    )
-    .eq('id', params.id)
+    .rpc('get_torneo_players_stats', {
+      torneo: params.torneoId
+    })
+    .eq('player_id', params.jugadorId)
 
   if (error) {
     console.log(error)
@@ -28,7 +31,6 @@ const page = async ({ params }: { params: { id: number } }) => {
   const formattedPlayer = data?.map(item => {
     const player = {
       ...item,
-      team_image_url: '',
       attributes: {
         rit: item.rit,
         tir: item.tir,
@@ -38,31 +40,33 @@ const page = async ({ params }: { params: { id: number } }) => {
         fis: item.fis
       },
       statistics: {
-        goals: 0,
-        yellowCards: 0,
-        redCards: 0
+        goals: item.goals,
+        yellowCards: item.yellow_cards,
+        redCards: item.red_cards
       }
     }
 
     // foto jugador
-    if (player.image_url) {
+    if (item.image_url) {
       const { data: storage } = supabase.storage
         .from('players')
-        .getPublicUrl(player.image_url)
+        .getPublicUrl(item.image_url)
       player.image_url = storage.publicUrl
     }
     // logo equipo
-    if (player.teams?.image_url) {
+    if (item.team_image_url) {
       const { data: storage } = supabase.storage
         .from('teams')
-        .getPublicUrl(player.teams.image_url)
+        .getPublicUrl(item.team_image_url)
       player.team_image_url = storage.publicUrl
     }
+
     return player
   })
 
   return (
     <PlayerDetails
+      //@ts-ignore
       player={formattedPlayer ? formattedPlayer[0] : undefined}
       card={card}
     />

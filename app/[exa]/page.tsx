@@ -34,10 +34,8 @@ export default async function Home({
     <main className=''>
       {dataWithImage &&
         dataWithImage.map(torneo => (
-          <Link href={`${params.exa}/${torneo.id}`}>
-            <div
-              key={torneo.id}
-              className='relative flex flex-col items-center justify-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
+          <Link key={torneo.id} href={`${params.exa}/${torneo.id}`}>
+            <div className='relative flex flex-col items-center justify-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
               {data && data[0].image_url ? (
                 <span className='w-[150px] h-[150px] relative'>
                   <Image

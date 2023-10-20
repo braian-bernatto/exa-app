@@ -17,40 +17,57 @@ const card: Card = {
 export default async function jugadoresPage({
   params
 }: {
-  params: { exa: number; torneoId: number; equipoId: number }
+  params: { exa: number; torneoId: string; equipoId: number }
 }) {
   const supabase = createClient()
   const { data, error } = await supabase
-    .from('players')
-    .select('*, teams(id, name, image_url)')
+    .rpc('get_torneo_players_stats', {
+      torneo: params.torneoId
+    })
     .eq('team_id', params.equipoId)
 
   if (error) {
     console.log(error)
   }
 
-  const dataWithImage = data?.map(data => {
-    const { data: imageData } = supabase.storage
-      .from('players')
-      .getPublicUrl(data.image_url!)
-    data.image_url = imageData.publicUrl
+  // TO-DO: fix player json
+  const formattedPlayers = data?.map(item => {
+    const player = {
+      ...item,
+      statistics: {
+        goals: item.goals,
+        yellowCards: item.yellow_cards,
+        redCards: 0
+      }
+    }
 
+    // foto jugador
+    if (item.image_url) {
+      const { data: storage } = supabase.storage
+        .from('players')
+        .getPublicUrl(item.image_url)
+      player.image_url = storage.publicUrl
+    }
     // logo equipo
-    if (data.teams?.image_url) {
+    if (item.team_image_url) {
       const { data: storage } = supabase.storage
         .from('teams')
-        .getPublicUrl(data.teams.image_url)
-      data.team_image_url = storage.publicUrl
+        .getPublicUrl(item.team_image_url)
+      player.team_image_url = storage.publicUrl
     }
-    return data
+
+    return player
   })
 
   return (
     <main className='flex flex-wrap justify-center items-center py-5 gap-5'>
-      {dataWithImage?.map(player => (
-        <Link href={`${player.id}`}>
-          <article key={player.id} className='relative'>
+      {formattedPlayers?.map(player => (
+        <Link
+          key={player.player_id}
+          href={`${params.equipoId}/${player.player_id}`}>
+          <article className='relative'>
             <PlayerCard
+              //@ts-ignore
               player={player}
               card={card}
               small={true}

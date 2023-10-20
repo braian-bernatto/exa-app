@@ -109,8 +109,7 @@ const PlayerCard = ({
 
         {player.foot && (
           <div className={`flex`}>
-            {(player.foot.name === 'izquierdo' ||
-              player.foot.name === 'ambidiestro') && (
+            {(player.foot === 'izquierdo' || player.foot === 'ambidiestro') && (
               <div className='relative flex items-center justify-center'>
                 <span
                   className={`text-[6px] absolute z-10 ${card.footTextColor}`}>
@@ -119,8 +118,7 @@ const PlayerCard = ({
                 <Foot width={28} height={28} />
               </div>
             )}
-            {(player.foot.name === 'derecho' ||
-              player.foot.name === 'ambidiestro') && (
+            {(player.foot === 'derecho' || player.foot === 'ambidiestro') && (
               <div className='relative flex items-center justify-center'>
                 <span
                   className={`text-[6px] absolute z-10 ${card.footTextColor}`}>
@@ -153,8 +151,11 @@ const PlayerCard = ({
         />
       </div>
 
-      <div className='absolute top-[103px] flex flex-col items-center justify-center w-full px-[22px] h-[80px]'>
-        <h1 className='w-full text-center text-[10px] font-semibold overflow-ellipsis h-[20px] uppercase flex items-center justify-center'>
+      <div className='absolute top-[103px] flex flex-col items-center w-full px-[22px] h-[80px]'>
+        <h1
+          className={`w-full text-center text-[10px] font-semibold overflow-ellipsis ${
+            showTeam ? 'h-[20px]' : 'h-[40px]'
+          } uppercase flex items-center justify-center`}>
           {player.name}
         </h1>
         {showTeam ? (

@@ -11,6 +11,15 @@ interface PlayerProps {
 }
 
 const PlayerDetails = ({ player, card }: PlayerProps) => {
+  const attributes = {
+    rit: 'Ritmo',
+    tir: 'Tiro',
+    pas: 'Pase',
+    reg: 'Regate',
+    def: 'Defensa',
+    fis: 'Físico'
+  }
+
   if (!player) return <p>No existe jugador</p>
 
   return (
@@ -20,7 +29,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
           <PlayerCard player={player} card={card} />
         </div>
       </div>
-      <RadarChart attributes={player.attributes} />
+      {player.attributes && <RadarChart attributes={player.attributes} />}
       <div className='flex flex-col gap-2'>
         {/* player statistics */}
         <div className='flex flex-wrap gap-3 border rounded shadow px-5 py-3 bg-white justify-center items-center relative'>
@@ -41,19 +50,20 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
         {/* player attributes */}
         <div className='grid grid-cols-2 gap-3 border rounded shadow px-5 py-3 bg-white'>
           <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
-            {player.positions!.name}
+            {player.position_name}
           </h2>
-          {/* {Object.entries(player.attributes).map(([nombre, valor]) => (
-            <div
-              key={nombre}
-              className='p-2 border-l-4 border-slate-400 shadow flex items-center gap-2'
-            >
-              <sup className='capitalize'>{attributes[nombre]}</sup>{' '}
-              <strong>{valor}</strong>
-            </div>
-          ))} */}
+          {player.attributes &&
+            Object.entries(player.attributes).map(([nombre, valor]) => (
+              <div
+                key={nombre}
+                className='p-2 border-l-4 border-slate-400 shadow flex items-center justify-between gap-2'>
+                {/* @ts-ignore */}
+                <sup className='capitalize'>{attributes[nombre]}</sup>{' '}
+                <strong>{valor}</strong>
+              </div>
+            ))}
           <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
-            {player.foot && player.foot.name}
+            {player.foot}
           </h2>
         </div>
       </div>

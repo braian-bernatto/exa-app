@@ -59,8 +59,8 @@ export interface TeamExa {
 export type PlayerExa = Players & {
   team_image_url: string
   teams?: { id: number; name: string; image_url: string | null } | null
-  positions?: { id: string; name: string | null } | null
-  foot?: { id: number; name: string } | null
+  position_name: string
+  foot?: string
   attributes?: {
     rit: number | null
     tir: number | null

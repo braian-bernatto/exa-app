@@ -25,10 +25,8 @@ export default async function Home() {
   return (
     <main className='text-gray-700 w-full flex items-center justify-center gap-10 py-5'>
       {dataWithImage?.map(exa => (
-        <Link href={`${exa.id}`}>
-          <div
-            key={exa.id}
-            className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
+        <Link key={exa.id} href={`${exa.id}`}>
+          <div className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
             <span className='w-[150px] h-[150px] relative'>
               <Image
                 src={exa.image_url}
