@@ -28,6 +28,7 @@ const page = async ({ params }: { params: { id: number } }) => {
   const formattedPlayer = data?.map(item => {
     const player = {
       ...item,
+      team_image_url: '',
       attributes: {
         rit: item.rit,
         tir: item.tir,
@@ -55,7 +56,7 @@ const page = async ({ params }: { params: { id: number } }) => {
       const { data: storage } = supabase.storage
         .from('teams')
         .getPublicUrl(player.teams.image_url)
-      player.teams.image_url = storage.publicUrl
+      player.team_image_url = storage.publicUrl
     }
     return player
   })

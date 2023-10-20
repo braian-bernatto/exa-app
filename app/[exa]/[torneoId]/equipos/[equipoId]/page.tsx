@@ -40,7 +40,7 @@ export default async function jugadoresPage({
       const { data: storage } = supabase.storage
         .from('teams')
         .getPublicUrl(data.teams.image_url)
-      data.teams.image_url = storage.publicUrl
+      data.team_image_url = storage.publicUrl
     }
     return data
   })

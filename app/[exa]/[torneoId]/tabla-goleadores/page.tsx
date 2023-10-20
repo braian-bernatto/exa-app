@@ -22,14 +22,6 @@ const page = async ({
     ?.map(item => {
       const player = {
         ...item,
-        attributes: {
-          rit: item.rit,
-          tir: item.tir,
-          pas: item.pas,
-          reg: item.reg,
-          def: item.def,
-          fis: item.fis
-        },
         statistics: {
           goals: item.goals,
           yellowCards: item.yellow_cards,

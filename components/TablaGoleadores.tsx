@@ -3,7 +3,7 @@ import PlayerCard from './PlayerCard'
 import Link from 'next/link'
 
 interface Props {
-  players: PlayerExa[] | undefined
+  players: any[] | undefined
 }
 
 const TablaGoleadores = ({ players }: Props) => {

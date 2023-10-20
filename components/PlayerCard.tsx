@@ -34,7 +34,7 @@ const PlayerCard = ({
       <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px] rounded-t-full overflow-hidden'>
         <Image
           fill
-          src={imageError ? fallbackImage : player.image_url}
+          src={imageError ? fallbackImage : player.image_url || ''}
           onError={() => setImageError(true)}
           className='drop-shadow object-contain'
           alt={player.name}
@@ -71,39 +71,41 @@ const PlayerCard = ({
         </h1>
         <span className='absolute top-[43px] w-[210px] border-t border-yellow-900'></span>
 
-        <div className='flex items-center justify-between h-[105px] w-full text-2xl relative'>
-          <span className='absolute top-[50%] w-[90px] border-t left-[50%] translate-x-[-50%] border-yellow-900 rotate-90'></span>
-          {/* izquierda */}
-          <div className='w-full'>
-            {Object.entries(player.attributes).map(([nombre, valor], idx) => {
-              if (idx < 3)
-                return (
-                  <div
-                    key={nombre}
-                    className='grid grid-cols-2 w-full place-items-start'>
-                    <strong className='place-self-end mr-2'>{valor}</strong>{' '}
-                    <span className=''>{nombre.toUpperCase()}</span>
-                  </div>
-                )
-            })}
+        {player.attributes && (
+          <div className='flex items-center justify-between h-[105px] w-full text-2xl relative'>
+            <span className='absolute top-[50%] w-[90px] border-t left-[50%] translate-x-[-50%] border-yellow-900 rotate-90'></span>
+            {/* izquierda */}
+            <div className='w-full'>
+              {Object.entries(player.attributes).map(([nombre, valor], idx) => {
+                if (idx < 3)
+                  return (
+                    <div
+                      key={nombre}
+                      className='grid grid-cols-2 w-full place-items-start'>
+                      <strong className='place-self-end mr-2'>{valor}</strong>{' '}
+                      <span className=''>{nombre.toUpperCase()}</span>
+                    </div>
+                  )
+              })}
+            </div>
+            {/* derecha */}
+            <div className='w-full'>
+              {Object.entries(player.attributes).map(([nombre, valor], idx) => {
+                if (idx > 2)
+                  return (
+                    <div
+                      key={nombre}
+                      className='grid grid-cols-2 w-full place-items-end'>
+                      <strong className='mr-2'>{valor}</strong>
+                      <span className='place-self-start'>
+                        {nombre.toUpperCase()}
+                      </span>
+                    </div>
+                  )
+              })}
+            </div>
           </div>
-          {/* derecha */}
-          <div className='w-full'>
-            {Object.entries(player.attributes).map(([nombre, valor], idx) => {
-              if (idx > 2)
-                return (
-                  <div
-                    key={nombre}
-                    className='grid grid-cols-2 w-full place-items-end'>
-                    <strong className='mr-2'>{valor}</strong>
-                    <span className='place-self-start'>
-                      {nombre.toUpperCase()}
-                    </span>
-                  </div>
-                )
-            })}
-          </div>
-        </div>
+        )}
 
         {player.foot && (
           <div className={`flex`}>
@@ -143,7 +145,7 @@ const PlayerCard = ({
       />
       <div className='absolute top-[14px] left-[50%] translate-x-[-50%] drop-shadow w-[90px] h-[90px] rounded-t-full overflow-hidden'>
         <Image
-          src={imageError ? fallbackImage : player.image_url}
+          src={imageError ? fallbackImage : player.image_url || ''}
           fill
           className='object-contain'
           alt={player.name}
