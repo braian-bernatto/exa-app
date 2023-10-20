@@ -34,7 +34,7 @@ const TablaGoleadores = ({ players }: Props) => {
               <div
                 className={`rounded-full h-[50px] w-[50px] text-2xl font-semibold bg-white flex items-center justify-center shadow absolute -right-[4px] z-10 border-2 
               ${idx === 0 ? 'border-yellow-500' : 'border-gray-500'}`}>
-                {jugador.id}
+                {jugador.statistics?.goals}
                 <h2
                   className={`absolute -bottom-2 text-[12px] rounded bg-white p-0 leading-none px-1 border ${
                     idx === 0 ? 'border-yellow-500' : 'border-gray-500'

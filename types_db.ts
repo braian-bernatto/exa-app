@@ -811,17 +811,11 @@ export interface Database {
           torneo: string
         }
         Returns: {
-          fixture_id: string
-          team_local: number
-          team_visit: number
+          player_id: number
           team_id: number
-          id: number
-          is_local: boolean
+          team_image_url: string
           goals: number
           yellow_cards: number
-          red_card: boolean
-          red_card_motive: string
-          is_present: boolean
           date: string
           name: string
           image_url: string

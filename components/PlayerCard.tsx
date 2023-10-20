@@ -47,7 +47,7 @@ const PlayerCard = ({
         <span className='flex flex-col items-center gap-1'>
           <div className='h-[70px] w-[70px] relative'>
             <Image
-              src={player.teams?.image_url}
+              src={player.team_image_url}
               fill
               className='object-contain drop-shadow'
               alt='team logo'
@@ -152,13 +152,13 @@ const PlayerCard = ({
       </div>
 
       <div className='absolute top-[103px] flex flex-col items-center justify-center w-full px-[22px] h-[80px]'>
-        <h1 className='w-full text-center text-xs font-semibold overflow-ellipsis h-[44px] uppercase flex items-center justify-center'>
+        <h1 className='w-full text-center text-[10px] font-semibold overflow-ellipsis h-[20px] uppercase flex items-center justify-center'>
           {player.name}
         </h1>
         {showTeam ? (
           <div className='relative w-[50px] h-[50px]'>
             <Image
-              src={player.teams?.image_url}
+              src={player.team_image_url}
               fill
               className='object-contain'
               alt={player.teams?.name || 'Team logo'}
