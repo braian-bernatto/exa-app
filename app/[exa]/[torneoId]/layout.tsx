@@ -13,7 +13,7 @@ export default function TorneoLayout({
 
   return (
     <div className='w-full flex flex-col items-center'>
-      <div className='tabs pb-5'>
+      <div className='tabs pb-5 w-full flex justify-center'>
         <Link
           href={`/${params.exa}/${params.torneoId}/fixture`}
           className={`tab tab-bordered ${

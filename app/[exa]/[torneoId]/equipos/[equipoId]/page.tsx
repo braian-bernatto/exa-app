@@ -9,9 +9,9 @@ export const metadata = {
 }
 
 const card: Card = {
-  url: 'card-4.png',
-  textColor: 'text-gold',
-  footTextColor: 'text-gold'
+  url: 'card-1.png',
+  textColor: 'text-darkgold',
+  footTextColor: 'text-darkgold'
 }
 
 export default async function jugadoresPage({
@@ -33,15 +33,29 @@ export default async function jugadoresPage({
     const { data: imageData } = supabase.storage
       .from('players')
       .getPublicUrl(data.image_url!)
-    return { ...data, image_url: imageData.publicUrl }
+    data.image_url = imageData.publicUrl
+
+    // logo equipo
+    if (data.teams?.image_url) {
+      const { data: storage } = supabase.storage
+        .from('teams')
+        .getPublicUrl(data.teams.image_url)
+      data.teams.image_url = storage.publicUrl
+    }
+    return data
   })
 
   return (
     <main className='flex flex-wrap justify-center items-center py-5 gap-5'>
       {dataWithImage?.map(player => (
-        <Link href={`/${player.id}`}>
+        <Link href={`${player.id}`}>
           <article key={player.id} className='relative'>
-            <PlayerCard player={player} card={card} small={true} />
+            <PlayerCard
+              player={player}
+              card={card}
+              small={true}
+              showTeam={false}
+            />
           </article>
         </Link>
       ))}

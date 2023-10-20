@@ -48,7 +48,7 @@ export default async function Home({
                   />
                 </span>
               ) : (
-                <Trophy size={150} strokeWidth='1' stroke='#1e9a6f' />
+                <Trophy size={150} strokeWidth='1' className='stroke-gold' />
               )}
               <h2 className='rounded bg-white shadow px-2 text-center'>
                 {torneo.name}

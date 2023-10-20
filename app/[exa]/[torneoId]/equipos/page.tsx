@@ -30,13 +30,13 @@ export default async function equiposPage({
   })
 
   return (
-    <main className='flex flex-wrap justify-center items-center py-5 gap-5'>
+    <main className='flex flex-wrap justify-center items-center py-5 gap-5 max-w-4xl'>
       {dataWithImage?.map(team => (
         <Link href={`equipos/${team.team_id}`}>
           <div
             key={team.team_id}
-            className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px] gap-2'>
-            <span className='w-[150px] h-[150px] relative'>
+            className='relative flex flex-col items-center hover:scale-110 transition rounded bg-white shadow p-2 w-[100px] h-[100px] gap-2 overflow-hidden'>
+            <span className='w-[50px] h-[50px] relative'>
               <Image
                 src={team.teams.image_url}
                 alt='Team logo'
@@ -44,7 +44,7 @@ export default async function equiposPage({
                 className='object-contain'
               />
             </span>
-            <h2 className='shadow text-sm px-2 text-center capitalize'>
+            <h2 className='shadow text-sm px-2 text-center capitalize w-full overflow-clip h-5'>
               {team.teams.name}
             </h2>
           </div>

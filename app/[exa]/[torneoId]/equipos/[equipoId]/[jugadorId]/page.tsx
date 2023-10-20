@@ -28,8 +28,6 @@ const page = async ({ params }: { params: { id: number } }) => {
   const formattedPlayer = data?.map(item => {
     const player = {
       ...item,
-      public_image_url: '',
-      team_public_image_url: '',
       attributes: {
         rit: item.rit,
         tir: item.tir,
@@ -46,20 +44,19 @@ const page = async ({ params }: { params: { id: number } }) => {
     }
 
     // foto jugador
-    if (item.image_url) {
+    if (player.image_url) {
       const { data: storage } = supabase.storage
         .from('players')
-        .getPublicUrl(item.image_url)
-      player.public_image_url = storage.publicUrl
+        .getPublicUrl(player.image_url)
+      player.image_url = storage.publicUrl
     }
     // logo equipo
-    if (item.teams?.image_url) {
+    if (player.teams?.image_url) {
       const { data: storage } = supabase.storage
         .from('teams')
-        .getPublicUrl(item.teams?.image_url)
-      player.team_public_image_url = storage.publicUrl
+        .getPublicUrl(player.teams.image_url)
+      player.teams.image_url = storage.publicUrl
     }
-
     return player
   })
 

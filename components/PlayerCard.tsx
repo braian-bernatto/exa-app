@@ -8,11 +8,16 @@ interface CardProps {
   player: PlayerExa
   card: Card
   small?: boolean
+  showTeam?: boolean
 }
 
-const PlayerCard = ({ player, card, small = false }: CardProps) => {
+const PlayerCard = ({
+  player,
+  card,
+  small = false,
+  showTeam = true
+}: CardProps) => {
   const [imageError, setImageError] = useState(false)
-  const [logoError, setLogoError] = useState(false)
 
   const fallbackImage = '/img/player-gray.png'
 
@@ -42,7 +47,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         <span className='flex flex-col items-center gap-1'>
           <div className='h-[70px] w-[70px] relative'>
             <Image
-              src={player.team_public_image_url}
+              src={player.teams?.image_url}
               fill
               className='object-contain drop-shadow'
               alt='team logo'
@@ -136,7 +141,7 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         className='drop-shadow-lg object-contain'
         priority
       />
-      <div className='absolute top-[24px] left-[50%] translate-x-[-50%] drop-shadow w-[100px] h-[100px] rounded-t-full overflow-hidden'>
+      <div className='absolute top-[14px] left-[50%] translate-x-[-50%] drop-shadow w-[90px] h-[90px] rounded-t-full overflow-hidden'>
         <Image
           src={imageError ? fallbackImage : player.image_url}
           fill
@@ -146,10 +151,25 @@ const PlayerCard = ({ player, card, small = false }: CardProps) => {
         />
       </div>
 
-      <div className='absolute bottom-[30px] flex flex-col items-center justify-center w-full px-[44px]'>
-        <h1 className='w-full text-center text-xs font-semibold overflow-y-auto h-[44px] uppercase flex items-center justify-center'>
+      <div className='absolute top-[103px] flex flex-col items-center justify-center w-full px-[22px] h-[80px]'>
+        <h1 className='w-full text-center text-xs font-semibold overflow-ellipsis h-[44px] uppercase flex items-center justify-center'>
           {player.name}
         </h1>
+        {showTeam ? (
+          <div className='relative w-[50px] h-[50px]'>
+            <Image
+              src={player.teams?.image_url}
+              fill
+              className='object-contain'
+              alt={player.teams?.name || 'Team logo'}
+              onError={() => setImageError(true)}
+            />
+          </div>
+        ) : (
+          <span className='rounded shadow leading-none px-2 text-xs font-semibold text-white bg-gradient-to-t from-[#4c3d19] to-[#e7cd80]'>
+            {player.position_id}
+          </span>
+        )}
       </div>
     </div>
   )

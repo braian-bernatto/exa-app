@@ -487,6 +487,34 @@ export interface Database {
           }
         ]
       }
+      torneo_teams: {
+        Row: {
+          team_id: number
+          torneo_id: string
+        }
+        Insert: {
+          team_id: number
+          torneo_id: string
+        }
+        Update: {
+          team_id?: number
+          torneo_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "torneo_teams_team_id_fkey"
+            columns: ["team_id"]
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "torneo_teams_torneo_id_fkey"
+            columns: ["torneo_id"]
+            referencedRelation: "torneos"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       torneos: {
         Row: {
           exa_id: number
@@ -776,6 +804,28 @@ export interface Database {
           id: number
           image_url: string | null
           name: string
+        }[]
+      }
+      get_torneo_players_stats: {
+        Args: {
+          torneo: string
+        }
+        Returns: {
+          fixture_id: string
+          team_local: number
+          team_visit: number
+          team_id: number
+          id: number
+          is_local: boolean
+          goals: number
+          yellow_cards: number
+          red_card: boolean
+          red_card_motive: string
+          is_present: boolean
+          date: string
+          name: string
+          image_url: string
+          position_id: string
         }[]
       }
     }

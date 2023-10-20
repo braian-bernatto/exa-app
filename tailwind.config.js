@@ -12,7 +12,9 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
-      textColor: { gold: '#e7cd80', darkgold: '#4c3d19' }
+      textColor: { gold: '#e7cd80', darkgold: '#4c3d19' },
+      borderColor: { gold: '#e7cd80', darkgold: '#4c3d19' },
+      colors: { gold: '#e7cd80', darkgold: '#4c3d19' },
     }
   },
   plugins: [require('daisyui'), require('prettier-plugin-tailwindcss')]
