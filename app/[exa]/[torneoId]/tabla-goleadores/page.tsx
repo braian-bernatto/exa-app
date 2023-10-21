@@ -3,6 +3,10 @@ import { createClient } from '@/utils/supabaseServer'
 
 export const revalidate = 0
 
+export const metadata = {
+  title: 'Exa Team | Tabla Goleadores'
+}
+
 const page = async ({
   params
 }: {

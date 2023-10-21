@@ -2,6 +2,8 @@ import { createClient } from '@/utils/supabaseServer'
 import React from 'react'
 import FixtureClient from './components/FixtureClient'
 
+export const revalidate = 0
+
 const page = async ({
   params
 }: {
@@ -18,6 +20,9 @@ const page = async ({
   if (fixtureError) {
     console.log(fixtureError)
   }
+
+  if (fixtures?.length === 0)
+    return <p className='animate animate-bounce'>No hay datos cargados...</p>
 
   return <FixtureClient fixtures={fixtures || undefined} />
 }

@@ -2,6 +2,12 @@ import { createClient } from '@/utils/supabaseServer'
 import React from 'react'
 import TablaPosiciones from './components/TablaPosiciones'
 
+export const metadata = {
+  title: 'Exa Team | Tabla Posiciones'
+}
+
+export const revalidate = 0
+
 const page = async ({
   params
 }: {

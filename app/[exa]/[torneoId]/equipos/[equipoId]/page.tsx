@@ -1,7 +1,9 @@
 import PlayerCard from '@/app/[exa]/[torneoId]/equipos/[equipoId]/components/PlayerCard'
 import { Card } from '@/types'
 import { createClient } from '@/utils/supabaseServer'
+import Image from 'next/image'
 import Link from 'next/link'
+
 export const revalidate = 0
 
 export const metadata = {
@@ -59,23 +61,39 @@ export default async function jugadoresPage({
     return player
   })
 
+  if (formattedPlayers?.length === 0)
+    return <p className='animate animate-bounce'>No hay datos cargados...</p>
+
   return (
-    <main className='flex flex-wrap justify-center items-center py-5 gap-5'>
-      {formattedPlayers?.map(player => (
-        <Link
-          key={player.player_id}
-          href={`${params.equipoId}/${player.player_id}`}>
-          <article className='relative'>
-            <PlayerCard
-              //@ts-ignore
-              player={player}
-              card={card}
-              small={true}
-              showTeam={false}
+    formattedPlayers && (
+      <main className='flex flex-wrap justify-center items-center py-5 gap-5 max-w-2xl'>
+        <span className='w-full flex items-center justify-center'>
+          <div className='relative w-[100px] h-[100px]'>
+            <Image
+              src={formattedPlayers[0].team_image_url}
+              fill
+              className='object-contain drop-shadow'
+              alt={'Team logo'}
             />
-          </article>
-        </Link>
-      ))}
-    </main>
+          </div>
+        </span>
+        {formattedPlayers?.map(player => (
+          <Link
+            key={player.player_id}
+            href={`${params.equipoId}/${player.player_id}`}
+            className='hover:scale-110 transition'>
+            <article className='relative'>
+              <PlayerCard
+                //@ts-ignore
+                player={player}
+                card={card}
+                small={true}
+                showTeam={false}
+              />
+            </article>
+          </Link>
+        ))}
+      </main>
+    )
   )
 }
