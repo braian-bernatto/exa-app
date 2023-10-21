@@ -12,15 +12,6 @@ interface PlayerProps {
 }
 
 const PlayerDetails = ({ player, card }: PlayerProps) => {
-  const attributes = {
-    rit: 'Ritmo',
-    tir: 'Tiro',
-    pas: 'Pase',
-    reg: 'Regate',
-    def: 'Defensa',
-    fis: 'Físico'
-  }
-
   if (!player) return <p>No existe jugador</p>
 
   return (
@@ -34,7 +25,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
       {player.attributes && <RadarChart attributes={player.attributes} />}
       <div className='flex flex-col gap-2'>
         {/* player statistics */}
-        <div className='flex flex-wrap gap-7 border rounded shadow px-5 py-3 bg-white justify-center items-center relative'>
+        <div className='flex sm:border-l sm:flex-col border-t sm:border-t-0 flex-wrap gap-7 px-4 py-3 bg-white justify-center items-center relative'>
           {Object.entries(player.statistics!).map(([nombre, valor]) => (
             <div key={nombre} className='w-[40px] h-[40px] relative'>
               <Image
@@ -50,21 +41,11 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
           ))}
         </div>
         {/* player attributes */}
-        <div className='grid grid-cols-2 gap-3 border rounded shadow px-5 py-3 bg-white'>
+        {/* <div className='grid grid-cols-2 gap-3 border rounded shadow px-5 py-3 bg-white'>
           <div className='p-2 border-t-4 col-span-2 border-slate-400 shadow flex items-center justify-center gap-2'>
             <sup className='capitalize'>Pie</sup> <strong>{player.foot}</strong>
           </div>
-          {player.attributes &&
-            Object.entries(player.attributes).map(([nombre, valor]) => (
-              <div
-                key={nombre}
-                className='p-2 border-l-4 border-slate-400 shadow flex items-center justify-between gap-2'>
-                {/* @ts-ignore */}
-                <sup className='capitalize'>{attributes[nombre]}</sup>{' '}
-                <strong>{valor}</strong>
-              </div>
-            ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )
