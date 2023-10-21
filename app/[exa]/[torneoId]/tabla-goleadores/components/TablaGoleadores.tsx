@@ -19,17 +19,13 @@ const TablaGoleadores = ({ players }: Props) => {
     footTextColor: 'text-gold'
   }
 
-  // const playersOrderByGoals = players!.sort(
-  //   (a, b) => b.statistics.goals - a.statistics.goals
-  // )
-
   if (!players) return <div>No hay jugadores cargados...</div>
 
   return (
     <div className='flex flex-col gap-5'>
       {players.map((jugador, idx) => (
         <div key={idx} className='flex items-center justify-center'>
-          <Link href={`/jugador/${jugador.id}`}>
+          <Link href={`equipos/${jugador.team_id}/${jugador.player_id}`}>
             <div className='relative'>
               <div
                 className={`rounded-full h-[50px] w-[50px] text-2xl font-semibold bg-white flex items-center justify-center shadow absolute -right-[4px] z-10 border-2 
