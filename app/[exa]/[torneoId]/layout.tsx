@@ -26,14 +26,14 @@ export default function TorneoLayout({
           className={`tab tab-bordered ${
             pathname.split('/')[3] === 'tabla-posiciones' ? 'tab-active' : ''
           }`}>
-          Tabla de posiciones
+          Tabla Posiciones
         </Link>
         <Link
           href={`/${params.exa}/${params.torneoId}/tabla-goleadores`}
           className={`tab tab-bordered ${
             pathname.split('/')[3] === 'tabla-goleadores' ? 'tab-active' : ''
           }`}>
-          Tabla de goleadores
+          Tabla Goleadores
         </Link>
         <Link
           href={`/${params.exa}/${params.torneoId}/equipos`}

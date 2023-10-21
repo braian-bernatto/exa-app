@@ -49,14 +49,10 @@ const Navbar = async () => {
               <Link href={`/${exaId}/equipos`}>Equipos</Link>
             </li>
             <li>
-              <Link href={`/${exaId}/tabla-posiciones`}>
-                Tabla de Posiciones
-              </Link>
+              <Link href={`/${exaId}/tabla-posiciones`}>Tabla Posiciones</Link>
             </li>
             <li>
-              <Link href={`/${exaId}/tabla-goleadores`}>
-                Tabla de Goleadores
-              </Link>
+              <Link href={`/${exaId}/tabla-goleadores`}>Tabla Goleadores</Link>
             </li>
           </ul>
         </div>
