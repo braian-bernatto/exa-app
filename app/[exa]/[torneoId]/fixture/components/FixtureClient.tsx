@@ -148,7 +148,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   }, [supabase, router])
 
   useEffect(() => {
-    if (fixtures) {
+    if (fixtures?.length) {
       getVersus(fixtures[0].fixture_id)
       // const date = fixtures[0].date ? fixtures[0].date : undefined
       // setFecha(date)

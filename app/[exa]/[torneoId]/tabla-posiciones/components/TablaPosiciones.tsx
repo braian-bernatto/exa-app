@@ -6,6 +6,8 @@ interface TablaPosicionesProps {
 }
 
 const TablaPosiciones = ({ data }: TablaPosicionesProps) => {
+  if (!data?.length)
+    return <p className='animate animate-bounce'>No hay datos cargados...</p>
   return (
     <div className='flex w-full justify-center'>
       <div className='overflow-x-auto rounded bg-white sm:w-auto w-[350px]'>

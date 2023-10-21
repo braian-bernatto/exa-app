@@ -2,12 +2,16 @@ import { createClient } from '@/utils/supabaseServer'
 import React from 'react'
 import TablaPosiciones from './components/TablaPosiciones'
 
-const page = async () => {
+const page = async ({
+  params
+}: {
+  params: { exa: number; torneoId: string }
+}) => {
   const supabase = createClient()
 
   const { data, error } = await supabase
     .rpc('get_tabla_posiciones', {
-      p_torneo_id: 'bfb7c2f6-57f7-4b54-b412-26777fc9a090'
+      p_torneo_id: params.torneoId
     })
     .order('puntos', {
       ascending: false
