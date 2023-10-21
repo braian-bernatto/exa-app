@@ -4,6 +4,7 @@ import PlayerCard from './PlayerCard'
 import { Card, PlayerExa } from '@/types'
 import Image from 'next/image'
 import RadarChart from './RadarChart'
+import Field from '../[jugadorId]/components/field'
 
 interface PlayerProps {
   player: PlayerExa | undefined
@@ -29,19 +30,20 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
           <PlayerCard player={player} card={card} />
         </div>
       </div>
+      <Field player={player} />
       {player.attributes && <RadarChart attributes={player.attributes} />}
       <div className='flex flex-col gap-2'>
         {/* player statistics */}
-        <div className='flex flex-wrap gap-3 border rounded shadow px-5 py-3 bg-white justify-center items-center relative'>
+        <div className='flex flex-wrap gap-7 border rounded shadow px-5 py-3 bg-white justify-center items-center relative'>
           {Object.entries(player.statistics!).map(([nombre, valor]) => (
-            <div key={nombre} className='w-[50px] h-[50px] relative'>
+            <div key={nombre} className='w-[40px] h-[40px] relative'>
               <Image
                 src={`/img/${nombre}.png`}
                 fill
                 alt={`${nombre} image`}
                 className='object-contain drop-shadow'
               />
-              <div className='rounded-full bg-white shadow w-[30px] h-[30px] flex justify-center items-center text-[16px] absolute -top-2 -right-1'>
+              <div className='rounded-full bg-white shadow border w-[30px] h-[30px] flex justify-center items-center text-[16px] absolute -top-2 right-[-10px]'>
                 <strong>{valor}</strong>
               </div>
             </div>
@@ -49,9 +51,9 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
         </div>
         {/* player attributes */}
         <div className='grid grid-cols-2 gap-3 border rounded shadow px-5 py-3 bg-white'>
-          <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
-            {player.position_name}
-          </h2>
+          <div className='p-2 border-t-4 col-span-2 border-slate-400 shadow flex items-center justify-center gap-2'>
+            <sup className='capitalize'>Pie</sup> <strong>{player.foot}</strong>
+          </div>
           {player.attributes &&
             Object.entries(player.attributes).map(([nombre, valor]) => (
               <div
@@ -62,9 +64,6 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
                 <strong>{valor}</strong>
               </div>
             ))}
-          <h2 className='col-span-2 bg-slate-100 border font-semibold text-xs rounded shadow text-center uppercase'>
-            {player.foot}
-          </h2>
         </div>
       </div>
     </div>

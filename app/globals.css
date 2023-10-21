@@ -52,135 +52,105 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
   width: 30px;
   height: 30px;
   border-radius: 100%;
-  background: #d86a05;
+  background: #c2a75c;
   animation: pulse 1500ms infinite;
   filter: var(--drop-shadow);
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 #d86a05;
+    box-shadow: 0 0 0 0 #c2a75c;
   }
   100% {
     box-shadow: 0 0 0 30px #fbb32f01;
   }
 }
 
-.pulse.arquero::after {
-  top: 310px;
-  left: 102px;
+.pulse.carrilero-izquierdo::after {
+  top: 150px;
+  left: 13px;
 }
 
-.pulse.central::after {
-  top: 250px;
-  left: 102px;
+.pulse.carrilero-derecho::after {
+  top: 150px;
+  right: 13px;
 }
 
 .pulse.defensa-central::after {
-  top: 250px;
-  left: 102px;
+  top: 206px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.pulse.defensa::after {
-  top: 250px;
-  left: 102px;
-}
-
-.pulse.delantero::after {
-  top: 45px;
-  left: 102px;
-}
-
-.pulse.centro-delantero::after {
-  top: 45px;
-  left: 102px;
-}
-
-.pulse.delantero-izquierdo::after {
-  top: 90px;
-  left: 32px;
-}
-
-.pulse.delantero-derecho::after {
-  top: 90px;
-  left: 170px;
-}
-
-.pulse.enganche::after {
-  top: 95px;
-  left: 102px;
+.pulse.delantero-centro::after {
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .pulse.extremo-derecho::after {
-  top: 97px;
-  left: 180px;
+  top: 53px;
+  right: 13px;
 }
 
 .pulse.extremo-izquierdo::after {
-  top: 97px;
-  left: 24px;
-}
-
-.pulse.interior-derecho::after {
-  top: 140px;
-  left: 150px;
-}
-
-.pulse.interior-izquierdo::after {
-  top: 140px;
-  left: 54px;
+  top: 53px;
+  left: 13px;
 }
 
 .pulse.lateral-derecho::after {
-  top: 250px;
-  left: 180px;
+  top: 206px;
+  right: 13px;
 }
 
 .pulse.lateral-izquierdo::after {
-  top: 250px;
-  left: 24px;
+  top: 206px;
+  left: 13px;
 }
 
 .pulse.media-punta::after {
-  top: 110px;
-  left: 102px;
+  top: 66px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.pulse.mediocampista::after {
-  top: 159px;
-  left: 102px;
+.pulse.medio-centro::after, .pulse.medio-centro-ofensivo::after {
+  top: 115px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.pulse.mediocentro-ofensivo::after {
-  top: 159px;
-  left: 102px;
+.pulse.medio-centro-defensivo::after {
+  top: 206px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.pulse.volante::after {
-  top: 159px;
-  left: 102px;
+.pulse.medio-derecho::after {
+  top: 116px;
+  right: 13px;
 }
 
-.pulse.volante-central::after {
-  top: 159px;
-  left: 102px;
+.pulse.medio-izquierdo::after {
+  top: 116px;
+  left: 13px;
 }
 
-.pulse.volante-derecho::after {
-  top: 160px;
-  left: 184px;
+.pulse.portero::after {
+  top: 266px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.pulse.volante-izquierdo::after {
-  top: 160px;
-  left: 20px;
+.pulse.segundo-delantero-izquierdo::after {
+  top: 54px;
+  left: 40px;
 }
 
-.pulse.zaguero::after {
-  top: 250px;
-  left: 102px;
+.pulse.segundo-delantero-derecho::after {
+  top: 54px;
+  right: 40px;
 }

@@ -1,4 +1,4 @@
-import PlayerDetails from '@/components/PlayerDetails'
+import PlayerDetails from '@/app/[exa]/[torneoId]/equipos/[equipoId]/components/PlayerDetails'
 import { Card } from '@/types'
 import { createClient } from '@/utils/supabaseServer'
 import React from 'react'

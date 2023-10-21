@@ -1,4 +1,4 @@
-import PlayerCard from '@/components/PlayerCard'
+import PlayerCard from '@/app/[exa]/[torneoId]/equipos/[equipoId]/components/PlayerCard'
 import { Card } from '@/types'
 import { createClient } from '@/utils/supabaseServer'
 import Link from 'next/link'

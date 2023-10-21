@@ -1,5 +1,5 @@
 import { Card, PlayerExa } from '@/types'
-import PlayerCard from './PlayerCard'
+import PlayerCard from '../../equipos/[equipoId]/components/PlayerCard'
 import Link from 'next/link'
 
 interface Props {

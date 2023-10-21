@@ -1,4 +1,4 @@
-import TablaGoleadores from '@/components/TablaGoleadores'
+import TablaGoleadores from '@/app/[exa]/[torneoId]/tabla-goleadores/components/TablaGoleadores'
 import { createClient } from '@/utils/supabaseServer'
 
 export const revalidate = 0
