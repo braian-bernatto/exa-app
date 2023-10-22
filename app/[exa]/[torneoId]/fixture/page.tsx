@@ -4,6 +4,10 @@ import FixtureClient from './components/FixtureClient'
 
 export const revalidate = 0
 
+export const metadata = {
+  title: 'Exa Team | Fixture'
+}
+
 const page = async ({
   params
 }: {

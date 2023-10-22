@@ -87,6 +87,7 @@ export interface Card {
 export interface Versus {
   fixture_id: number
   date: string
+  location: string
   cancha_nro: number
   team_local: TeamVersus
   team_visit: TeamVersus

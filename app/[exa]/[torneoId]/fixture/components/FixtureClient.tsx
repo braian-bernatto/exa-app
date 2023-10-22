@@ -109,13 +109,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         },
         payload => {
           if (fixtures) {
-            // setSelectValue(
-            //   fixtures[0].location_id ? fixtures[0].location_id : undefined
-            // )
             getVersus(fixtures[0].fixture_id)
-            // const date = fixtures[0].date ? fixtures[0].date : undefined
-            // setFecha(date)
-            // setLocation(fixtures[0].location)
             setSelectValue(fixtures[0].fixture_id)
           }
         }
@@ -129,13 +123,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         },
         payload => {
           if (fixtures) {
-            // setSelectValue(
-            //   fixtures[0].location_id ? fixtures[0].location_id : undefined
-            // )
             getVersus(fixtures[0].fixture_id)
-            // const date = fixtures[0].date ? fixtures[0].date : undefined
-            // setFecha(date)
-            // setLocation(fixtures[0].location)
             setSelectValue(fixtures[0].fixture_id)
           }
         }
@@ -150,9 +138,6 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   useEffect(() => {
     if (fixtures?.length) {
       getVersus(fixtures[0].fixture_id)
-      // const date = fixtures[0].date ? fixtures[0].date : undefined
-      // setFecha(date)
-      // setLocation(fixtures[0].location)
       setSelectValue(fixtures[0].fixture_id)
     }
   }, [])
@@ -180,10 +165,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
               <option
                 key={fixture.fixture_id}
                 className='capitalize'
-                value={fixture.fixture_id}
-                // data-location={fixture.location ? fixture.location : undefined}
-                // data-date={fixture.date ? fixture.date : undefined}
-              >
+                value={fixture.fixture_id}>
                 {fixture.name}
               </option>
             ))}

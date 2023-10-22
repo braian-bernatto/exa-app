@@ -1,6 +1,7 @@
 import PlayerDetails from '@/app/[exa]/[torneoId]/equipos/[equipoId]/components/PlayerDetails'
 import { Card } from '@/types'
 import { createClient } from '@/utils/supabaseServer'
+import { Metadata, ResolvingMetadata } from 'next'
 import React from 'react'
 
 export const revalidate = 0
@@ -9,6 +10,29 @@ const card: Card = {
   url: 'card-1.png',
   textColor: 'text-darkgold',
   footTextColor: 'text-gold'
+}
+
+export async function generateMetadata(
+  {
+    params
+  }: {
+    params: { jugadorId: number }
+  },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // fetch data
+  const supabase = createClient()
+  const { data } = await supabase
+    .from('players')
+    .select('name')
+    .eq('id', params.jugadorId)
+
+  if (data)
+    return {
+      title: `Exa Team | ${data[0].name}`
+    }
+
+  return { title: 'Exa Team | Jugador' }
 }
 
 const page = async ({
