@@ -31,7 +31,7 @@ const PlayerCard = ({
         className='drop-shadow-lg'
         priority
       />
-      <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px] rounded-t-full overflow-hidden'>
+      <div className='absolute top-[54px] right-[50px] w-[200px] h-[200px] overflow-hidden'>
         <Image
           fill
           src={imageError ? fallbackImage : player.image_url || ''}
@@ -141,7 +141,7 @@ const PlayerCard = ({
         className='drop-shadow-lg object-contain'
         priority
       />
-      <div className='absolute top-[14px] left-[50%] translate-x-[-50%] drop-shadow w-[90px] h-[90px] rounded-t-full overflow-hidden'>
+      <div className='absolute top-[17px] left-[50%] translate-x-[-50%] drop-shadow w-[90px] h-[87px] overflow-hidden'>
         <Image
           src={imageError ? fallbackImage : player.image_url || ''}
           fill

@@ -88,6 +88,7 @@ export interface Versus {
   fixture_id: number
   date: string
   location: string
+  location_url: string
   cancha_nro: number
   team_local: TeamVersus
   team_visit: TeamVersus

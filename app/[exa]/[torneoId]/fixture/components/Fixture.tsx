@@ -5,7 +5,8 @@ import { useState, Fragment } from 'react'
 import { Transition } from '@headlessui/react'
 import { Versus } from '@/types'
 import { format, isPast, parseISO } from 'date-fns'
-import { CalendarX2, MapPin, MapPinOff } from 'lucide-react'
+import { Calendar, CalendarX2, Clock3, MapPin, MapPinOff } from 'lucide-react'
+import { es } from 'date-fns/locale'
 
 interface FixtureProps {
   versus: Versus
@@ -204,17 +205,37 @@ const Fixture = ({ versus }: FixtureProps) => {
                 ))}
             </div>
           </div>
-          <div className='rounded p-2 flex flex-col justify-center items-center text-xs'>
-            <h2 className='p-1 px-3 font-semibold text-gray-700'>
+          <div className='rounded flex justify-center items-center text-xs text-gray-700'>
+            <div className='p-1 px-3 flex items-center gap-2'>
               {versus.date ? (
-                format(parseISO(versus.date), 'dd/MM/yyyy')
+                <>
+                  <div className='flex flex-col items-center gap-1 drop-shadow-sm'>
+                    <Calendar size={15} />
+                    {format(parseISO(versus.date), 'dd/MM/yy', { locale: es })}
+                  </div>
+                  <div className='flex flex-col items-center gap-1 drop-shadow-sm'>
+                    <Clock3 size={15} />
+                    {format(parseISO(versus.date), 'HH:mm', { locale: es })}
+                  </div>
+                </>
               ) : (
-                <CalendarX2 className='text-gray-500' />
+                <CalendarX2 size={15} className='text-gray-500' />
               )}
-            </h2>
-            <span className='flex items-center justify-center gap-2 p-1 px-3 capitalize'>
-              {versus.location ? <MapPin /> : <MapPinOff />}
-              {versus.location}
+            </div>
+            <span className='flex flex-col items-center justify-center gap-1 drop-shadow-sm px-3 capitalize'>
+              {versus.location ? (
+                <a
+                  className={`flex flex-col items-center transition ${
+                    versus.location_url && 'hover:text-emerald-500'
+                  }`}
+                  target='_blank'
+                  href={versus.location_url ? versus.location_url : '#'}>
+                  <MapPin size={15} />
+                  {versus.location}
+                </a>
+              ) : (
+                <MapPinOff size={15} />
+              )}
             </span>
           </div>
         </div>

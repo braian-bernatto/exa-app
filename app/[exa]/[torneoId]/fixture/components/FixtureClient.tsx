@@ -144,46 +144,29 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
 
   return (
     <div className='flex flex-col items-center'>
-      <div className={`grid sm:grid-cols-3 gap-2 place-items-center w-full`}>
-        <select
-          defaultValue={selectValue ? selectValue : 'title'}
-          className='select select-bordered select-sm max-w-xs capitalize text-gray-700'
-          value={selectValue}
-          onChange={e => {
-            setSelectValue(e.target.value)
-            setLocation(
-              e.target.options[e.target.selectedIndex].dataset.location
-            )
-            setFecha(e.target.options[e.target.selectedIndex].dataset.date)
-            e.target.value.length ? getVersus(e.target.value) : setData([])
-          }}>
-          <option value='title' disabled>
-            Fixtures
-          </option>
-          {fixtures &&
-            fixtures.map(fixture => (
-              <option
-                key={fixture.fixture_id}
-                className='capitalize'
-                value={fixture.fixture_id}>
-                {fixture.name}
-              </option>
-            ))}
-        </select>
-
-        <span className='flex items-center justify-center gap-2 bg-white rounded p-1 px-3 shadow'>
-          {location ? <MapPin /> : <MapPinOff />}
-          {location}
-        </span>
-
-        <h2 className='rounded-md bg-white p-1 px-3 text-sm font-semibold text-gray-700'>
-          {fecha ? (
-            format(parseISO(fecha), 'dd/MM/yyyy')
-          ) : (
-            <CalendarX2 className='text-gray-500' />
-          )}
-        </h2>
-      </div>
+      <select
+        defaultValue={selectValue ? selectValue : 'title'}
+        className='select select-bordered select-sm max-w-xs capitalize text-gray-700'
+        value={selectValue}
+        onChange={e => {
+          setSelectValue(e.target.value)
+          setLocation(e.target.options[e.target.selectedIndex].dataset.location)
+          setFecha(e.target.options[e.target.selectedIndex].dataset.date)
+          e.target.value.length ? getVersus(e.target.value) : setData([])
+        }}>
+        <option value='title' disabled>
+          Fixtures
+        </option>
+        {fixtures &&
+          fixtures.map(fixture => (
+            <option
+              key={fixture.fixture_id}
+              className='capitalize'
+              value={fixture.fixture_id}>
+              {fixture.name}
+            </option>
+          ))}
+      </select>
 
       <div className='flex flex-col gap-5 z-10 mt-6'>
         {data.length ? (
