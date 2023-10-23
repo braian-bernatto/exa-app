@@ -28,6 +28,7 @@ const Fixture = ({ versus }: FixtureProps) => {
             src={versus.team_local.image_url}
             width={70}
             height={70}
+            className='drop-shadow'
             alt={`Logo de ${versus.team_local.name}`}
           />
           {versus.team_local.walkover && (
@@ -71,6 +72,7 @@ const Fixture = ({ versus }: FixtureProps) => {
             src={versus.team_visit.image_url}
             width={70}
             height={70}
+            className='drop-shadow'
             alt={`Logo de ${versus.team_visit.name}`}
           />
           {versus.team_visit.walkover && (
