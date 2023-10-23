@@ -70,8 +70,8 @@ const RadarChart = ({ attributes }: Props) => {
           attributes.def,
           attributes.fis
         ],
-        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-        borderColor: ['rgba(255, 99, 132, 1)'],
+        backgroundColor: ['rgba(255, 205, 0, 0.2)'],
+        borderColor: ['rgba(178, 143, 0, 1)'],
         borderWidth: 1
       }
     ]
