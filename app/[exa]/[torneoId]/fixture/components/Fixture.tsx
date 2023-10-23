@@ -205,7 +205,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                 ))}
             </div>
           </div>
-          <div className='rounded flex justify-center items-center text-xs text-gray-700'>
+          <div className='rounded-b flex justify-center items-center text-xs text-gray-700 shadow-md py-1 max-w-[300px] sm:max-w-[450px]'>
             <div className='p-1 px-3 flex items-center gap-2'>
               {versus.date ? (
                 <>
@@ -222,7 +222,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                 <CalendarX2 size={15} className='text-gray-500' />
               )}
             </div>
-            <span className='flex flex-col items-center justify-center gap-1 drop-shadow-sm px-3 capitalize'>
+            <span className='flex flex-col items-center justify-center gap-1 drop-shadow-sm px-3 capitalize text-center max-w-[200px]'>
               {versus.location ? (
                 <a
                   className={`flex flex-col gap-1 items-center transition ${
