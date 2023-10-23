@@ -225,7 +225,7 @@ const Fixture = ({ versus }: FixtureProps) => {
             <span className='flex flex-col items-center justify-center gap-1 drop-shadow-sm px-3 capitalize'>
               {versus.location ? (
                 <a
-                  className={`flex flex-col items-center transition ${
+                  className={`flex flex-col gap-1 items-center transition ${
                     versus.location_url && 'hover:text-emerald-500'
                   }`}
                   target='_blank'
