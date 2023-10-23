@@ -107,7 +107,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                           src={`/img/goals.png`}
                           fill
                           alt={`image`}
-                          className='object-contain drop-shadow filter saturate-50'
+                          className='object-contain drop-shadow filter saturate-[70%]'
                         />
                         <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                           <strong> {player.goals}</strong>
@@ -121,7 +121,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                           src={`/img/yellowCards.png`}
                           fill
                           alt={`image`}
-                          className='object-contain drop-shadow filter saturate-50'
+                          className='object-contain drop-shadow filter saturate-[70%]'
                         />
                         <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                           <strong> {player.yellow_cards}</strong>
@@ -140,7 +140,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                             src={`/img/redCards.png`}
                             fill
                             alt={`image`}
-                            className='object-contain drop-shadow filter saturate-50'
+                            className='object-contain drop-shadow filter saturate-[70%]'
                           />
                         </div>
                       </div>
@@ -163,7 +163,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                           src={`/img/goals.png`}
                           fill
                           alt={`image`}
-                          className='object-contain drop-shadow filter saturate-50'
+                          className='object-contain drop-shadow filter saturate-[70%]'
                         />
                         <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                           <strong> {player.goals}</strong>
@@ -177,7 +177,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                           src={`/img/yellowCards.png`}
                           fill
                           alt={`image`}
-                          className='object-contain drop-shadow filter saturate-50'
+                          className='object-contain drop-shadow filter saturate-[70%]'
                         />
                         <div className='rounded-full bg-white shadow w-[10px] h-[10px] sm:w-[15px] sm:h-[15px] flex justify-center items-center text-[6px] sm:text-[10px] absolute sm:-top-2 -right-1'>
                           <strong> {player.yellow_cards}</strong>
@@ -196,7 +196,7 @@ const Fixture = ({ versus }: FixtureProps) => {
                             src={`/img/redCards.png`}
                             fill
                             alt={`image`}
-                            className='object-contain drop-shadow filter saturate-50'
+                            className='object-contain drop-shadow filter saturate-[70%]'
                           />
                         </div>
                       </div>

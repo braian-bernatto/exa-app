@@ -32,7 +32,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
                 src={`/img/${nombre}.png`}
                 fill
                 alt={`${nombre} image`}
-                className='object-contain drop-shadow filter saturate-50'
+                className='object-contain drop-shadow filter saturate-[70%]'
               />
               <div className='rounded-full bg-white shadow border w-[30px] h-[30px] flex justify-center items-center text-[16px] absolute -top-2 right-[-10px]'>
                 <strong>{valor}</strong>
