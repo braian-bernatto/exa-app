@@ -32,7 +32,7 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
                 src={`/img/${nombre}.png`}
                 fill
                 alt={`${nombre} image`}
-                className='object-contain drop-shadow'
+                className='object-contain drop-shadow filter saturate-50'
               />
               <div className='rounded-full bg-white shadow border w-[30px] h-[30px] flex justify-center items-center text-[16px] absolute -top-2 right-[-10px]'>
                 <strong>{valor}</strong>
@@ -40,12 +40,6 @@ const PlayerDetails = ({ player, card }: PlayerProps) => {
             </div>
           ))}
         </div>
-        {/* player attributes */}
-        {/* <div className='grid grid-cols-2 gap-3 border rounded shadow px-5 py-3 bg-white'>
-          <div className='p-2 border-t-4 col-span-2 border-slate-400 shadow flex items-center justify-center gap-2'>
-            <sup className='capitalize'>Pie</sup> <strong>{player.foot}</strong>
-          </div>
-        </div> */}
       </div>
     </div>
   )
