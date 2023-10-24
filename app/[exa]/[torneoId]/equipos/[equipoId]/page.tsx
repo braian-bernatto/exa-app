@@ -67,32 +67,43 @@ export default async function jugadoresPage({
   return (
     formattedPlayers && (
       <main className='flex flex-wrap justify-center items-center py-5 gap-5 max-w-2xl'>
-        <span className='w-full flex items-center justify-center'>
-          <div className='relative w-[100px] h-[100px]'>
-            <Image
-              src={formattedPlayers[0].team_image_url}
-              fill
-              className='object-contain drop-shadow'
-              alt={'Team logo'}
-            />
-          </div>
-        </span>
-        {formattedPlayers?.map(player => (
-          <Link
-            key={player.player_id}
-            href={`${params.equipoId}/${player.player_id}`}
-            className='hover:scale-110 transition'>
-            <article className='relative'>
-              <PlayerCard
-                //@ts-ignore
-                player={player}
-                card={card}
-                small={true}
-                showTeam={false}
+        <div
+          className={`h-[900px] w-[590px] relative flex items-center justify-center drop-shadow-md perspective -top-[200px]`}>
+          <Image
+            fill
+            className='object-cover'
+            src='/img/soccer-field-svgrepo-com.svg'
+            alt='soccer-field'
+          />
+          <span className='w-full flex items-center justify-center'>
+            <div className='relative w-[200px] h-[200px]'>
+              <Image
+                src={formattedPlayers[0].team_image_url}
+                fill
+                className='object-contain drop-shadow'
+                alt={'Team logo'}
               />
-            </article>
-          </Link>
-        ))}
+            </div>
+          </span>
+          {formattedPlayers?.map(player => (
+            <Link
+              key={player.player_id}
+              href={`${params.equipoId}/${player.player_id}`}
+              className={`hover:scale-110 transition position ${player.position_name
+                .replaceAll(' ', '-')
+                .toLowerCase()}`}>
+              <article className='relative'>
+                <PlayerCard
+                  //@ts-ignore
+                  player={player}
+                  card={card}
+                  small={true}
+                  showTeam={false}
+                />
+              </article>
+            </Link>
+          ))}
+        </div>
       </main>
     )
   )
