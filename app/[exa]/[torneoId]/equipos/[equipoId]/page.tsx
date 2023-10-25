@@ -16,6 +16,12 @@ const card: Card = {
   footTextColor: 'text-darkgold'
 }
 
+const cardPor: Card = {
+  url: 'card-4.png',
+  textColor: 'text-gold',
+  footTextColor: 'text-darkgold'
+}
+
 export default async function jugadoresPage({
   params
 }: {
@@ -66,17 +72,17 @@ export default async function jugadoresPage({
 
   return (
     formattedPlayers && (
-      <main className='flex flex-wrap justify-center items-center py-5 gap-5 max-w-2xl'>
+      <main className='flex flex-wrap justify-center items-center py-5 mb-20 gap-5 max-w-2xl sm:h-[800px] sm:w-[800px] relative'>
         <div
-          className={`h-[900px] w-[590px] relative flex items-center justify-center drop-shadow-md perspective -top-[200px]`}>
+          className={`h-[110%] w-full relative flex items-center justify-center perspective sm:-top-[150px]`}>
           <Image
             fill
-            className='object-cover'
+            className='object-cover opacity-25 select-none hidden sm:block'
             src='/img/soccer-field-svgrepo-com.svg'
             alt='soccer-field'
           />
-          <span className='w-full flex items-center justify-center'>
-            <div className='relative w-[200px] h-[200px]'>
+          <span className='w-full flex items-center justify-center select-none'>
+            <div className='relative w-[100px] h-[100px] sm:w-[200px] sm:h-[200px]'>
               <Image
                 src={formattedPlayers[0].team_image_url}
                 fill
@@ -85,25 +91,25 @@ export default async function jugadoresPage({
               />
             </div>
           </span>
-          {formattedPlayers?.map(player => (
-            <Link
-              key={player.player_id}
-              href={`${params.equipoId}/${player.player_id}`}
-              className={`hover:scale-110 transition position ${player.position_name
-                .replaceAll(' ', '-')
-                .toLowerCase()}`}>
-              <article className='relative'>
-                <PlayerCard
-                  //@ts-ignore
-                  player={player}
-                  card={card}
-                  small={true}
-                  showTeam={false}
-                />
-              </article>
-            </Link>
-          ))}
         </div>
+        {formattedPlayers?.map(player => (
+          <Link
+            key={player.player_id}
+            href={`${params.equipoId}/${player.player_id}`}
+            className={`hover:scale-110 hover:z-40 sm:scale-75 transition sm:absolute ${player.position_name
+              .replaceAll(' ', '-')
+              .toLowerCase()}`}>
+            <article className='relative select-none'>
+              <PlayerCard
+                //@ts-ignore
+                player={player}
+                card={player.position_id === 'POR' ? cardPor : card}
+                small={true}
+                showTeam={false}
+              />
+            </article>
+          </Link>
+        ))}
       </main>
     )
   )

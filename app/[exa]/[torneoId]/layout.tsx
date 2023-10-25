@@ -12,7 +12,7 @@ export default function TorneoLayout({
   const pathname = usePathname()
 
   return (
-    <div className='w-full flex flex-col items-center'>
+    <div className='w-full flex flex-col items-center overflow-hidden'>
       <div className='tabs pb-5 w-full flex justify-center'>
         <Link
           href={`/${params.exa}/${params.torneoId}/fixture`}
