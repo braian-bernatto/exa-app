@@ -99,7 +99,9 @@ const Navbar = async () => {
               data[0].name
             )
           ) : (
-            <Trophy size={50} className='stroke-white drop-shadow-md' />
+            <span className='w-12 h-12 border border-gold rounded-full bg-white p-2 flex items-center justify-center shadow-md'>
+              <Trophy size={30} className='stroke-gold drop-shadow' />
+            </span>
           )}
         </Link>
       </div>

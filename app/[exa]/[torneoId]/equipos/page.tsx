@@ -42,7 +42,7 @@ export default async function equiposPage({
                 className='object-contain'
               />
             </span>
-            <h2 className='text-xs px-2 py-1 text-center capitalize rounded border overflow-clip'>
+            <h2 className='shadow text-sm px-2 text-center rounded border border-gold capitalize overflow-clip'>
               {team.teams.name}
             </h2>
           </div>

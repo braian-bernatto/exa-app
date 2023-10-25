@@ -35,9 +35,9 @@ export default async function Home({
       {dataWithImage &&
         dataWithImage.map(torneo => (
           <Link key={torneo.id} href={`${params.exa}/${torneo.id}`}>
-            <div className='relative flex flex-col items-center justify-center hover:scale-110 transition rounded bg-white shadow p-2 w-[150px] h-[150px]'>
+            <div className='relative flex flex-col items-center justify-center hover:scale-110 transition w-[150px] h-[150px]'>
               {data && data[0].image_url ? (
-                <span className='w-[150px] h-[150px] relative'>
+                <span className='w-[100px] h-[100px] relative'>
                   <Image
                     src={torneo.image_url}
                     alt='Torneo logo'
@@ -48,7 +48,7 @@ export default async function Home({
               ) : (
                 <Trophy size={150} strokeWidth='1' className='stroke-gold' />
               )}
-              <h2 className='rounded bg-white shadow px-2 text-center'>
+              <h2 className='shadow text-sm px-2 text-center rounded border border-gold capitalize'>
                 {torneo.name}
               </h2>
             </div>

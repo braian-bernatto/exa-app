@@ -96,7 +96,7 @@ export default async function jugadoresPage({
           <Link
             key={player.player_id}
             href={`${params.equipoId}/${player.player_id}`}
-            className={`hover:scale-110 hover:z-40 sm:scale-75 transition sm:absolute formation ${player.position_name
+            className={`sm:hover:scale-90 hover:scale-110 hover:z-40 sm:scale-75 transition sm:absolute formation ${player.position_name
               .replaceAll(' ', '-')
               .toLowerCase()}`}>
             <article className='relative select-none'>
