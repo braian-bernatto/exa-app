@@ -10,10 +10,10 @@ const Field = ({ player }: FieldProps) => {
       className={`h-[300px] w-[200px] relative block drop-shadow-md ${player.position_name} `}>
       <span
         className={`pulse ${player.position_name
-          .replace(' ', '-')
-          .toLowerCase()} z-50 w-full h-full`}></span>
+          .replaceAll(' ', '-')
+          .toLowerCase()} z-30 w-full h-full`}></span>
       <span
-        className='tooltip flex w-full h-full z-50'
+        className='tooltip flex w-full h-full z-40'
         data-tip={player.position_name}></span>
       <Image
         fill

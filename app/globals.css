@@ -52,7 +52,6 @@ body {
 .pulse::after {
   content: '';
   position: absolute;
-  top: 0;
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -163,82 +162,82 @@ body {
   }
 }
 
-.carrilero-izquierdo {
+.formation.carrilero-izquierdo {
   top: calc(var(--base-position) + 40%);
   left: 13px;
 }
 
-.carrilero-derecho {
+.formation.carrilero-derecho {
   top: calc(var(--base-position) + 40%);
   right: 13px;
 }
 
-.defensa-central {
+.formation.defensa-central {
   top: calc(var(--base-position) + 60%);
   left: 38.5%;
 }
 
-.delantero-centro {
+.formation.delantero-centro {
   top: calc(var(--base-position) + 3%);
   left: 38.5%;
 }
 
-.extremo-derecho {
+.formation.extremo-derecho {
   top: calc(var(--base-position) + 18%);
   right: 13px;
 }
 
-.extremo-izquierdo {
+.formation.extremo-izquierdo {
   top: calc(var(--base-position) + 18%);
   left: 13px;
 }
 
-.lateral-derecho {
+.formation.lateral-derecho {
   top: calc(var(--base-position) + 60%);
   right: 13px;
 }
 
-.lateral-izquierdo {
+.formation.lateral-izquierdo {
   top: calc(var(--base-position) + 60%);
   left: 13px;
 }
 
-.media-punta {
+.formation.media-punta {
   top: calc(var(--base-position) + 22%);
   left: 38.5%;
 }
 
-.medio-centro, .medio-centro-ofensivo {
+.formation.medio-centro, .medio-centro-ofensivo {
   top: calc(var(--base-position) +  38%);
   left: 38.5%;
 }
 
-.medio-centro-defensivo {
+.formation.medio-centro-defensivo {
   top: calc(var(--base-position) + 60%);
   left: 38.5%;
 }
 
-.medio-izquierdo {
+.formation.medio-izquierdo {
   top: calc(var(--base-position) +  38%);
   left: 20%;
 }
 
-.medio-derecho {
+.formation.medio-derecho {
   top: calc(var(--base-position) + 38%);
   right: 20%;
 }
 
-.portero {
+.formation.portero {
   bottom: calc(var(--base-position) + 5%);
   left: 38.5%;
 }
 
-.segundo-delantero-izquierdo {
+.formation.segundo-delantero-izquierdo {
   top: calc(var(--base-position) + 18%);
   left: 20%;
 }
 
-.segundo-delantero-derecho {
+.formation.segundo-delantero-derecho {
   top: calc(var(--base-position) + 18%);
   right: 20%;
 }
