@@ -29,7 +29,7 @@ export default async function torneoPage({
   })
 
   return (
-    <main className='flex flex-col justify-center items-center py-5'>
+    <main className='flex flex-col justify-center items-center'>
       {dataWithImage && (
         <Image
           src={dataWithImage[0].image_url}

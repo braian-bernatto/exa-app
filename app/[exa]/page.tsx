@@ -31,7 +31,7 @@ export default async function Home({
   })
 
   return (
-    <main className=''>
+    <>
       {dataWithImage &&
         dataWithImage.map(torneo => (
           <Link key={torneo.id} href={`${params.exa}/${torneo.id}`}>
@@ -54,6 +54,6 @@ export default async function Home({
             </div>
           </Link>
         ))}
-    </main>
+    </>
   )
 }

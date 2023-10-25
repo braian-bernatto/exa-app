@@ -1,14 +1,17 @@
 'use client'
 import { createClient } from '@/utils/supabaseBrowser'
+import { Trophy } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 const Navbar = async () => {
   const supabase = createClient()
   const pathname = usePathname()
   const exaId = +pathname.split('/')[1]
+  const torneoId = pathname.split('/')[2]
+
   const { data, error } = await supabase.from('exas').select().eq('id', exaId)
 
   if (error) {
@@ -23,53 +26,80 @@ const Navbar = async () => {
     return { ...data, image_url: imageData.publicUrl }
   })
 
+  const routes = [
+    {
+      href: `/fixture`,
+      label: 'Fixture',
+      active: pathname.split('/')[3] === `/fixture`
+    },
+    {
+      href: `/tabla-posiciones`,
+      label: 'Posiciones',
+      active: pathname.split('/')[3] === `/tabla-posiciones`
+    },
+    {
+      href: `/tabla-goleadores`,
+      label: 'Goleadores',
+      active: pathname.split('/')[3] === `/tabla-goleadores`
+    },
+    {
+      href: `/equipos`,
+      label: 'Equipos',
+      active: pathname.split('/')[3] === `/equipos`
+    }
+  ]
+
   return (
     <div className='fixed top-0 navbar bg-gradient-to-l from-slate-500 via-slate-300 to-slate-500 z-50'>
       <div className='navbar-start'>
-        <div className='dropdown'>
-          <label tabIndex={0} className='btn btn-ghost btn-circle'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-5 w-5'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M4 6h16M4 12h16M4 18h7'
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50'>
-            <li>
-              <Link href={`/${exaId}/equipos`}>Equipos</Link>
-            </li>
-            <li>
-              <Link href={`/${exaId}/tabla-posiciones`}>Tabla Posiciones</Link>
-            </li>
-            <li>
-              <Link href={`/${exaId}/tabla-goleadores`}>Tabla Goleadores</Link>
-            </li>
-          </ul>
-        </div>
+        {torneoId && (
+          <div className='dropdown sm:hidden'>
+            <label tabIndex={0} className='btn btn-ghost btn-circle'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-5 w-5'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M4 6h16M4 12h16M4 18h7'
+                />
+              </svg>
+            </label>
+            <ul
+              tabIndex={0}
+              className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50'>
+              {routes.map(route => (
+                <li key={route.href}>
+                  <Link href={`/${exaId}/${torneoId}${route.href}`}>
+                    {route.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <div className='navbar-center'>
         <Link
           href={'/'}
-          className='btn w-[50px] h-[50px] btn-ghost normal-case text-xl relative'>
-          {dataWithImage ? (
-            <Image
-              src={dataWithImage[0].image_url}
-              fill
-              alt='aso logo'
-              className='object-contain'
-            />
+          className='w-[50px] h-[50px] normal-case text-xl relative'>
+          {dataWithImage.length > 0 ? (
+            dataWithImage[0].image_url ? (
+              <Image
+                src={dataWithImage[0].image_url}
+                fill
+                alt='aso logo'
+                className='object-contain'
+              />
+            ) : (
+              data[0].name
+            )
           ) : (
-            data[0].name
+            <Trophy size={50} className='stroke-white drop-shadow-md' />
           )}
         </Link>
       </div>

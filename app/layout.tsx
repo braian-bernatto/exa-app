@@ -18,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        {children}
+        <Navbar />
+        <main className='pt-20 py-5'>{children}</main>
         <Footer />
       </body>
     </html>
