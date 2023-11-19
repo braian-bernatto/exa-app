@@ -42,8 +42,10 @@ const Fixture = ({ versus }: FixtureProps) => {
         </h3>
         <span className='font-bold rounded-full border shadow-md h-[55px] w-[55px] p-2 flex items-center justify-center bg-white'>
           {isPast(new Date(versus.date)) ? (
-            `${versus.team_local.goals ? versus.team_local.goals : 0}-${
-              versus.team_visit.goals ? versus.team_visit.goals : 0
+            `${
+              versus.team_local.walkover_goals || versus.team_local.goals || 0
+            }-${
+              versus.team_visit.walkover_goals || versus.team_visit.goals || 0
             }`
           ) : (
             <div className='flex relative'>

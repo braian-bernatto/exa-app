@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from 'react'
 import { GetFixturesByTorneo, Versus } from '@/types'
-import { format, parseISO } from 'date-fns'
-import { CalendarX2, MapPin, MapPinOff } from 'lucide-react'
 import { createClient } from '@/utils/supabaseBrowser'
 import { useRouter } from 'next/navigation'
 import Fixture from './Fixture'
 
 interface FixtureProps {
+  fases: { fase_nro: number }[] | null
   fixtures: GetFixturesByTorneo | undefined
 }
 
-const FixtureClient = ({ fixtures }: FixtureProps) => {
-  const [fecha, setFecha] = useState<string | undefined>(undefined)
+const FixtureClient = ({ fases, fixtures }: FixtureProps) => {
   const [data, setData] = useState<Versus[] | []>([])
-  const [location, setLocation] = useState<string | undefined>()
-  const [selectValue, setSelectValue] = useState<string | undefined>()
+  const [selectFase, setSelectFase] = useState<number | undefined>()
+  const [selectFixture, setSelectFixture] = useState<string | undefined>()
+  const [fixturesFiltered, setFixturesFiltered] =
+    useState<GetFixturesByTorneo>()
   const supabase = createClient()
   const router = useRouter()
 
@@ -110,7 +110,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         payload => {
           if (fixtures) {
             getVersus(fixtures[0].fixture_id)
-            setSelectValue(fixtures[0].fixture_id)
+            setSelectFixture(fixtures[0].fixture_id)
           }
         }
       )
@@ -124,7 +124,7 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
         payload => {
           if (fixtures) {
             getVersus(fixtures[0].fixture_id)
-            setSelectValue(fixtures[0].fixture_id)
+            setSelectFixture(fixtures[0].fixture_id)
           }
         }
       )
@@ -136,37 +136,75 @@ const FixtureClient = ({ fixtures }: FixtureProps) => {
   }, [supabase, router])
 
   useEffect(() => {
-    if (fixtures?.length) {
-      getVersus(fixtures[0].fixture_id)
-      setSelectValue(fixtures[0].fixture_id)
+    if (fixtures) {
+      setFixturesFiltered(
+        [...fixtures].filter(fix => fix.fase_nro === fixtures[0].fase_nro)
+      )
+      setSelectFase(fixtures[0].fase_nro)
+      setSelectFixture(fixtures[0].fixture_id)
     }
   }, [])
 
+  useEffect(() => {
+    if (selectFixture) {
+      getVersus(selectFixture)
+    }
+  }, [selectFixture])
+
   return (
     <div className='flex flex-col items-center'>
-      <select
-        defaultValue={selectValue ? selectValue : 'title'}
-        className='select select-bordered select-sm max-w-xs capitalize text-gray-700'
-        value={selectValue}
-        onChange={e => {
-          setSelectValue(e.target.value)
-          setLocation(e.target.options[e.target.selectedIndex].dataset.location)
-          setFecha(e.target.options[e.target.selectedIndex].dataset.date)
-          e.target.value.length ? getVersus(e.target.value) : setData([])
-        }}>
-        <option value='title' disabled>
-          Fixtures
-        </option>
-        {fixtures &&
-          fixtures.map(fixture => (
-            <option
-              key={fixture.fixture_id}
-              className='capitalize'
-              value={fixture.fixture_id}>
-              {fixture.name}
-            </option>
-          ))}
-      </select>
+      <div className='flex w-full gap-5 flex-wrap justify-center'>
+        <select
+          defaultValue={selectFase ? selectFase : 'title'}
+          className='select select-bordered select-sm capitalize text-gray-700 w-[170px]'
+          value={selectFase}
+          onChange={e => {
+            setSelectFase(+e.target.value)
+            setSelectFixture('title')
+            setFixturesFiltered(
+              [...fixtures!].filter(fix => fix.fase_nro === +e.target.value)
+            )
+            e.target.value.length ? getVersus(e.target.value) : setData([])
+          }}>
+          <option value='title' disabled>
+            Fases
+          </option>
+          {fases &&
+            fases.map(fase => (
+              <option
+                key={fase.fase_nro}
+                className='capitalize'
+                value={fase.fase_nro}>
+                Fase {fase.fase_nro}
+              </option>
+            ))}
+        </select>
+
+        <select
+          defaultValue={selectFixture ? selectFixture : 'title'}
+          className='select select-bordered select-sm capitalize text-gray-700 w-[170px]'
+          value={selectFixture}
+          onChange={e => {
+            setSelectFixture(e.target.value)
+            e.target.value.length ? getVersus(e.target.value) : setData([])
+          }}>
+          <option value='title' disabled>
+            Fixtures
+          </option>
+          {fixturesFiltered &&
+            fixturesFiltered.map(fixture => (
+              <option
+                key={fixture.fixture_id}
+                className='capitalize'
+                value={fixture.fixture_id}>
+                {fixture.name}{' '}
+                {fixture.is_vuelta && (
+                  <span className='text-xs lowercase'>(vuelta)</span>
+                )}
+              </option>
+            ))}
+        </select>
+      </div>
 
       <div className='flex flex-col gap-5 z-10 mt-6'>
         {data.length ? (
