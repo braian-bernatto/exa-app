@@ -153,7 +153,7 @@ const FixtureClient = ({ fases, fixtures }: FixtureProps) => {
 
   return (
     <div className='flex flex-col items-center'>
-      <div className='flex w-full gap-5 flex-wrap justify-center'>
+      <div className='flex w-full gap-5 flex-wrap justify-center pt-2'>
         <select
           defaultValue={selectFase ? selectFase : 'title'}
           className='select select-bordered select-sm capitalize text-gray-700 w-[170px]'
