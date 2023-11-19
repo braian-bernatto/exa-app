@@ -189,7 +189,7 @@ const FixtureClient = ({ fases, fixtures }: FixtureProps) => {
             e.target.value.length ? getVersus(e.target.value) : setData([])
           }}>
           <option value='title' disabled>
-            Fixtures
+            Fechas
           </option>
           {fixturesFiltered &&
             fixturesFiltered.map(fixture => (
