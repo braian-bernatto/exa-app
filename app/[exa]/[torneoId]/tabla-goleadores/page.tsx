@@ -13,9 +13,11 @@ const page = async ({
   params: { exa: number; torneoId: string }
 }) => {
   const supabase = createClient()
-  const { data, error } = await supabase.rpc('get_torneo_players_stats', {
-    torneo: params.torneoId
-  })
+  const { data, error } = await supabase
+    .rpc('get_torneo_players_stats', {
+      torneo: params.torneoId
+    })
+    .range(0, 9)
 
   if (error) {
     console.log(error)
