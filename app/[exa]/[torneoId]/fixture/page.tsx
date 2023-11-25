@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Exa Team | Fixture'
 }
 
-const page = async ({
+const fixturePage = async ({
   params
 }: {
   params: { exa: number; torneoId: string }
@@ -40,4 +40,4 @@ const page = async ({
   return <FixtureClient fases={fases} fixtures={fixtures || undefined} />
 }
 
-export default page
+export default fixturePage

@@ -35,7 +35,7 @@ export async function generateMetadata(
   return { title: 'Exa Team | Jugador' }
 }
 
-const page = async ({
+const jugadorPage = async ({
   params
 }: {
   params: { exa: number; torneoId: string; equipoId: number; jugadorId: number }
@@ -97,4 +97,4 @@ const page = async ({
   )
 }
 
-export default page
+export default jugadorPage

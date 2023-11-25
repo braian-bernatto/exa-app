@@ -7,7 +7,7 @@ export const metadata = {
   title: 'Exa Team | Tabla Goleadores'
 }
 
-const page = async ({
+const tablaGoleadoresPage = async ({
   params
 }: {
   params: { exa: number; torneoId: string }
@@ -57,4 +57,4 @@ const page = async ({
   return <TablaGoleadores players={formattedPlayers} />
 }
 
-export default page
+export default tablaGoleadoresPage

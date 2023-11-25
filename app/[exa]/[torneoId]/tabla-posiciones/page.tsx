@@ -8,7 +8,7 @@ export const metadata = {
 
 export const revalidate = 0
 
-const page = async ({
+const tablaPosicionesPage = async ({
   params
 }: {
   params: { exa: number; torneoId: string }
@@ -54,4 +54,4 @@ const page = async ({
   return <TablaPosiciones data={dataWithImage} />
 }
 
-export default page
+export default tablaPosicionesPage
