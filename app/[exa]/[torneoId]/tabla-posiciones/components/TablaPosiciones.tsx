@@ -56,7 +56,7 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
   }
 
   return (
-    <div className='flex w-full justify-center gap-4 flex-wrap'>
+    <div className='flex w-full justify-center gap-4 flex-wrap pt-2'>
       <div className='w-full flex justify-center'>
         <select
           defaultValue={selectFase ? selectFase : 'title'}
