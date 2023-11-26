@@ -53,8 +53,6 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
     if (error) {
       console.log(error)
     }
-
-    console.log({ dataWithImage })
   }
 
   return (
