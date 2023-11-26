@@ -3,9 +3,10 @@ import { createClient } from '@/utils/supabaseBrowser'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Llaves from './llaves'
 
 interface TablaPosicionesProps {
-  fases: { fase_nro: number }[] | null
+  fases: { fase_nro: number; fases: { name: string } | null }[] | null
 }
 
 const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
@@ -15,6 +16,26 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
   const [tablaData, setTablaData] = useState<any[]>([])
 
   const getTablaData = async (fase: number) => {
+    const tipoFase = fases!.filter(f => f.fase_nro === fase)[0].fases?.name
+
+    if (tipoFase === 'eliminatorias') {
+      const { data: eliminacion, error: eliminacionError } = await supabase
+        .from('fixtures')
+        .select('id, name')
+        .eq('torneo_id', params.split('/')[2])
+        .eq('fase_nro', fase)
+        .eq('is_vuelta', false)
+        .order('order', { ascending: true })
+
+      const { data, error } = await supabase
+        .from('fixture_teams')
+        .select('team_local, team_visit, order')
+        .in('fixture_id', eliminacion?.map(fix => fix.id) || [])
+        .order('order', { ascending: true })
+
+      console.log({ data })
+    }
+
     const { data, error } = await supabase
       .rpc('get_tabla_posiciones_by_fase', {
         p_torneo_id: params.split('/')[2],
@@ -192,6 +213,11 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
       ) : (
         <p className='animate animate-bounce'>No hay datos cargados...</p>
       )}
+
+      {/* <article className='flex-1 flex flex-wrap min-w-[280px] max-h-[800px] items-center justify-center overflow-y-auto sm:p-2 sm:pb-10'> */}
+      {/* llaves */}
+      {/* <Llaves teams={[...shuffledTeams.slice(0, TeamsQuantity)]} /> */}
+      {/* </article> */}
     </div>
   )
 }

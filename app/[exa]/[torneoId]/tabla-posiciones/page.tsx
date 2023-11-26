@@ -18,13 +18,12 @@ const tablaPosicionesPage = async ({
   // get all fases
   const { data: fases, error: fasesError } = await supabase
     .from('torneo_fase')
-    .select('fase_nro')
+    .select('fase_nro, fases(name)')
     .eq('torneo_id', params.torneoId)
 
   if (fasesError) {
     console.log(fasesError)
   }
-
   return <TablaPosiciones fases={fases} />
 }
 
