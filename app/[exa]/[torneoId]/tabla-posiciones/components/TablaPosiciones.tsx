@@ -2,7 +2,7 @@
 import { createClient } from '@/utils/supabaseBrowser'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface TablaPosicionesProps {
   fases: { fase_nro: number }[] | null
@@ -54,6 +54,13 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    if (fases) {
+      setSelectFase(fases[0].fase_nro)
+      getTablaData(fases[0].fase_nro)
+    }
+  }, [])
 
   return (
     <div className='flex w-full justify-center gap-4 flex-wrap pt-2'>
