@@ -775,9 +775,28 @@ export interface Database {
           tir: number | null
         }[]
       }
-      get_tabla_posiciones: {
+      get_tabla_posiciones_all: {
         Args: {
           p_torneo_id: string
+        }
+        Returns: {
+          team_id: number
+          team_name: string
+          team_image_url: string
+          jugados: number
+          ganados: number
+          empatados: number
+          perdidos: number
+          goles_favor: number
+          goles_contra: number
+          diferencia: number
+          puntos: number
+        }[]
+      }
+      get_tabla_posiciones_by_fase: {
+        Args: {
+          p_torneo_id: string
+          fase: number
         }
         Returns: {
           team_id: number

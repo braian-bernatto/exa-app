@@ -15,43 +15,17 @@ const tablaPosicionesPage = async ({
 }) => {
   const supabase = createClient()
 
-  const { data, error } = await supabase
-    .rpc('get_tabla_posiciones', {
-      p_torneo_id: params.torneoId
-    })
-    .order('puntos', {
-      ascending: false
-    })
-    .order('diferencia', {
-      ascending: false
-    })
-    .order('goles_favor', {
-      ascending: false
-    })
-    .order('goles_contra', {
-      ascending: true
-    })
+  // get all fases
+  const { data: fases, error: fasesError } = await supabase
+    .from('torneo_fase')
+    .select('fase_nro')
+    .eq('torneo_id', params.torneoId)
 
-  let dataWithImage = data
-
-  if (data) {
-    dataWithImage = data.map(team => {
-      const { data: url } = supabase.storage
-        .from('teams')
-        .getPublicUrl(team.team_image_url)
-
-      return {
-        ...team,
-        team_image_url: url.publicUrl
-      }
-    })
+  if (fasesError) {
+    console.log(fasesError)
   }
 
-  if (error) {
-    console.log(error)
-  }
-
-  return <TablaPosiciones data={dataWithImage} />
+  return <TablaPosiciones fases={fases} />
 }
 
 export default tablaPosicionesPage
