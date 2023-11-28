@@ -7,11 +7,11 @@ export const metadata = {
   title: 'Exa Team | Tabla Goleadores'
 }
 
-const tablaGoleadoresPage = async ({
+export default async function TablaGoleadoresPage({
   params
 }: {
   params: { exa: number; torneoId: string }
-}) => {
+}) {
   const supabase = createClient()
   const { data, error } = await supabase
     .rpc('get_torneo_players_stats', {
@@ -56,5 +56,3 @@ const tablaGoleadoresPage = async ({
 
   return <TablaGoleadores players={formattedPlayers} />
 }
-
-export default tablaGoleadoresPage

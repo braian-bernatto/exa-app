@@ -35,11 +35,11 @@ export async function generateMetadata(
   return { title: 'Exa Team | Jugador' }
 }
 
-const jugadorPage = async ({
+export default async function JugadorPage({
   params
 }: {
   params: { exa: number; torneoId: string; equipoId: number; jugadorId: number }
-}) => {
+}) {
   const supabase = createClient()
   const { data, error } = await supabase
     .rpc('get_torneo_players_stats', {
@@ -96,5 +96,3 @@ const jugadorPage = async ({
     />
   )
 }
-
-export default jugadorPage

@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Exa Team | Torneos'
 }
 
-export default async function Home({
+export default async function Exapage({
   params
 }: {
   params: { exa: number; torneoId: number }

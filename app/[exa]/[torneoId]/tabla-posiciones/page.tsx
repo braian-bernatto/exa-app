@@ -8,11 +8,11 @@ export const metadata = {
 
 export const revalidate = 0
 
-const tablaPosicionesPage = async ({
+export default async function TablaPosicionesPage({
   params
 }: {
   params: { exa: number; torneoId: string }
-}) => {
+}) {
   const supabase = createClient()
 
   // get all fases
@@ -26,5 +26,3 @@ const tablaPosicionesPage = async ({
   }
   return <TablaPosiciones fases={fases} />
 }
-
-export default tablaPosicionesPage

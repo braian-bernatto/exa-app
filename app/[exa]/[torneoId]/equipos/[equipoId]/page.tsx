@@ -22,7 +22,7 @@ const cardPor: Card = {
   footTextColor: 'text-darkgold'
 }
 
-export default async function jugadoresPage({
+export default async function JugadoresPage({
   params
 }: {
   params: { exa: number; torneoId: string; equipoId: number }

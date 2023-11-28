@@ -6,7 +6,7 @@ export const metadata = {
   title: 'Exa Team | Torneo'
 }
 
-export default async function torneoPage({
+export default async function TorneoPage({
   params
 }: {
   params: { exa: number; torneoId: number }

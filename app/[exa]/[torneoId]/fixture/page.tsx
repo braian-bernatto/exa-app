@@ -7,12 +7,11 @@ export const revalidate = 0
 export const metadata = {
   title: 'Exa Team | Fixture'
 }
-
-const fixturePage = async ({
+export default async function FixturePage({
   params
 }: {
   params: { exa: number; torneoId: string }
-}) => {
+}) {
   const supabase = createClient()
 
   // get all fixtures
@@ -39,5 +38,3 @@ const fixturePage = async ({
 
   return <FixtureClient fases={fases} fixtures={fixtures || undefined} />
 }
-
-export default fixturePage
