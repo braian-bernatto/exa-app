@@ -208,7 +208,7 @@ const Llaves = ({ data }: LlavesProps) => {
               </div>
               <div className='flex items-center justify-center h-full'>
                 <span className='w-12 h-12 bg-white shrink-0 border rounded shadow row-span-2 relative'>
-                  {semis && (
+                  {semis.length > 0 && (
                     <Image
                       src={semis[0].equipos[1].team_visit.image_url!}
                       fill
