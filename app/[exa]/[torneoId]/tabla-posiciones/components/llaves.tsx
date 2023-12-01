@@ -173,7 +173,7 @@ const Llaves = ({ data }: LlavesProps) => {
                   )}
                 </span>
                 <span className='w-12 h-12 bg-white shrink-0 border rounded shadow relative'>
-                  {final && (
+                  {final.length > 0 && (
                     <Image
                       src={final[0].equipos[0].team_visit.image_url!}
                       fill
