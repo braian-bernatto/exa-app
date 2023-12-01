@@ -13,72 +13,101 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
   const supabase = createClient()
   const params = usePathname()
   const [selectFase, setSelectFase] = useState<number | undefined>()
+  const [selectFaseName, setSelectFaseName] = useState<string | undefined>()
   const [tablaData, setTablaData] = useState<any[]>([])
+  const [tablaDataLlaves, setTablaDataLlaves] = useState<any[]>([])
 
   const getTablaData = async (fase: number) => {
     const tipoFase = fases!.filter(f => f.fase_nro === fase)[0].fases?.name
 
     if (tipoFase === 'eliminatorias') {
-      const { data: eliminacion, error: eliminacionError } = await supabase
-        .from('fixtures')
-        .select('id, name')
-        .eq('torneo_id', params.split('/')[2])
-        .eq('fase_nro', fase)
-        .eq('is_vuelta', false)
-        .order('order', { ascending: true })
-
-      const { data, error } = await supabase
-        .from('fixture_teams')
-        .select('team_local, team_visit, order')
-        .in('fixture_id', eliminacion?.map(fix => fix.id) || [])
-        .order('order', { ascending: true })
-
-      console.log({ data })
-    }
-
-    const { data, error } = await supabase
-      .rpc('get_tabla_posiciones_by_fase', {
-        p_torneo_id: params.split('/')[2],
+      const { data, error } = await supabase.rpc('get_llaves', {
+        torneo: params.split('/')[2],
         fase
       })
-      .order('puntos', {
-        ascending: false
-      })
-      .order('diferencia', {
-        ascending: false
-      })
-      .order('goles_favor', {
-        ascending: false
-      })
-      .order('goles_contra', {
-        ascending: true
-      })
 
-    let dataWithImage = data
+      let dataWithImage = data
 
-    if (data) {
-      dataWithImage = data.map(team => {
-        const { data: url } = supabase.storage
-          .from('teams')
-          .getPublicUrl(team.team_image_url)
+      if (data) {
+        dataWithImage = data.map(fix => {
+          return {
+            ...fix,
+            //@ts-ignore
+            equipos: fix.equipos?.map(team => {
+              const { data: url_local } = supabase.storage
+                .from('teams')
+                .getPublicUrl(team.team_local.image_url)
 
-        return {
-          ...team,
-          team_image_url: url.publicUrl
-        }
-      })
+              const { data: url_visit } = supabase.storage
+                .from('teams')
+                .getPublicUrl(team.team_visit.image_url)
 
-      setTablaData(dataWithImage)
-    }
+              return {
+                ...team,
+                team_local: {
+                  ...team.team_local,
+                  image_url: url_local.publicUrl
+                },
+                team_visit: {
+                  ...team.team_visit,
+                  image_url: url_visit.publicUrl
+                }
+              }
+            })
+          }
+        })
 
-    if (error) {
-      console.log(error)
+        setTablaDataLlaves(dataWithImage)
+      }
+
+      if (error) {
+        console.log(error)
+      }
+    } else {
+      const { data, error } = await supabase
+        .rpc('get_tabla_posiciones_by_fase', {
+          p_torneo_id: params.split('/')[2],
+          fase
+        })
+        .order('puntos', {
+          ascending: false
+        })
+        .order('diferencia', {
+          ascending: false
+        })
+        .order('goles_favor', {
+          ascending: false
+        })
+        .order('goles_contra', {
+          ascending: true
+        })
+
+      let dataWithImage = data
+
+      if (data) {
+        dataWithImage = data.map(team => {
+          const { data: url } = supabase.storage
+            .from('teams')
+            .getPublicUrl(team.team_image_url)
+
+          return {
+            ...team,
+            team_image_url: url.publicUrl
+          }
+        })
+
+        setTablaData(dataWithImage)
+      }
+      if (error) {
+        console.log(error)
+      }
     }
   }
 
   useEffect(() => {
     if (fases) {
       setSelectFase(fases[0].fase_nro)
+      setSelectFaseName(fases[0].fases?.name)
       getTablaData(fases[0].fase_nro)
     }
   }, [])
@@ -92,6 +121,10 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
           value={selectFase}
           onChange={e => {
             setSelectFase(+e.target.value)
+            setSelectFaseName(
+              e.target[e.target.selectedIndex].getAttribute('data-fase') ||
+                undefined
+            )
             getTablaData(+e.target.value)
           }}>
           <option value='title' disabled>
@@ -102,6 +135,7 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
               <option
                 key={fase.fase_nro}
                 className='capitalize'
+                data-fase={fase.fases?.name}
                 value={fase.fase_nro}>
                 Fase {fase.fase_nro}
               </option>
@@ -109,7 +143,16 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
         </select>
       </div>
 
-      {tablaData.length ? (
+      {selectFaseName === 'eliminatorias' ? (
+        tablaDataLlaves.length ? (
+          <article className='flex-1 flex flex-wrap min-w-[280px] max-h-[800px] items-center justify-center overflow-y-auto sm:p-2 sm:pb-10'>
+            {/* llaves */}
+            <Llaves data={tablaDataLlaves} />
+          </article>
+        ) : (
+          <p className='animate animate-bounce'>No hay datos cargados...</p>
+        )
+      ) : tablaData.length ? (
         <div className='overflow-x-auto rounded bg-white sm:w-auto w-[350px]'>
           <table className='table table-xs table-pin-rows table-pin-cols table-zebra'>
             {/* head */}
@@ -213,11 +256,6 @@ const TablaPosiciones = ({ fases }: TablaPosicionesProps) => {
       ) : (
         <p className='animate animate-bounce'>No hay datos cargados...</p>
       )}
-
-      {/* <article className='flex-1 flex flex-wrap min-w-[280px] max-h-[800px] items-center justify-center overflow-y-auto sm:p-2 sm:pb-10'> */}
-      {/* llaves */}
-      {/* <Llaves teams={[...shuffledTeams.slice(0, TeamsQuantity)]} /> */}
-      {/* </article> */}
     </div>
   )
 }

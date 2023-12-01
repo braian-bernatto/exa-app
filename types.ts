@@ -13,6 +13,7 @@ export type Fixtures = Database['public']['Tables']['fixtures']['Row']
 export type TablaPosiciones = Database['public']['Functions']['get_tabla_posiciones_by_fase']['Returns'][0]
 export type GetFixturesByTorneo = Database['public']['Functions']['get_fixtures_by_torneo']['Returns']
 export type GetFixtureFront = Database['public']['Functions']['get_fixture_front']['Returns']
+export type GetLlaves = Database['public']['Functions']['get_llaves']['Returns']
 
 interface FixturePlayersExa {
   name: string
